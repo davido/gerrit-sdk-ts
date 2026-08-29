@@ -1,0 +1,16 @@
+# Files owned by this repo, not by the generator. `generate.sh` regenerates only src/;
+# everything below is hand-written and must survive regeneration.
+package.json
+tsconfig.json
+tsconfig.esm.json
+index.ts
+xssi.ts
+README.md
+LICENSE.txt
+.gitignore
+.npmignore
+examples/**
+tests/**
+# generator scaffolding we don't ship
+docs/**
+git_push.sh
