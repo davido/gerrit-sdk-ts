@@ -99,6 +99,11 @@ import {
     CommonDescriptionInputToJSON,
 } from '../models/CommonDescriptionInput';
 import {
+    type CommonFileInfo,
+    CommonFileInfoFromJSON,
+    CommonFileInfoToJSON,
+} from '../models/CommonFileInfo';
+import {
     type CustomKeyedValuesInput,
     CustomKeyedValuesInputFromJSON,
     CustomKeyedValuesInputToJSON,
@@ -417,6 +422,32 @@ export interface DeleteChangesChangeIdPrivateRequest {
      * 
      */
     changeId: string;
+}
+
+export interface DeleteChangesChangeIdReviewersReviewerIdRequest {
+    /**
+     * 
+     */
+    changeId: string;
+    /**
+     * 
+     */
+    reviewerId: string;
+}
+
+export interface DeleteChangesChangeIdReviewersReviewerIdVotesVoteIdRequest {
+    /**
+     * 
+     */
+    changeId: string;
+    /**
+     * 
+     */
+    reviewerId: string;
+    /**
+     * 
+     */
+    voteId: string;
 }
 
 export interface DeleteChangesChangeIdRevisionsRevisionIdCommentsCommentIdRequest {
@@ -808,11 +839,26 @@ export interface GetChangesChangeIdReviewersRequest {
     changeId: string;
 }
 
-export interface GetChangesChangeIdRevisionsRequest {
+export interface GetChangesChangeIdReviewersReviewerIdRequest {
     /**
      * 
      */
     changeId: string;
+    /**
+     * 
+     */
+    reviewerId: string;
+}
+
+export interface GetChangesChangeIdReviewersReviewerIdVotesRequest {
+    /**
+     * 
+     */
+    changeId: string;
+    /**
+     * 
+     */
+    reviewerId: string;
 }
 
 export interface GetChangesChangeIdRevisionsRevisionIdRequest {
@@ -1051,17 +1097,6 @@ export interface GetChangesChangeIdRevisionsRevisionIdFilesFileIdDownloadRequest
      * 
      */
     parent?: number;
-}
-
-export interface GetChangesChangeIdRevisionsRevisionIdFixesRequest {
-    /**
-     * 
-     */
-    changeId: string;
-    /**
-     * 
-     */
-    revisionId: string;
 }
 
 export interface GetChangesChangeIdRevisionsRevisionIdFixesFixIdPreviewRequest {
@@ -1610,6 +1645,51 @@ export interface PostChangesChangeIdRevertSubmissionRequest {
      * 
      */
     revertInput?: RevertInput;
+}
+
+export interface PostChangesChangeIdReviewersRequest {
+    /**
+     * 
+     */
+    changeId: string;
+    /**
+     * 
+     */
+    reviewerInput?: ReviewerInput;
+}
+
+export interface PostChangesChangeIdReviewersReviewerIdDeleteRequest {
+    /**
+     * 
+     */
+    changeId: string;
+    /**
+     * 
+     */
+    reviewerId: string;
+    /**
+     * 
+     */
+    deleteReviewerInput?: DeleteReviewerInput;
+}
+
+export interface PostChangesChangeIdReviewersReviewerIdVotesVoteIdDeleteRequest {
+    /**
+     * 
+     */
+    changeId: string;
+    /**
+     * 
+     */
+    reviewerId: string;
+    /**
+     * 
+     */
+    voteId: string;
+    /**
+     * 
+     */
+    deleteVoteInput?: DeleteVoteInput;
 }
 
 export interface PostChangesChangeIdRevisionsRevisionIdCherrypickRequest {
@@ -2356,6 +2436,128 @@ export class ChangesApi extends runtime.BaseAPI {
      */
     async deleteChangesChangeIdPrivate(requestParameters: DeleteChangesChangeIdPrivateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteChangesChangeIdPrivateRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for deleteChangesChangeIdReviewersReviewerId without sending the request
+     */
+    async deleteChangesChangeIdReviewersReviewerIdRequestOpts(requestParameters: DeleteChangesChangeIdReviewersReviewerIdRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['changeId'] == null) {
+            throw new runtime.RequiredError(
+                'changeId',
+                'Required parameter "changeId" was null or undefined when calling deleteChangesChangeIdReviewersReviewerId().'
+            );
+        }
+
+        if (requestParameters['reviewerId'] == null) {
+            throw new runtime.RequiredError(
+                'reviewerId',
+                'Required parameter "reviewerId" was null or undefined when calling deleteChangesChangeIdReviewersReviewerId().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && (this.configuration.username !== undefined || this.configuration.password !== undefined)) {
+            headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
+        }
+
+        let urlPath = `/changes/{change-id}/reviewers/{reviewer-id}`;
+        urlPath = urlPath.replace('{change-id}', encodeURIComponent(String(requestParameters['changeId'])));
+        urlPath = urlPath.replace('{reviewer-id}', encodeURIComponent(String(requestParameters['reviewerId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * \'POST /changes/\\{change-id\\}/reviewers/\\{account-id\\}/delete\' --
+     * Delete Reviewer
+     */
+    async deleteChangesChangeIdReviewersReviewerIdRaw(requestParameters: DeleteChangesChangeIdReviewersReviewerIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteChangesChangeIdReviewersReviewerIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * \'POST /changes/\\{change-id\\}/reviewers/\\{account-id\\}/delete\' --
+     * Delete Reviewer
+     */
+    async deleteChangesChangeIdReviewersReviewerId(requestParameters: DeleteChangesChangeIdReviewersReviewerIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteChangesChangeIdReviewersReviewerIdRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for deleteChangesChangeIdReviewersReviewerIdVotesVoteId without sending the request
+     */
+    async deleteChangesChangeIdReviewersReviewerIdVotesVoteIdRequestOpts(requestParameters: DeleteChangesChangeIdReviewersReviewerIdVotesVoteIdRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['changeId'] == null) {
+            throw new runtime.RequiredError(
+                'changeId',
+                'Required parameter "changeId" was null or undefined when calling deleteChangesChangeIdReviewersReviewerIdVotesVoteId().'
+            );
+        }
+
+        if (requestParameters['reviewerId'] == null) {
+            throw new runtime.RequiredError(
+                'reviewerId',
+                'Required parameter "reviewerId" was null or undefined when calling deleteChangesChangeIdReviewersReviewerIdVotesVoteId().'
+            );
+        }
+
+        if (requestParameters['voteId'] == null) {
+            throw new runtime.RequiredError(
+                'voteId',
+                'Required parameter "voteId" was null or undefined when calling deleteChangesChangeIdReviewersReviewerIdVotesVoteId().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && (this.configuration.username !== undefined || this.configuration.password !== undefined)) {
+            headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
+        }
+
+        let urlPath = `/changes/{change-id}/reviewers/{reviewer-id}/votes/{vote-id}`;
+        urlPath = urlPath.replace('{change-id}', encodeURIComponent(String(requestParameters['changeId'])));
+        urlPath = urlPath.replace('{reviewer-id}', encodeURIComponent(String(requestParameters['reviewerId'])));
+        urlPath = urlPath.replace('{vote-id}', encodeURIComponent(String(requestParameters['voteId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * \'POST /changes/\\{change-id\\}/reviewers/\\{account-id\\}/votes/\\{label-id\\}/delete\' --
+     * Delete Vote
+     */
+    async deleteChangesChangeIdReviewersReviewerIdVotesVoteIdRaw(requestParameters: DeleteChangesChangeIdReviewersReviewerIdVotesVoteIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteChangesChangeIdReviewersReviewerIdVotesVoteIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * \'POST /changes/\\{change-id\\}/reviewers/\\{account-id\\}/votes/\\{label-id\\}/delete\' --
+     * Delete Vote
+     */
+    async deleteChangesChangeIdReviewersReviewerIdVotesVoteId(requestParameters: DeleteChangesChangeIdReviewersReviewerIdVotesVoteIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteChangesChangeIdReviewersReviewerIdVotesVoteIdRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -4137,13 +4339,20 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for getChangesChangeIdRevisions without sending the request
+     * Creates request options for getChangesChangeIdReviewersReviewerId without sending the request
      */
-    async getChangesChangeIdRevisionsRequestOpts(requestParameters: GetChangesChangeIdRevisionsRequest): Promise<runtime.RequestOpts> {
+    async getChangesChangeIdReviewersReviewerIdRequestOpts(requestParameters: GetChangesChangeIdReviewersReviewerIdRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['changeId'] == null) {
             throw new runtime.RequiredError(
                 'changeId',
-                'Required parameter "changeId" was null or undefined when calling getChangesChangeIdRevisions().'
+                'Required parameter "changeId" was null or undefined when calling getChangesChangeIdReviewersReviewerId().'
+            );
+        }
+
+        if (requestParameters['reviewerId'] == null) {
+            throw new runtime.RequiredError(
+                'reviewerId',
+                'Required parameter "reviewerId" was null or undefined when calling getChangesChangeIdReviewersReviewerId().'
             );
         }
 
@@ -4155,8 +4364,9 @@ export class ChangesApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
         }
 
-        let urlPath = `/changes/{change-id}/revisions`;
+        let urlPath = `/changes/{change-id}/reviewers/{reviewer-id}`;
         urlPath = urlPath.replace('{change-id}', encodeURIComponent(String(requestParameters['changeId'])));
+        urlPath = urlPath.replace('{reviewer-id}', encodeURIComponent(String(requestParameters['reviewerId'])));
 
         return {
             path: urlPath,
@@ -4167,18 +4377,80 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieves a reviewer of a change.
+     * Get Reviewer
      */
-    async getChangesChangeIdRevisionsRaw(requestParameters: GetChangesChangeIdRevisionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
-        const requestOptions = await this.getChangesChangeIdRevisionsRequestOpts(requestParameters);
+    async getChangesChangeIdReviewersReviewerIdRaw(requestParameters: GetChangesChangeIdReviewersReviewerIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ReviewerInfo>>> {
+        const requestOptions = await this.getChangesChangeIdReviewersReviewerIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ReviewerInfoFromJSON));
+    }
+
+    /**
+     * Retrieves a reviewer of a change.
+     * Get Reviewer
+     */
+    async getChangesChangeIdReviewersReviewerId(requestParameters: GetChangesChangeIdReviewersReviewerIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ReviewerInfo>> {
+        const response = await this.getChangesChangeIdReviewersReviewerIdRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getChangesChangeIdReviewersReviewerIdVotes without sending the request
+     */
+    async getChangesChangeIdReviewersReviewerIdVotesRequestOpts(requestParameters: GetChangesChangeIdReviewersReviewerIdVotesRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['changeId'] == null) {
+            throw new runtime.RequiredError(
+                'changeId',
+                'Required parameter "changeId" was null or undefined when calling getChangesChangeIdReviewersReviewerIdVotes().'
+            );
+        }
+
+        if (requestParameters['reviewerId'] == null) {
+            throw new runtime.RequiredError(
+                'reviewerId',
+                'Required parameter "reviewerId" was null or undefined when calling getChangesChangeIdReviewersReviewerIdVotes().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && (this.configuration.username !== undefined || this.configuration.password !== undefined)) {
+            headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
+        }
+
+        let urlPath = `/changes/{change-id}/reviewers/{reviewer-id}/votes`;
+        urlPath = urlPath.replace('{change-id}', encodeURIComponent(String(requestParameters['changeId'])));
+        urlPath = urlPath.replace('{reviewer-id}', encodeURIComponent(String(requestParameters['reviewerId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Lists the votes for a specific reviewer of the change.
+     * List Votes
+     */
+    async getChangesChangeIdReviewersReviewerIdVotesRaw(requestParameters: GetChangesChangeIdReviewersReviewerIdVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: number; }>> {
+        const requestOptions = await this.getChangesChangeIdReviewersReviewerIdVotesRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
     }
 
     /**
+     * Lists the votes for a specific reviewer of the change.
+     * List Votes
      */
-    async getChangesChangeIdRevisions(requestParameters: GetChangesChangeIdRevisionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
-        const response = await this.getChangesChangeIdRevisionsRaw(requestParameters, initOverrides);
+    async getChangesChangeIdReviewersReviewerIdVotes(requestParameters: GetChangesChangeIdReviewersReviewerIdVotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: number; }> {
+        const response = await this.getChangesChangeIdReviewersReviewerIdVotesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4786,18 +5058,18 @@ export class ChangesApi extends runtime.BaseAPI {
      * Lists the files that were added, modified, or deleted in a revision.
      * List files
      */
-    async getChangesChangeIdRevisionsRevisionIdFilesRaw(requestParameters: GetChangesChangeIdRevisionsRevisionIdFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async getChangesChangeIdRevisionsRevisionIdFilesRaw(requestParameters: GetChangesChangeIdRevisionsRevisionIdFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: CommonFileInfo; }>> {
         const requestOptions = await this.getChangesChangeIdRevisionsRevisionIdFilesRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => runtime.mapValues(jsonValue, CommonFileInfoFromJSON));
     }
 
     /**
      * Lists the files that were added, modified, or deleted in a revision.
      * List files
      */
-    async getChangesChangeIdRevisionsRevisionIdFiles(requestParameters: GetChangesChangeIdRevisionsRevisionIdFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async getChangesChangeIdRevisionsRevisionIdFiles(requestParameters: GetChangesChangeIdRevisionsRevisionIdFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: CommonFileInfo; }> {
         const response = await this.getChangesChangeIdRevisionsRevisionIdFilesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5099,60 +5371,6 @@ export class ChangesApi extends runtime.BaseAPI {
      */
     async getChangesChangeIdRevisionsRevisionIdFilesFileIdDownload(requestParameters: GetChangesChangeIdRevisionsRevisionIdFilesFileIdDownloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob> {
         const response = await this.getChangesChangeIdRevisionsRevisionIdFilesFileIdDownloadRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for getChangesChangeIdRevisionsRevisionIdFixes without sending the request
-     */
-    async getChangesChangeIdRevisionsRevisionIdFixesRequestOpts(requestParameters: GetChangesChangeIdRevisionsRevisionIdFixesRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['changeId'] == null) {
-            throw new runtime.RequiredError(
-                'changeId',
-                'Required parameter "changeId" was null or undefined when calling getChangesChangeIdRevisionsRevisionIdFixes().'
-            );
-        }
-
-        if (requestParameters['revisionId'] == null) {
-            throw new runtime.RequiredError(
-                'revisionId',
-                'Required parameter "revisionId" was null or undefined when calling getChangesChangeIdRevisionsRevisionIdFixes().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && (this.configuration.username !== undefined || this.configuration.password !== undefined)) {
-            headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
-        }
-
-        let urlPath = `/changes/{change-id}/revisions/{revision-id}/fixes`;
-        urlPath = urlPath.replace('{change-id}', encodeURIComponent(String(requestParameters['changeId'])));
-        urlPath = urlPath.replace('{revision-id}', encodeURIComponent(String(requestParameters['revisionId'])));
-
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-
-    /**
-     */
-    async getChangesChangeIdRevisionsRevisionIdFixesRaw(requestParameters: GetChangesChangeIdRevisionsRevisionIdFixesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
-        const requestOptions = await this.getChangesChangeIdRevisionsRevisionIdFixesRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.JSONApiResponse<any>(response);
-    }
-
-    /**
-     */
-    async getChangesChangeIdRevisionsRevisionIdFixes(requestParameters: GetChangesChangeIdRevisionsRevisionIdFixesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
-        const response = await this.getChangesChangeIdRevisionsRevisionIdFixesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -7629,6 +7847,187 @@ export class ChangesApi extends runtime.BaseAPI {
     async postChangesChangeIdRevertSubmission(requestParameters: PostChangesChangeIdRevertSubmissionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RevertSubmissionInfo> {
         const response = await this.postChangesChangeIdRevertSubmissionRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Creates request options for postChangesChangeIdReviewers without sending the request
+     */
+    async postChangesChangeIdReviewersRequestOpts(requestParameters: PostChangesChangeIdReviewersRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['changeId'] == null) {
+            throw new runtime.RequiredError(
+                'changeId',
+                'Required parameter "changeId" was null or undefined when calling postChangesChangeIdReviewers().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && (this.configuration.username !== undefined || this.configuration.password !== undefined)) {
+            headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
+        }
+
+        let urlPath = `/changes/{change-id}/reviewers`;
+        urlPath = urlPath.replace('{change-id}', encodeURIComponent(String(requestParameters['changeId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ReviewerInputToJSON(requestParameters['reviewerInput']),
+        };
+    }
+
+    /**
+     * Adds one user or all members of one group as reviewer to the change.
+     * Add Reviewer
+     */
+    async postChangesChangeIdReviewersRaw(requestParameters: PostChangesChangeIdReviewersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReviewerResult>> {
+        const requestOptions = await this.postChangesChangeIdReviewersRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ReviewerResultFromJSON(jsonValue));
+    }
+
+    /**
+     * Adds one user or all members of one group as reviewer to the change.
+     * Add Reviewer
+     */
+    async postChangesChangeIdReviewers(requestParameters: PostChangesChangeIdReviewersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReviewerResult> {
+        const response = await this.postChangesChangeIdReviewersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for postChangesChangeIdReviewersReviewerIdDelete without sending the request
+     */
+    async postChangesChangeIdReviewersReviewerIdDeleteRequestOpts(requestParameters: PostChangesChangeIdReviewersReviewerIdDeleteRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['changeId'] == null) {
+            throw new runtime.RequiredError(
+                'changeId',
+                'Required parameter "changeId" was null or undefined when calling postChangesChangeIdReviewersReviewerIdDelete().'
+            );
+        }
+
+        if (requestParameters['reviewerId'] == null) {
+            throw new runtime.RequiredError(
+                'reviewerId',
+                'Required parameter "reviewerId" was null or undefined when calling postChangesChangeIdReviewersReviewerIdDelete().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && (this.configuration.username !== undefined || this.configuration.password !== undefined)) {
+            headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
+        }
+
+        let urlPath = `/changes/{change-id}/reviewers/{reviewer-id}/delete`;
+        urlPath = urlPath.replace('{change-id}', encodeURIComponent(String(requestParameters['changeId'])));
+        urlPath = urlPath.replace('{reviewer-id}', encodeURIComponent(String(requestParameters['reviewerId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: DeleteReviewerInputToJSON(requestParameters['deleteReviewerInput']),
+        };
+    }
+
+    /**
+     * Deletes a reviewer from a change. Deleting a reviewer also removes that user from the attention set.
+     * Delete Reviewer
+     */
+    async postChangesChangeIdReviewersReviewerIdDeleteRaw(requestParameters: PostChangesChangeIdReviewersReviewerIdDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postChangesChangeIdReviewersReviewerIdDeleteRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Deletes a reviewer from a change. Deleting a reviewer also removes that user from the attention set.
+     * Delete Reviewer
+     */
+    async postChangesChangeIdReviewersReviewerIdDelete(requestParameters: PostChangesChangeIdReviewersReviewerIdDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postChangesChangeIdReviewersReviewerIdDeleteRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postChangesChangeIdReviewersReviewerIdVotesVoteIdDelete without sending the request
+     */
+    async postChangesChangeIdReviewersReviewerIdVotesVoteIdDeleteRequestOpts(requestParameters: PostChangesChangeIdReviewersReviewerIdVotesVoteIdDeleteRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['changeId'] == null) {
+            throw new runtime.RequiredError(
+                'changeId',
+                'Required parameter "changeId" was null or undefined when calling postChangesChangeIdReviewersReviewerIdVotesVoteIdDelete().'
+            );
+        }
+
+        if (requestParameters['reviewerId'] == null) {
+            throw new runtime.RequiredError(
+                'reviewerId',
+                'Required parameter "reviewerId" was null or undefined when calling postChangesChangeIdReviewersReviewerIdVotesVoteIdDelete().'
+            );
+        }
+
+        if (requestParameters['voteId'] == null) {
+            throw new runtime.RequiredError(
+                'voteId',
+                'Required parameter "voteId" was null or undefined when calling postChangesChangeIdReviewersReviewerIdVotesVoteIdDelete().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && (this.configuration.username !== undefined || this.configuration.password !== undefined)) {
+            headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
+        }
+
+        let urlPath = `/changes/{change-id}/reviewers/{reviewer-id}/votes/{vote-id}/delete`;
+        urlPath = urlPath.replace('{change-id}', encodeURIComponent(String(requestParameters['changeId'])));
+        urlPath = urlPath.replace('{reviewer-id}', encodeURIComponent(String(requestParameters['reviewerId'])));
+        urlPath = urlPath.replace('{vote-id}', encodeURIComponent(String(requestParameters['voteId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: DeleteVoteInputToJSON(requestParameters['deleteVoteInput']),
+        };
+    }
+
+    /**
+     * Deletes a single vote from a change. Note, that even when the last vote of a reviewer is removed the reviewer itself is still listed on the change.
+     * Delete Vote
+     */
+    async postChangesChangeIdReviewersReviewerIdVotesVoteIdDeleteRaw(requestParameters: PostChangesChangeIdReviewersReviewerIdVotesVoteIdDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.postChangesChangeIdReviewersReviewerIdVotesVoteIdDeleteRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Deletes a single vote from a change. Note, that even when the last vote of a reviewer is removed the reviewer itself is still listed on the change.
+     * Delete Vote
+     */
+    async postChangesChangeIdReviewersReviewerIdVotesVoteIdDelete(requestParameters: PostChangesChangeIdReviewersReviewerIdVotesVoteIdDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.postChangesChangeIdReviewersReviewerIdVotesVoteIdDeleteRaw(requestParameters, initOverrides);
     }
 
     /**

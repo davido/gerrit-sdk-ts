@@ -58,28 +58,28 @@ export interface GetPluginsRequest {
     start?: number;
 }
 
-export interface GetPluginsPluginIdStatusRequest {
+export interface GetPluginsPluginIdGerritStatusRequest {
     /**
      * 
      */
     pluginId: string;
 }
 
-export interface PostPluginsPluginIdDisableRequest {
+export interface PostPluginsPluginIdGerritDisableRequest {
     /**
      * 
      */
     pluginId: string;
 }
 
-export interface PostPluginsPluginIdEnableRequest {
+export interface PostPluginsPluginIdGerritEnableRequest {
     /**
      * 
      */
     pluginId: string;
 }
 
-export interface PostPluginsPluginIdReloadRequest {
+export interface PostPluginsPluginIdGerritReloadRequest {
     /**
      * 
      */
@@ -219,13 +219,13 @@ export class PluginsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for getPluginsPluginIdStatus without sending the request
+     * Creates request options for getPluginsPluginIdGerritStatus without sending the request
      */
-    async getPluginsPluginIdStatusRequestOpts(requestParameters: GetPluginsPluginIdStatusRequest): Promise<runtime.RequestOpts> {
+    async getPluginsPluginIdGerritStatusRequestOpts(requestParameters: GetPluginsPluginIdGerritStatusRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['pluginId'] == null) {
             throw new runtime.RequiredError(
                 'pluginId',
-                'Required parameter "pluginId" was null or undefined when calling getPluginsPluginIdStatus().'
+                'Required parameter "pluginId" was null or undefined when calling getPluginsPluginIdGerritStatus().'
             );
         }
 
@@ -237,7 +237,7 @@ export class PluginsApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
         }
 
-        let urlPath = `/plugins/{plugin-id}/status`;
+        let urlPath = `/plugins/{plugin-id}/gerrit~status`;
         urlPath = urlPath.replace('{plugin-id}', encodeURIComponent(String(requestParameters['pluginId'])));
 
         return {
@@ -249,29 +249,33 @@ export class PluginsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieves the status of a plugin on the Gerrit server.
+     * Get Plugin Status
      */
-    async getPluginsPluginIdStatusRaw(requestParameters: GetPluginsPluginIdStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PluginInfo>> {
-        const requestOptions = await this.getPluginsPluginIdStatusRequestOpts(requestParameters);
+    async getPluginsPluginIdGerritStatusRaw(requestParameters: GetPluginsPluginIdGerritStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PluginInfo>> {
+        const requestOptions = await this.getPluginsPluginIdGerritStatusRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PluginInfoFromJSON(jsonValue));
     }
 
     /**
+     * Retrieves the status of a plugin on the Gerrit server.
+     * Get Plugin Status
      */
-    async getPluginsPluginIdStatus(requestParameters: GetPluginsPluginIdStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PluginInfo> {
-        const response = await this.getPluginsPluginIdStatusRaw(requestParameters, initOverrides);
+    async getPluginsPluginIdGerritStatus(requestParameters: GetPluginsPluginIdGerritStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PluginInfo> {
+        const response = await this.getPluginsPluginIdGerritStatusRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for postPluginsPluginIdDisable without sending the request
+     * Creates request options for postPluginsPluginIdGerritDisable without sending the request
      */
-    async postPluginsPluginIdDisableRequestOpts(requestParameters: PostPluginsPluginIdDisableRequest): Promise<runtime.RequestOpts> {
+    async postPluginsPluginIdGerritDisableRequestOpts(requestParameters: PostPluginsPluginIdGerritDisableRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['pluginId'] == null) {
             throw new runtime.RequiredError(
                 'pluginId',
-                'Required parameter "pluginId" was null or undefined when calling postPluginsPluginIdDisable().'
+                'Required parameter "pluginId" was null or undefined when calling postPluginsPluginIdGerritDisable().'
             );
         }
 
@@ -283,7 +287,7 @@ export class PluginsApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
         }
 
-        let urlPath = `/plugins/{plugin-id}/disable`;
+        let urlPath = `/plugins/{plugin-id}/gerrit~disable`;
         urlPath = urlPath.replace('{plugin-id}', encodeURIComponent(String(requestParameters['pluginId'])));
 
         return {
@@ -295,29 +299,31 @@ export class PluginsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Disable Plugin
      */
-    async postPluginsPluginIdDisableRaw(requestParameters: PostPluginsPluginIdDisableRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PluginInfo>> {
-        const requestOptions = await this.postPluginsPluginIdDisableRequestOpts(requestParameters);
+    async postPluginsPluginIdGerritDisableRaw(requestParameters: PostPluginsPluginIdGerritDisableRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PluginInfo>> {
+        const requestOptions = await this.postPluginsPluginIdGerritDisableRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PluginInfoFromJSON(jsonValue));
     }
 
     /**
+     * Disable Plugin
      */
-    async postPluginsPluginIdDisable(requestParameters: PostPluginsPluginIdDisableRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PluginInfo> {
-        const response = await this.postPluginsPluginIdDisableRaw(requestParameters, initOverrides);
+    async postPluginsPluginIdGerritDisable(requestParameters: PostPluginsPluginIdGerritDisableRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PluginInfo> {
+        const response = await this.postPluginsPluginIdGerritDisableRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for postPluginsPluginIdEnable without sending the request
+     * Creates request options for postPluginsPluginIdGerritEnable without sending the request
      */
-    async postPluginsPluginIdEnableRequestOpts(requestParameters: PostPluginsPluginIdEnableRequest): Promise<runtime.RequestOpts> {
+    async postPluginsPluginIdGerritEnableRequestOpts(requestParameters: PostPluginsPluginIdGerritEnableRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['pluginId'] == null) {
             throw new runtime.RequiredError(
                 'pluginId',
-                'Required parameter "pluginId" was null or undefined when calling postPluginsPluginIdEnable().'
+                'Required parameter "pluginId" was null or undefined when calling postPluginsPluginIdGerritEnable().'
             );
         }
 
@@ -329,7 +335,7 @@ export class PluginsApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
         }
 
-        let urlPath = `/plugins/{plugin-id}/enable`;
+        let urlPath = `/plugins/{plugin-id}/gerrit~enable`;
         urlPath = urlPath.replace('{plugin-id}', encodeURIComponent(String(requestParameters['pluginId'])));
 
         return {
@@ -341,29 +347,33 @@ export class PluginsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Enables a plugin on the Gerrit server.
+     * Enable Plugin
      */
-    async postPluginsPluginIdEnableRaw(requestParameters: PostPluginsPluginIdEnableRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PluginInfo>> {
-        const requestOptions = await this.postPluginsPluginIdEnableRequestOpts(requestParameters);
+    async postPluginsPluginIdGerritEnableRaw(requestParameters: PostPluginsPluginIdGerritEnableRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PluginInfo>> {
+        const requestOptions = await this.postPluginsPluginIdGerritEnableRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PluginInfoFromJSON(jsonValue));
     }
 
     /**
+     * Enables a plugin on the Gerrit server.
+     * Enable Plugin
      */
-    async postPluginsPluginIdEnable(requestParameters: PostPluginsPluginIdEnableRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PluginInfo> {
-        const response = await this.postPluginsPluginIdEnableRaw(requestParameters, initOverrides);
+    async postPluginsPluginIdGerritEnable(requestParameters: PostPluginsPluginIdGerritEnableRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PluginInfo> {
+        const response = await this.postPluginsPluginIdGerritEnableRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for postPluginsPluginIdReload without sending the request
+     * Creates request options for postPluginsPluginIdGerritReload without sending the request
      */
-    async postPluginsPluginIdReloadRequestOpts(requestParameters: PostPluginsPluginIdReloadRequest): Promise<runtime.RequestOpts> {
+    async postPluginsPluginIdGerritReloadRequestOpts(requestParameters: PostPluginsPluginIdGerritReloadRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['pluginId'] == null) {
             throw new runtime.RequiredError(
                 'pluginId',
-                'Required parameter "pluginId" was null or undefined when calling postPluginsPluginIdReload().'
+                'Required parameter "pluginId" was null or undefined when calling postPluginsPluginIdGerritReload().'
             );
         }
 
@@ -375,7 +385,7 @@ export class PluginsApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
         }
 
-        let urlPath = `/plugins/{plugin-id}/reload`;
+        let urlPath = `/plugins/{plugin-id}/gerrit~reload`;
         urlPath = urlPath.replace('{plugin-id}', encodeURIComponent(String(requestParameters['pluginId'])));
 
         return {
@@ -387,18 +397,22 @@ export class PluginsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Reloads a plugin on the Gerrit server.
+     * Reload Plugin
      */
-    async postPluginsPluginIdReloadRaw(requestParameters: PostPluginsPluginIdReloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PluginInfo>> {
-        const requestOptions = await this.postPluginsPluginIdReloadRequestOpts(requestParameters);
+    async postPluginsPluginIdGerritReloadRaw(requestParameters: PostPluginsPluginIdGerritReloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PluginInfo>> {
+        const requestOptions = await this.postPluginsPluginIdGerritReloadRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PluginInfoFromJSON(jsonValue));
     }
 
     /**
+     * Reloads a plugin on the Gerrit server.
+     * Reload Plugin
      */
-    async postPluginsPluginIdReload(requestParameters: PostPluginsPluginIdReloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PluginInfo> {
-        const response = await this.postPluginsPluginIdReloadRaw(requestParameters, initOverrides);
+    async postPluginsPluginIdGerritReload(requestParameters: PostPluginsPluginIdGerritReloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PluginInfo> {
+        const response = await this.postPluginsPluginIdGerritReloadRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

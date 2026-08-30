@@ -99,6 +99,16 @@ import {
     GeneralPreferencesInfoToJSON,
 } from '../models/GeneralPreferencesInfo';
 import {
+    type GpgKeyInfo,
+    GpgKeyInfoFromJSON,
+    GpgKeyInfoToJSON,
+} from '../models/GpgKeyInfo';
+import {
+    type GpgKeysInput,
+    GpgKeysInputFromJSON,
+    GpgKeysInputToJSON,
+} from '../models/GpgKeysInput';
+import {
     type GroupInfo,
     GroupInfoFromJSON,
     GroupInfoToJSON,
@@ -113,6 +123,11 @@ import {
     NameInputFromJSON,
     NameInputToJSON,
 } from '../models/NameInput';
+import {
+    type OAuthTokenInfo,
+    OAuthTokenInfoFromJSON,
+    OAuthTokenInfoToJSON,
+} from '../models/OAuthTokenInfo';
 import {
     type ProjectWatchInfo,
     ProjectWatchInfoFromJSON,
@@ -157,6 +172,17 @@ export interface DeleteAccountsAccountIdEmailsEmailIdRequest {
      * 
      */
     emailId: string;
+}
+
+export interface DeleteAccountsAccountIdGpgkeysGpgKeyIdRequest {
+    /**
+     * 
+     */
+    accountId: string;
+    /**
+     * 
+     */
+    gpgKeyId: string;
 }
 
 export interface DeleteAccountsAccountIdNameRequest {
@@ -326,6 +352,24 @@ export interface GetAccountsAccountIdExternalIdsRequest {
     accountId: string;
 }
 
+export interface GetAccountsAccountIdGpgkeysRequest {
+    /**
+     * 
+     */
+    accountId: string;
+}
+
+export interface GetAccountsAccountIdGpgkeysGpgKeyIdRequest {
+    /**
+     * 
+     */
+    accountId: string;
+    /**
+     * 
+     */
+    gpgKeyId: string;
+}
+
 export interface GetAccountsAccountIdGroupsRequest {
     /**
      * 
@@ -334,6 +378,13 @@ export interface GetAccountsAccountIdGroupsRequest {
 }
 
 export interface GetAccountsAccountIdNameRequest {
+    /**
+     * 
+     */
+    accountId: string;
+}
+
+export interface GetAccountsAccountIdOauthtokenRequest {
     /**
      * 
      */
@@ -441,6 +492,17 @@ export interface PostAccountsAccountIdExternalIdsDeleteRequest {
      * 
      */
     requestBody?: Array<string>;
+}
+
+export interface PostAccountsAccountIdGpgkeysRequest {
+    /**
+     * 
+     */
+    accountId: string;
+    /**
+     * 
+     */
+    gpgKeysInput?: GpgKeysInput;
 }
 
 export interface PostAccountsAccountIdIndexRequest {
@@ -751,18 +813,22 @@ export class AccountsApi extends runtime.BaseAPI {
      * Sets the account state to inactive.
      * Delete Active
      */
-    async deleteAccountsAccountIdActiveRaw(requestParameters: DeleteAccountsAccountIdActiveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async deleteAccountsAccountIdActiveRaw(requestParameters: DeleteAccountsAccountIdActiveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.deleteAccountsAccountIdActiveRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * Sets the account state to inactive.
      * Delete Active
      */
-    async deleteAccountsAccountIdActive(requestParameters: DeleteAccountsAccountIdActiveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async deleteAccountsAccountIdActive(requestParameters: DeleteAccountsAccountIdActiveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.deleteAccountsAccountIdActiveRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -809,20 +875,81 @@ export class AccountsApi extends runtime.BaseAPI {
      * Deletes an email address of an account.
      * Delete Account Email
      */
-    async deleteAccountsAccountIdEmailsEmailIdRaw(requestParameters: DeleteAccountsAccountIdEmailsEmailIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async deleteAccountsAccountIdEmailsEmailIdRaw(requestParameters: DeleteAccountsAccountIdEmailsEmailIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.deleteAccountsAccountIdEmailsEmailIdRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * Deletes an email address of an account.
      * Delete Account Email
      */
-    async deleteAccountsAccountIdEmailsEmailId(requestParameters: DeleteAccountsAccountIdEmailsEmailIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async deleteAccountsAccountIdEmailsEmailId(requestParameters: DeleteAccountsAccountIdEmailsEmailIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.deleteAccountsAccountIdEmailsEmailIdRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Creates request options for deleteAccountsAccountIdGpgkeysGpgKeyId without sending the request
+     */
+    async deleteAccountsAccountIdGpgkeysGpgKeyIdRequestOpts(requestParameters: DeleteAccountsAccountIdGpgkeysGpgKeyIdRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['accountId'] == null) {
+            throw new runtime.RequiredError(
+                'accountId',
+                'Required parameter "accountId" was null or undefined when calling deleteAccountsAccountIdGpgkeysGpgKeyId().'
+            );
+        }
+
+        if (requestParameters['gpgKeyId'] == null) {
+            throw new runtime.RequiredError(
+                'gpgKeyId',
+                'Required parameter "gpgKeyId" was null or undefined when calling deleteAccountsAccountIdGpgkeysGpgKeyId().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && (this.configuration.username !== undefined || this.configuration.password !== undefined)) {
+            headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
+        }
+
+        let urlPath = `/accounts/{account-id}/gpgkeys/{gpg-key-id}`;
+        urlPath = urlPath.replace('{account-id}', encodeURIComponent(String(requestParameters['accountId'])));
+        urlPath = urlPath.replace('{gpg-key-id}', encodeURIComponent(String(requestParameters['gpgKeyId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Deletes a GPG key of a user.
+     * Delete GPG Key
+     */
+    async deleteAccountsAccountIdGpgkeysGpgKeyIdRaw(requestParameters: DeleteAccountsAccountIdGpgkeysGpgKeyIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteAccountsAccountIdGpgkeysGpgKeyIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Deletes a GPG key of a user.
+     * Delete GPG Key
+     */
+    async deleteAccountsAccountIdGpgkeysGpgKeyId(requestParameters: DeleteAccountsAccountIdGpgkeysGpgKeyIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteAccountsAccountIdGpgkeysGpgKeyIdRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -982,18 +1109,22 @@ export class AccountsApi extends runtime.BaseAPI {
      * Deletes an SSH key of a user.
      * Delete SSH Key
      */
-    async deleteAccountsAccountIdSshkeysSshKeyIdRaw(requestParameters: DeleteAccountsAccountIdSshkeysSshKeyIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async deleteAccountsAccountIdSshkeysSshKeyIdRaw(requestParameters: DeleteAccountsAccountIdSshkeysSshKeyIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.deleteAccountsAccountIdSshkeysSshKeyIdRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * Deletes an SSH key of a user.
      * Delete SSH Key
      */
-    async deleteAccountsAccountIdSshkeysSshKeyId(requestParameters: DeleteAccountsAccountIdSshkeysSshKeyIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async deleteAccountsAccountIdSshkeysSshKeyId(requestParameters: DeleteAccountsAccountIdSshkeysSshKeyIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.deleteAccountsAccountIdSshkeysSshKeyIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1772,6 +1903,114 @@ export class AccountsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getAccountsAccountIdGpgkeys without sending the request
+     */
+    async getAccountsAccountIdGpgkeysRequestOpts(requestParameters: GetAccountsAccountIdGpgkeysRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['accountId'] == null) {
+            throw new runtime.RequiredError(
+                'accountId',
+                'Required parameter "accountId" was null or undefined when calling getAccountsAccountIdGpgkeys().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && (this.configuration.username !== undefined || this.configuration.password !== undefined)) {
+            headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
+        }
+
+        let urlPath = `/accounts/{account-id}/gpgkeys`;
+        urlPath = urlPath.replace('{account-id}', encodeURIComponent(String(requestParameters['accountId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Returns the GPG keys of an account.
+     * List GPG Keys
+     */
+    async getAccountsAccountIdGpgkeysRaw(requestParameters: GetAccountsAccountIdGpgkeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: GpgKeyInfo; }>> {
+        const requestOptions = await this.getAccountsAccountIdGpgkeysRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => runtime.mapValues(jsonValue, GpgKeyInfoFromJSON));
+    }
+
+    /**
+     * Returns the GPG keys of an account.
+     * List GPG Keys
+     */
+    async getAccountsAccountIdGpgkeys(requestParameters: GetAccountsAccountIdGpgkeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: GpgKeyInfo; }> {
+        const response = await this.getAccountsAccountIdGpgkeysRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getAccountsAccountIdGpgkeysGpgKeyId without sending the request
+     */
+    async getAccountsAccountIdGpgkeysGpgKeyIdRequestOpts(requestParameters: GetAccountsAccountIdGpgkeysGpgKeyIdRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['accountId'] == null) {
+            throw new runtime.RequiredError(
+                'accountId',
+                'Required parameter "accountId" was null or undefined when calling getAccountsAccountIdGpgkeysGpgKeyId().'
+            );
+        }
+
+        if (requestParameters['gpgKeyId'] == null) {
+            throw new runtime.RequiredError(
+                'gpgKeyId',
+                'Required parameter "gpgKeyId" was null or undefined when calling getAccountsAccountIdGpgkeysGpgKeyId().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && (this.configuration.username !== undefined || this.configuration.password !== undefined)) {
+            headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
+        }
+
+        let urlPath = `/accounts/{account-id}/gpgkeys/{gpg-key-id}`;
+        urlPath = urlPath.replace('{account-id}', encodeURIComponent(String(requestParameters['accountId'])));
+        urlPath = urlPath.replace('{gpg-key-id}', encodeURIComponent(String(requestParameters['gpgKeyId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Retrieves a GPG key of a user.
+     * Get GPG Key
+     */
+    async getAccountsAccountIdGpgkeysGpgKeyIdRaw(requestParameters: GetAccountsAccountIdGpgkeysGpgKeyIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GpgKeyInfo>> {
+        const requestOptions = await this.getAccountsAccountIdGpgkeysGpgKeyIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GpgKeyInfoFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves a GPG key of a user.
+     * Get GPG Key
+     */
+    async getAccountsAccountIdGpgkeysGpgKeyId(requestParameters: GetAccountsAccountIdGpgkeysGpgKeyIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GpgKeyInfo> {
+        const response = await this.getAccountsAccountIdGpgkeysGpgKeyIdRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for getAccountsAccountIdGroups without sending the request
      */
     async getAccountsAccountIdGroupsRequestOpts(requestParameters: GetAccountsAccountIdGroupsRequest): Promise<runtime.RequestOpts> {
@@ -1872,6 +2111,56 @@ export class AccountsApi extends runtime.BaseAPI {
      */
     async getAccountsAccountIdName(requestParameters: GetAccountsAccountIdNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.getAccountsAccountIdNameRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getAccountsAccountIdOauthtoken without sending the request
+     */
+    async getAccountsAccountIdOauthtokenRequestOpts(requestParameters: GetAccountsAccountIdOauthtokenRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['accountId'] == null) {
+            throw new runtime.RequiredError(
+                'accountId',
+                'Required parameter "accountId" was null or undefined when calling getAccountsAccountIdOauthtoken().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && (this.configuration.username !== undefined || this.configuration.password !== undefined)) {
+            headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
+        }
+
+        let urlPath = `/accounts/{account-id}/oauthtoken`;
+        urlPath = urlPath.replace('{account-id}', encodeURIComponent(String(requestParameters['accountId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Returns a previously obtained OAuth access token.
+     * Get OAuth Access Token
+     */
+    async getAccountsAccountIdOauthtokenRaw(requestParameters: GetAccountsAccountIdOauthtokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OAuthTokenInfo>> {
+        const requestOptions = await this.getAccountsAccountIdOauthtokenRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OAuthTokenInfoFromJSON(jsonValue));
+    }
+
+    /**
+     * Returns a previously obtained OAuth access token.
+     * Get OAuth Access Token
+     */
+    async getAccountsAccountIdOauthtoken(requestParameters: GetAccountsAccountIdOauthtokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OAuthTokenInfo> {
+        const response = await this.getAccountsAccountIdOauthtokenRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2167,18 +2456,22 @@ export class AccountsApi extends runtime.BaseAPI {
      * Gets the changes that were starred with the default star by the identified user account. This URL endpoint is functionally identical to the changes query GET /changes/?q=is:starred. The result is a list of ChangeInfo entities.
      * Get Changes With Default Star
      */
-    async getAccountsAccountIdStarredChangesRaw(requestParameters: GetAccountsAccountIdStarredChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async getAccountsAccountIdStarredChangesRaw(requestParameters: GetAccountsAccountIdStarredChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.getAccountsAccountIdStarredChangesRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * Gets the changes that were starred with the default star by the identified user account. This URL endpoint is functionally identical to the changes query GET /changes/?q=is:starred. The result is a list of ChangeInfo entities.
      * Get Changes With Default Star
      */
-    async getAccountsAccountIdStarredChanges(requestParameters: GetAccountsAccountIdStarredChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async getAccountsAccountIdStarredChanges(requestParameters: GetAccountsAccountIdStarredChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.getAccountsAccountIdStarredChangesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2544,6 +2837,59 @@ export class AccountsApi extends runtime.BaseAPI {
      */
     async postAccountsAccountIdExternalIdsDelete(requestParameters: PostAccountsAccountIdExternalIdsDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postAccountsAccountIdExternalIdsDeleteRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for postAccountsAccountIdGpgkeys without sending the request
+     */
+    async postAccountsAccountIdGpgkeysRequestOpts(requestParameters: PostAccountsAccountIdGpgkeysRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['accountId'] == null) {
+            throw new runtime.RequiredError(
+                'accountId',
+                'Required parameter "accountId" was null or undefined when calling postAccountsAccountIdGpgkeys().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && (this.configuration.username !== undefined || this.configuration.password !== undefined)) {
+            headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
+        }
+
+        let urlPath = `/accounts/{account-id}/gpgkeys`;
+        urlPath = urlPath.replace('{account-id}', encodeURIComponent(String(requestParameters['accountId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: GpgKeysInputToJSON(requestParameters['gpgKeysInput']),
+        };
+    }
+
+    /**
+     * Add or delete one or more GPG keys for a user.
+     * Add/Delete GPG Keys
+     */
+    async postAccountsAccountIdGpgkeysRaw(requestParameters: PostAccountsAccountIdGpgkeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: GpgKeyInfo; }>> {
+        const requestOptions = await this.postAccountsAccountIdGpgkeysRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => runtime.mapValues(jsonValue, GpgKeyInfoFromJSON));
+    }
+
+    /**
+     * Add or delete one or more GPG keys for a user.
+     * Add/Delete GPG Keys
+     */
+    async postAccountsAccountIdGpgkeys(requestParameters: PostAccountsAccountIdGpgkeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: GpgKeyInfo; }> {
+        const response = await this.postAccountsAccountIdGpgkeysRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**

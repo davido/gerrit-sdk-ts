@@ -129,6 +129,11 @@ import {
     GarbageCollectInputToJSON,
 } from '../models/GarbageCollectInput';
 import {
+    type GetProjectsDefaultResponse,
+    GetProjectsDefaultResponseFromJSON,
+    GetProjectsDefaultResponseToJSON,
+} from '../models/GetProjectsDefaultResponse';
+import {
     type HeadInput,
     HeadInputFromJSON,
     HeadInputToJSON,
@@ -301,6 +306,65 @@ export interface DeleteProjectsProjectIdTagsTagIdRequest {
     tagId: string;
 }
 
+export interface GetProjectsRequest {
+    /**
+     * 
+     */
+    all?: boolean;
+    /**
+     * 
+     */
+    description?: boolean;
+    /**
+     * 
+     */
+    format?: string;
+    /**
+     * 
+     */
+    hasAclFor?: string;
+    /**
+     * 
+     */
+    limit?: number;
+    /**
+     * 
+     */
+    match?: string;
+    /**
+     * 
+     */
+    prefix?: string;
+    /**
+     * 
+     */
+    query?: string;
+    /**
+     * 
+     */
+    r?: string;
+    /**
+     * 
+     */
+    showBranch?: Array<string>;
+    /**
+     * 
+     */
+    start?: number;
+    /**
+     * 
+     */
+    state?: string;
+    /**
+     * 
+     */
+    tree?: boolean;
+    /**
+     * 
+     */
+    type?: string;
+}
+
 export interface GetProjectsProjectIdRequest {
     /**
      * 
@@ -353,7 +417,7 @@ export interface GetProjectsProjectIdBranchesBranchIdRequest {
     branchId: string;
 }
 
-export interface GetProjectsProjectIdBranchesBranchIdFilesRequest {
+export interface GetProjectsProjectIdBranchesBranchIdFilesFileIdContentRequest {
     /**
      * 
      */
@@ -362,6 +426,37 @@ export interface GetProjectsProjectIdBranchesBranchIdFilesRequest {
      * 
      */
     branchId: string;
+    /**
+     * 
+     */
+    fileId: string;
+}
+
+export interface GetProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequest {
+    /**
+     * 
+     */
+    projectId: string;
+    /**
+     * 
+     */
+    branchId: string;
+    /**
+     * 
+     */
+    fileId: string;
+    /**
+     * 
+     */
+    base?: string;
+    /**
+     * 
+     */
+    intraline?: boolean;
+    /**
+     * 
+     */
+    whitespace?: string;
 }
 
 export interface GetProjectsProjectIdBranchesBranchIdMergeableRequest {
@@ -491,13 +586,6 @@ export interface GetProjectsProjectIdChildrenChildProjectIdRequest {
      * 
      */
     recursive?: boolean;
-}
-
-export interface GetProjectsProjectIdCommitsRequest {
-    /**
-     * 
-     */
-    projectId: string;
 }
 
 export interface GetProjectsProjectIdCommitsCommitIdRequest {
@@ -1469,8 +1557,64 @@ export class ProjectsApi extends runtime.BaseAPI {
     /**
      * Creates request options for getProjects without sending the request
      */
-    async getProjectsRequestOpts(): Promise<runtime.RequestOpts> {
+    async getProjectsRequestOpts(requestParameters: GetProjectsRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
+
+        if (requestParameters['all'] != null) {
+            queryParameters['all'] = requestParameters['all'];
+        }
+
+        if (requestParameters['description'] != null) {
+            queryParameters['description'] = requestParameters['description'];
+        }
+
+        if (requestParameters['format'] != null) {
+            queryParameters['format'] = requestParameters['format'];
+        }
+
+        if (requestParameters['hasAclFor'] != null) {
+            queryParameters['has-acl-for'] = requestParameters['hasAclFor'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['match'] != null) {
+            queryParameters['match'] = requestParameters['match'];
+        }
+
+        if (requestParameters['prefix'] != null) {
+            queryParameters['prefix'] = requestParameters['prefix'];
+        }
+
+        if (requestParameters['query'] != null) {
+            queryParameters['query'] = requestParameters['query'];
+        }
+
+        if (requestParameters['r'] != null) {
+            queryParameters['r'] = requestParameters['r'];
+        }
+
+        if (requestParameters['showBranch'] != null) {
+            queryParameters['show-branch'] = requestParameters['showBranch'];
+        }
+
+        if (requestParameters['start'] != null) {
+            queryParameters['start'] = requestParameters['start'];
+        }
+
+        if (requestParameters['state'] != null) {
+            queryParameters['state'] = requestParameters['state'];
+        }
+
+        if (requestParameters['tree'] != null) {
+            queryParameters['tree'] = requestParameters['tree'];
+        }
+
+        if (requestParameters['type'] != null) {
+            queryParameters['type'] = requestParameters['type'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -1492,19 +1636,19 @@ export class ProjectsApi extends runtime.BaseAPI {
      * Lists the projects accessible by the caller, optionally filtered by prefix, regex, or substring.
      * List projects
      */
-    async getProjectsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
-        const requestOptions = await this.getProjectsRequestOpts();
+    async getProjectsRaw(requestParameters: GetProjectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetProjectsDefaultResponse>> {
+        const requestOptions = await this.getProjectsRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetProjectsDefaultResponseFromJSON(jsonValue));
     }
 
     /**
      * Lists the projects accessible by the caller, optionally filtered by prefix, regex, or substring.
      * List projects
      */
-    async getProjects(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
-        const response = await this.getProjectsRaw(initOverrides);
+    async getProjects(requestParameters: GetProjectsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetProjectsDefaultResponse> {
+        const response = await this.getProjectsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1737,20 +1881,27 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for getProjectsProjectIdBranchesBranchIdFiles without sending the request
+     * Creates request options for getProjectsProjectIdBranchesBranchIdFilesFileIdContent without sending the request
      */
-    async getProjectsProjectIdBranchesBranchIdFilesRequestOpts(requestParameters: GetProjectsProjectIdBranchesBranchIdFilesRequest): Promise<runtime.RequestOpts> {
+    async getProjectsProjectIdBranchesBranchIdFilesFileIdContentRequestOpts(requestParameters: GetProjectsProjectIdBranchesBranchIdFilesFileIdContentRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
-                'Required parameter "projectId" was null or undefined when calling getProjectsProjectIdBranchesBranchIdFiles().'
+                'Required parameter "projectId" was null or undefined when calling getProjectsProjectIdBranchesBranchIdFilesFileIdContent().'
             );
         }
 
         if (requestParameters['branchId'] == null) {
             throw new runtime.RequiredError(
                 'branchId',
-                'Required parameter "branchId" was null or undefined when calling getProjectsProjectIdBranchesBranchIdFiles().'
+                'Required parameter "branchId" was null or undefined when calling getProjectsProjectIdBranchesBranchIdFilesFileIdContent().'
+            );
+        }
+
+        if (requestParameters['fileId'] == null) {
+            throw new runtime.RequiredError(
+                'fileId',
+                'Required parameter "fileId" was null or undefined when calling getProjectsProjectIdBranchesBranchIdFilesFileIdContent().'
             );
         }
 
@@ -1762,9 +1913,88 @@ export class ProjectsApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
         }
 
-        let urlPath = `/projects/{project-id}/branches/{branch-id}/files`;
+        let urlPath = `/projects/{project-id}/branches/{branch-id}/files/{file-id}/content`;
         urlPath = urlPath.replace('{project-id}', encodeURIComponent(String(requestParameters['projectId'])));
         urlPath = urlPath.replace('{branch-id}', encodeURIComponent(String(requestParameters['branchId'])));
+        urlPath = urlPath.replace('{file-id}', encodeURIComponent(String(requestParameters['fileId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Gets the content of a file from the HEAD revision of a certain branch.
+     * Get Content
+     */
+    async getProjectsProjectIdBranchesBranchIdFilesFileIdContentRaw(requestParameters: GetProjectsProjectIdBranchesBranchIdFilesFileIdContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
+        const requestOptions = await this.getProjectsProjectIdBranchesBranchIdFilesFileIdContentRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.BlobApiResponse(response);
+    }
+
+    /**
+     * Gets the content of a file from the HEAD revision of a certain branch.
+     * Get Content
+     */
+    async getProjectsProjectIdBranchesBranchIdFilesFileIdContent(requestParameters: GetProjectsProjectIdBranchesBranchIdFilesFileIdContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob> {
+        const response = await this.getProjectsProjectIdBranchesBranchIdFilesFileIdContentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getProjectsProjectIdBranchesBranchIdFilesFileIdDiff without sending the request
+     */
+    async getProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequestOpts(requestParameters: GetProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getProjectsProjectIdBranchesBranchIdFilesFileIdDiff().'
+            );
+        }
+
+        if (requestParameters['branchId'] == null) {
+            throw new runtime.RequiredError(
+                'branchId',
+                'Required parameter "branchId" was null or undefined when calling getProjectsProjectIdBranchesBranchIdFilesFileIdDiff().'
+            );
+        }
+
+        if (requestParameters['fileId'] == null) {
+            throw new runtime.RequiredError(
+                'fileId',
+                'Required parameter "fileId" was null or undefined when calling getProjectsProjectIdBranchesBranchIdFilesFileIdDiff().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['base'] != null) {
+            queryParameters['base'] = requestParameters['base'];
+        }
+
+        if (requestParameters['intraline'] != null) {
+            queryParameters['intraline'] = requestParameters['intraline'];
+        }
+
+        if (requestParameters['whitespace'] != null) {
+            queryParameters['whitespace'] = requestParameters['whitespace'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && (this.configuration.username !== undefined || this.configuration.password !== undefined)) {
+            headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
+        }
+
+        let urlPath = `/projects/{project-id}/branches/{branch-id}/files/{file-id}/diff`;
+        urlPath = urlPath.replace('{project-id}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{branch-id}', encodeURIComponent(String(requestParameters['branchId'])));
+        urlPath = urlPath.replace('{file-id}', encodeURIComponent(String(requestParameters['fileId'])));
 
         return {
             path: urlPath,
@@ -1776,17 +2006,17 @@ export class ProjectsApi extends runtime.BaseAPI {
 
     /**
      */
-    async getProjectsProjectIdBranchesBranchIdFilesRaw(requestParameters: GetProjectsProjectIdBranchesBranchIdFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
-        const requestOptions = await this.getProjectsProjectIdBranchesBranchIdFilesRequestOpts(requestParameters);
+    async getProjectsProjectIdBranchesBranchIdFilesFileIdDiffRaw(requestParameters: GetProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiffInfo>> {
+        const requestOptions = await this.getProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => DiffInfoFromJSON(jsonValue));
     }
 
     /**
      */
-    async getProjectsProjectIdBranchesBranchIdFiles(requestParameters: GetProjectsProjectIdBranchesBranchIdFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
-        const response = await this.getProjectsProjectIdBranchesBranchIdFilesRaw(requestParameters, initOverrides);
+    async getProjectsProjectIdBranchesBranchIdFilesFileIdDiff(requestParameters: GetProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiffInfo> {
+        const response = await this.getProjectsProjectIdBranchesBranchIdFilesFileIdDiffRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2244,52 +2474,6 @@ export class ProjectsApi extends runtime.BaseAPI {
      */
     async getProjectsProjectIdChildrenChildProjectId(requestParameters: GetProjectsProjectIdChildrenChildProjectIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectInfo> {
         const response = await this.getProjectsProjectIdChildrenChildProjectIdRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for getProjectsProjectIdCommits without sending the request
-     */
-    async getProjectsProjectIdCommitsRequestOpts(requestParameters: GetProjectsProjectIdCommitsRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError(
-                'projectId',
-                'Required parameter "projectId" was null or undefined when calling getProjectsProjectIdCommits().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && (this.configuration.username !== undefined || this.configuration.password !== undefined)) {
-            headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
-        }
-
-        let urlPath = `/projects/{project-id}/commits`;
-        urlPath = urlPath.replace('{project-id}', encodeURIComponent(String(requestParameters['projectId'])));
-
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-
-    /**
-     */
-    async getProjectsProjectIdCommitsRaw(requestParameters: GetProjectsProjectIdCommitsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
-        const requestOptions = await this.getProjectsProjectIdCommitsRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.JSONApiResponse<any>(response);
-    }
-
-    /**
-     */
-    async getProjectsProjectIdCommits(requestParameters: GetProjectsProjectIdCommitsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
-        const response = await this.getProjectsProjectIdCommitsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3906,18 +4090,22 @@ export class ProjectsApi extends runtime.BaseAPI {
      * Run the Git garbage collection for the repository of a project.
      * Run GC
      */
-    async postProjectsProjectIdGcRaw(requestParameters: PostProjectsProjectIdGcRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async postProjectsProjectIdGcRaw(requestParameters: PostProjectsProjectIdGcRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.postProjectsProjectIdGcRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * Run the Git garbage collection for the repository of a project.
      * Run GC
      */
-    async postProjectsProjectIdGc(requestParameters: PostProjectsProjectIdGcRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async postProjectsProjectIdGc(requestParameters: PostProjectsProjectIdGcRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.postProjectsProjectIdGcRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3957,16 +4145,20 @@ export class ProjectsApi extends runtime.BaseAPI {
 
     /**
      */
-    async postProjectsProjectIdIndexRaw(requestParameters: PostProjectsProjectIdIndexRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async postProjectsProjectIdIndexRaw(requestParameters: PostProjectsProjectIdIndexRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.postProjectsProjectIdIndexRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      */
-    async postProjectsProjectIdIndex(requestParameters: PostProjectsProjectIdIndexRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async postProjectsProjectIdIndex(requestParameters: PostProjectsProjectIdIndexRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.postProjectsProjectIdIndexRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4003,16 +4195,20 @@ export class ProjectsApi extends runtime.BaseAPI {
 
     /**
      */
-    async postProjectsProjectIdIndexChangesRaw(requestParameters: PostProjectsProjectIdIndexChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async postProjectsProjectIdIndexChangesRaw(requestParameters: PostProjectsProjectIdIndexChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.postProjectsProjectIdIndexChangesRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      */
-    async postProjectsProjectIdIndexChanges(requestParameters: PostProjectsProjectIdIndexChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async postProjectsProjectIdIndexChanges(requestParameters: PostProjectsProjectIdIndexChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.postProjectsProjectIdIndexChangesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4054,18 +4250,22 @@ export class ProjectsApi extends runtime.BaseAPI {
      * Creates/updates/deletes multiple label definitions in this project at once.
      * Batch Update Labels
      */
-    async postProjectsProjectIdLabelsRaw(requestParameters: PostProjectsProjectIdLabelsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async postProjectsProjectIdLabelsRaw(requestParameters: PostProjectsProjectIdLabelsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.postProjectsProjectIdLabelsRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * Creates/updates/deletes multiple label definitions in this project at once.
      * Batch Update Labels
      */
-    async postProjectsProjectIdLabels(requestParameters: PostProjectsProjectIdLabelsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async postProjectsProjectIdLabels(requestParameters: PostProjectsProjectIdLabelsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.postProjectsProjectIdLabelsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4260,18 +4460,22 @@ export class ProjectsApi extends runtime.BaseAPI {
      * Creates/updates/deletes multiple submit requirements definitions in this project at once.
      * Batch Update Submit Requirements
      */
-    async postProjectsProjectIdSubmitRequirementsRaw(requestParameters: PostProjectsProjectIdSubmitRequirementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async postProjectsProjectIdSubmitRequirementsRaw(requestParameters: PostProjectsProjectIdSubmitRequirementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.postProjectsProjectIdSubmitRequirementsRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * Creates/updates/deletes multiple submit requirements definitions in this project at once.
      * Batch Update Submit Requirements
      */
-    async postProjectsProjectIdSubmitRequirements(requestParameters: PostProjectsProjectIdSubmitRequirementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async postProjectsProjectIdSubmitRequirements(requestParameters: PostProjectsProjectIdSubmitRequirementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.postProjectsProjectIdSubmitRequirementsRaw(requestParameters, initOverrides);
         return await response.value();
     }

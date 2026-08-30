@@ -34,6 +34,11 @@ import {
     CommonDescriptionInputToJSON,
 } from '../models/CommonDescriptionInput';
 import {
+    type GetGroupsDefaultResponse,
+    GetGroupsDefaultResponseFromJSON,
+    GetGroupsDefaultResponseToJSON,
+} from '../models/GetGroupsDefaultResponse';
+import {
     type GroupAuditEventInfo,
     GroupAuditEventInfoFromJSON,
     GroupAuditEventInfoToJSON,
@@ -98,6 +103,65 @@ export interface DeleteGroupsGroupIdMembersMemberIdRequest {
      * 
      */
     memberId: string;
+}
+
+export interface GetGroupsRequest {
+    /**
+     * 
+     */
+    o?: string;
+    /**
+     * 
+     */
+    group?: Array<string>;
+    /**
+     * 
+     */
+    limit?: number;
+    /**
+     * 
+     */
+    match?: string;
+    /**
+     * 
+     */
+    o2?: Array<string>;
+    /**
+     * 
+     */
+    owned?: boolean;
+    /**
+     * 
+     */
+    ownedBy?: string;
+    /**
+     * 
+     */
+    project?: Array<string>;
+    /**
+     * 
+     */
+    query?: string;
+    /**
+     * 
+     */
+    regex?: string;
+    /**
+     * 
+     */
+    start?: number;
+    /**
+     * 
+     */
+    suggest?: string;
+    /**
+     * 
+     */
+    user?: string;
+    /**
+     * 
+     */
+    visibleToAll?: boolean;
 }
 
 export interface GetGroupsGroupIdRequest {
@@ -509,18 +573,22 @@ export class GroupsApi extends runtime.BaseAPI {
      * Removes a subgroup from a Gerrit internal group.
      * Remove Subgroup
      */
-    async deleteGroupsGroupIdGroupsSubgroupIdRaw(requestParameters: DeleteGroupsGroupIdGroupsSubgroupIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async deleteGroupsGroupIdGroupsSubgroupIdRaw(requestParameters: DeleteGroupsGroupIdGroupsSubgroupIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.deleteGroupsGroupIdGroupsSubgroupIdRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * Removes a subgroup from a Gerrit internal group.
      * Remove Subgroup
      */
-    async deleteGroupsGroupIdGroupsSubgroupId(requestParameters: DeleteGroupsGroupIdGroupsSubgroupIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async deleteGroupsGroupIdGroupsSubgroupId(requestParameters: DeleteGroupsGroupIdGroupsSubgroupIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.deleteGroupsGroupIdGroupsSubgroupIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -567,18 +635,22 @@ export class GroupsApi extends runtime.BaseAPI {
      * Removes a user from a Gerrit internal group.
      * Remove Group Member
      */
-    async deleteGroupsGroupIdMembersMemberIdRaw(requestParameters: DeleteGroupsGroupIdMembersMemberIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async deleteGroupsGroupIdMembersMemberIdRaw(requestParameters: DeleteGroupsGroupIdMembersMemberIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.deleteGroupsGroupIdMembersMemberIdRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * Removes a user from a Gerrit internal group.
      * Remove Group Member
      */
-    async deleteGroupsGroupIdMembersMemberId(requestParameters: DeleteGroupsGroupIdMembersMemberIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async deleteGroupsGroupIdMembersMemberId(requestParameters: DeleteGroupsGroupIdMembersMemberIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.deleteGroupsGroupIdMembersMemberIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -586,8 +658,64 @@ export class GroupsApi extends runtime.BaseAPI {
     /**
      * Creates request options for getGroups without sending the request
      */
-    async getGroupsRequestOpts(): Promise<runtime.RequestOpts> {
+    async getGroupsRequestOpts(requestParameters: GetGroupsRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
+
+        if (requestParameters['o'] != null) {
+            queryParameters['O'] = requestParameters['o'];
+        }
+
+        if (requestParameters['group'] != null) {
+            queryParameters['group'] = requestParameters['group'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['match'] != null) {
+            queryParameters['match'] = requestParameters['match'];
+        }
+
+        if (requestParameters['o2'] != null) {
+            queryParameters['o'] = requestParameters['o2'];
+        }
+
+        if (requestParameters['owned'] != null) {
+            queryParameters['owned'] = requestParameters['owned'];
+        }
+
+        if (requestParameters['ownedBy'] != null) {
+            queryParameters['owned-by'] = requestParameters['ownedBy'];
+        }
+
+        if (requestParameters['project'] != null) {
+            queryParameters['project'] = requestParameters['project'];
+        }
+
+        if (requestParameters['query'] != null) {
+            queryParameters['query'] = requestParameters['query'];
+        }
+
+        if (requestParameters['regex'] != null) {
+            queryParameters['regex'] = requestParameters['regex'];
+        }
+
+        if (requestParameters['start'] != null) {
+            queryParameters['start'] = requestParameters['start'];
+        }
+
+        if (requestParameters['suggest'] != null) {
+            queryParameters['suggest'] = requestParameters['suggest'];
+        }
+
+        if (requestParameters['user'] != null) {
+            queryParameters['user'] = requestParameters['user'];
+        }
+
+        if (requestParameters['visibleToAll'] != null) {
+            queryParameters['visible-to-all'] = requestParameters['visibleToAll'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -609,19 +737,19 @@ export class GroupsApi extends runtime.BaseAPI {
      * Lists the internal groups visible to the caller.
      * List groups
      */
-    async getGroupsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
-        const requestOptions = await this.getGroupsRequestOpts();
+    async getGroupsRaw(requestParameters: GetGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetGroupsDefaultResponse>> {
+        const requestOptions = await this.getGroupsRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetGroupsDefaultResponseFromJSON(jsonValue));
     }
 
     /**
      * Lists the internal groups visible to the caller.
      * List groups
      */
-    async getGroups(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
-        const response = await this.getGroupsRaw(initOverrides);
+    async getGroups(requestParameters: GetGroupsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetGroupsDefaultResponse> {
+        const response = await this.getGroupsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

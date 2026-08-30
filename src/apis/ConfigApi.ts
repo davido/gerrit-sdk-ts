@@ -69,6 +69,21 @@ import {
     GeneralPreferencesInfoToJSON,
 } from '../models/GeneralPreferencesInfo';
 import {
+    type GetConfigServerCaches200Response,
+    GetConfigServerCaches200ResponseFromJSON,
+    GetConfigServerCaches200ResponseToJSON,
+} from '../models/GetConfigServerCaches200Response';
+import {
+    type GetConfigServerIndexes200ResponseInner,
+    GetConfigServerIndexes200ResponseInnerFromJSON,
+    GetConfigServerIndexes200ResponseInnerToJSON,
+} from '../models/GetConfigServerIndexes200ResponseInner';
+import {
+    type GetConfigServerVersion200Response,
+    GetConfigServerVersion200ResponseFromJSON,
+    GetConfigServerVersion200ResponseToJSON,
+} from '../models/GetConfigServerVersion200Response';
+import {
     type IndexChangesInput,
     IndexChangesInputFromJSON,
     IndexChangesInputToJSON,
@@ -83,6 +98,11 @@ import {
     MenuEntryFromJSON,
     MenuEntryToJSON,
 } from '../models/MenuEntry';
+import {
+    type MetricJson,
+    MetricJsonFromJSON,
+    MetricJsonToJSON,
+} from '../models/MetricJson';
 import {
     type MigratePasswordsToTokensInput,
     MigratePasswordsToTokensInputFromJSON,
@@ -201,6 +221,28 @@ export interface GetConfigServerIndexesIndexIdVersionsIndexVersionIdRequest {
      * 
      */
     indexVersionId: string;
+}
+
+export interface GetConfigServerMetricsRequest {
+    /**
+     * 
+     */
+    dataOnly?: boolean;
+    /**
+     * 
+     */
+    prefix?: Array<string>;
+}
+
+export interface GetConfigServerMetricsMetricIdRequest {
+    /**
+     * 
+     */
+    metricId: string;
+    /**
+     * 
+     */
+    dataOnly?: boolean;
 }
 
 export interface GetConfigServerSummaryRequest {
@@ -444,18 +486,18 @@ export class ConfigApi extends runtime.BaseAPI {
      * Lists the caches of the server. Caches defined by plugins are included.
      * List Caches
      */
-    async getConfigServerCachesRaw(requestParameters: GetConfigServerCachesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async getConfigServerCachesRaw(requestParameters: GetConfigServerCachesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetConfigServerCaches200Response>> {
         const requestOptions = await this.getConfigServerCachesRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetConfigServerCaches200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Lists the caches of the server. Caches defined by plugins are included.
      * List Caches
      */
-    async getConfigServerCaches(requestParameters: GetConfigServerCachesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async getConfigServerCaches(requestParameters: GetConfigServerCachesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetConfigServerCaches200Response> {
         const response = await this.getConfigServerCachesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -670,18 +712,18 @@ export class ConfigApi extends runtime.BaseAPI {
      * Lists the indexes used by Gerrit. It provides details about the index versions, which index version is used to search and which versions are written to.
      * List Indexes
      */
-    async getConfigServerIndexesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async getConfigServerIndexesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<GetConfigServerIndexes200ResponseInner>>> {
         const requestOptions = await this.getConfigServerIndexesRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(GetConfigServerIndexes200ResponseInnerFromJSON));
     }
 
     /**
      * Lists the indexes used by Gerrit. It provides details about the index versions, which index version is used to search and which versions are written to.
      * List Indexes
      */
-    async getConfigServerIndexes(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async getConfigServerIndexes(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<GetConfigServerIndexes200ResponseInner>> {
         const response = await this.getConfigServerIndexesRaw(initOverrides);
         return await response.value();
     }
@@ -925,6 +967,102 @@ export class ConfigApi extends runtime.BaseAPI {
      */
     async getConfigServerLabels(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LabelDefinitionInfo>> {
         const response = await this.getConfigServerLabelsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getConfigServerMetrics without sending the request
+     */
+    async getConfigServerMetricsRequestOpts(requestParameters: GetConfigServerMetricsRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['dataOnly'] != null) {
+            queryParameters['data-only'] = requestParameters['dataOnly'];
+        }
+
+        if (requestParameters['prefix'] != null) {
+            queryParameters['prefix'] = requestParameters['prefix'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && (this.configuration.username !== undefined || this.configuration.password !== undefined)) {
+            headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
+        }
+
+        let urlPath = `/config/server/metrics`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getConfigServerMetricsRaw(requestParameters: GetConfigServerMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: MetricJson; }>> {
+        const requestOptions = await this.getConfigServerMetricsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => runtime.mapValues(jsonValue, MetricJsonFromJSON));
+    }
+
+    /**
+     */
+    async getConfigServerMetrics(requestParameters: GetConfigServerMetricsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: MetricJson; }> {
+        const response = await this.getConfigServerMetricsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getConfigServerMetricsMetricId without sending the request
+     */
+    async getConfigServerMetricsMetricIdRequestOpts(requestParameters: GetConfigServerMetricsMetricIdRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['metricId'] == null) {
+            throw new runtime.RequiredError(
+                'metricId',
+                'Required parameter "metricId" was null or undefined when calling getConfigServerMetricsMetricId().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['dataOnly'] != null) {
+            queryParameters['data-only'] = requestParameters['dataOnly'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && (this.configuration.username !== undefined || this.configuration.password !== undefined)) {
+            headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
+        }
+
+        let urlPath = `/config/server/metrics/{metric-id}`;
+        urlPath = urlPath.replace('{metric-id}', encodeURIComponent(String(requestParameters['metricId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getConfigServerMetricsMetricIdRaw(requestParameters: GetConfigServerMetricsMetricIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MetricJson>> {
+        const requestOptions = await this.getConfigServerMetricsMetricIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => MetricJsonFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getConfigServerMetricsMetricId(requestParameters: GetConfigServerMetricsMetricIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MetricJson> {
+        const response = await this.getConfigServerMetricsMetricIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1306,18 +1444,18 @@ export class ConfigApi extends runtime.BaseAPI {
      * Returns the version of the Gerrit server.
      * Get version
      */
-    async getConfigServerVersionRaw(requestParameters: GetConfigServerVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async getConfigServerVersionRaw(requestParameters: GetConfigServerVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetConfigServerVersion200Response>> {
         const requestOptions = await this.getConfigServerVersionRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetConfigServerVersion200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Returns the version of the Gerrit server.
      * Get version
      */
-    async getConfigServerVersion(requestParameters: GetConfigServerVersionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async getConfigServerVersion(requestParameters: GetConfigServerVersionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetConfigServerVersion200Response> {
         const response = await this.getConfigServerVersionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1497,16 +1635,20 @@ export class ConfigApi extends runtime.BaseAPI {
 
     /**
      */
-    async postConfigServerCleanupChangesRaw(requestParameters: PostConfigServerCleanupChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async postConfigServerCleanupChangesRaw(requestParameters: PostConfigServerCleanupChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.postConfigServerCleanupChangesRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      */
-    async postConfigServerCleanupChanges(requestParameters: PostConfigServerCleanupChangesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async postConfigServerCleanupChanges(requestParameters: PostConfigServerCleanupChangesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.postConfigServerCleanupChangesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1535,16 +1677,20 @@ export class ConfigApi extends runtime.BaseAPI {
 
     /**
      */
-    async postConfigServerCleanupDraftCommentsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async postConfigServerCleanupDraftCommentsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.postConfigServerCleanupDraftCommentsRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      */
-    async postConfigServerCleanupDraftComments(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async postConfigServerCleanupDraftComments(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.postConfigServerCleanupDraftCommentsRaw(initOverrides);
         return await response.value();
     }
@@ -1575,18 +1721,22 @@ export class ConfigApi extends runtime.BaseAPI {
      * Queues the account deactivator task.
      * AccountDeactivation
      */
-    async postConfigServerDeactivateStaleAccountsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async postConfigServerDeactivateStaleAccountsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.postConfigServerDeactivateStaleAccountsRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * Queues the account deactivator task.
      * AccountDeactivation
      */
-    async postConfigServerDeactivateStaleAccounts(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async postConfigServerDeactivateStaleAccounts(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.postConfigServerDeactivateStaleAccountsRaw(initOverrides);
         return await response.value();
     }
@@ -1722,18 +1872,22 @@ export class ConfigApi extends runtime.BaseAPI {
      * This creates a snapshot of all write index versions of the specified index.
      * Create Snapshot of one Index
      */
-    async postConfigServerIndexesIndexIdSnapshotRaw(requestParameters: PostConfigServerIndexesIndexIdSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async postConfigServerIndexesIndexIdSnapshotRaw(requestParameters: PostConfigServerIndexesIndexIdSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.postConfigServerIndexesIndexIdSnapshotRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * This creates a snapshot of all write index versions of the specified index.
      * Create Snapshot of one Index
      */
-    async postConfigServerIndexesIndexIdSnapshot(requestParameters: PostConfigServerIndexesIndexIdSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async postConfigServerIndexesIndexIdSnapshot(requestParameters: PostConfigServerIndexesIndexIdSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.postConfigServerIndexesIndexIdSnapshotRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1783,18 +1937,22 @@ export class ConfigApi extends runtime.BaseAPI {
      * This endpoint allows to trigger background reindexing of an index version. It is also supported to specify whether to reuse existing up-to-date (non-stale) index documents and whether to notifyListeners or not.
      * Reindex an Index Version
      */
-    async postConfigServerIndexesIndexIdVersionsIndexVersionIdReindexRaw(requestParameters: PostConfigServerIndexesIndexIdVersionsIndexVersionIdReindexRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async postConfigServerIndexesIndexIdVersionsIndexVersionIdReindexRaw(requestParameters: PostConfigServerIndexesIndexIdVersionsIndexVersionIdReindexRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.postConfigServerIndexesIndexIdVersionsIndexVersionIdReindexRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * This endpoint allows to trigger background reindexing of an index version. It is also supported to specify whether to reuse existing up-to-date (non-stale) index documents and whether to notifyListeners or not.
      * Reindex an Index Version
      */
-    async postConfigServerIndexesIndexIdVersionsIndexVersionIdReindex(requestParameters: PostConfigServerIndexesIndexIdVersionsIndexVersionIdReindexRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async postConfigServerIndexesIndexIdVersionsIndexVersionIdReindex(requestParameters: PostConfigServerIndexesIndexIdVersionsIndexVersionIdReindexRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.postConfigServerIndexesIndexIdVersionsIndexVersionIdReindexRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1844,18 +2002,22 @@ export class ConfigApi extends runtime.BaseAPI {
      * This creates a snapshot of one index version of the specified index.
      * Create Snapshot of one Index Version
      */
-    async postConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshotRaw(requestParameters: PostConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async postConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshotRaw(requestParameters: PostConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.postConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshotRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * This creates a snapshot of one index version of the specified index.
      * Create Snapshot of one Index Version
      */
-    async postConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshot(requestParameters: PostConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async postConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshot(requestParameters: PostConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.postConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshotRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1887,16 +2049,20 @@ export class ConfigApi extends runtime.BaseAPI {
 
     /**
      */
-    async postConfigServerPasswordsToTokensRaw(requestParameters: PostConfigServerPasswordsToTokensRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async postConfigServerPasswordsToTokensRaw(requestParameters: PostConfigServerPasswordsToTokensRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.postConfigServerPasswordsToTokensRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      */
-    async postConfigServerPasswordsToTokens(requestParameters: PostConfigServerPasswordsToTokensRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async postConfigServerPasswordsToTokens(requestParameters: PostConfigServerPasswordsToTokensRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.postConfigServerPasswordsToTokensRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1928,16 +2094,20 @@ export class ConfigApi extends runtime.BaseAPI {
 
     /**
      */
-    async postConfigServerReduceTokenLifetimeRaw(requestParameters: PostConfigServerReduceTokenLifetimeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async postConfigServerReduceTokenLifetimeRaw(requestParameters: PostConfigServerReduceTokenLifetimeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.postConfigServerReduceTokenLifetimeRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      */
-    async postConfigServerReduceTokenLifetime(requestParameters: PostConfigServerReduceTokenLifetimeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object | null | undefined > {
+    async postConfigServerReduceTokenLifetime(requestParameters: PostConfigServerReduceTokenLifetimeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any | null | undefined > {
         const response = await this.postConfigServerReduceTokenLifetimeRaw(requestParameters, initOverrides);
         switch (response.raw.status) {
             case 202:
@@ -2019,17 +2189,21 @@ export class ConfigApi extends runtime.BaseAPI {
     /**
      * Create Snapshot of All Indexes
      */
-    async postConfigServerSnapshotIndexesRaw(requestParameters: PostConfigServerSnapshotIndexesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async postConfigServerSnapshotIndexesRaw(requestParameters: PostConfigServerSnapshotIndexesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.postConfigServerSnapshotIndexesRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * Create Snapshot of All Indexes
      */
-    async postConfigServerSnapshotIndexes(requestParameters: PostConfigServerSnapshotIndexesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async postConfigServerSnapshotIndexes(requestParameters: PostConfigServerSnapshotIndexesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.postConfigServerSnapshotIndexesRaw(requestParameters, initOverrides);
         return await response.value();
     }
