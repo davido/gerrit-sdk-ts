@@ -20,15 +20,15 @@ import { mapValues } from '../runtime';
  */
 export interface GarbageCollectInput {
     /**
-     * 
+     * Whether progress information should be shown.
      */
     showProgress?: boolean;
     /**
-     * 
+     * Whether an aggressive garbage collection should be done.
      */
     aggressive?: boolean;
     /**
-     * 
+     * Whether the garbage collection should run asynchronously.
      */
     async?: boolean;
 }

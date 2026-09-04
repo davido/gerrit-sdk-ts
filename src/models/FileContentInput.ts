@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface FileContentInput {
     /**
-     * 
+     * The new content of the file, sent as the raw request body. If not set, an empty file is created or the existing content is cleared.
      */
     content?: object;
     /**

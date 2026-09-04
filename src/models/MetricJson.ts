@@ -28,103 +28,103 @@ import {
  */
 export interface MetricJson {
     /**
-     * 
+     * The description of the metric.
      */
     description?: string;
     /**
-     * 
+     * The unit of measurement of the recorded values.
      */
     unit?: string;
     /**
-     * 
+     * Whether the metric reports a single constant value.
      */
     constant?: boolean;
     /**
-     * 
+     * Whether the metric reports a rate.
      */
     rate?: boolean;
     /**
-     * 
+     * Whether the metric is a gauge that reports an instantaneous value.
      */
     gauge?: boolean;
     /**
-     * 
+     * Whether the metric accumulates over time.
      */
     cumulative?: boolean;
     /**
-     * 
+     * The number of recorded events.
      */
     count?: number;
     /**
-     * 
+     * The current value, for constant metrics and gauges.
      */
     value?: object;
     /**
-     * 
+     * The one-minute moving average rate.
      */
     rate1m?: number;
     /**
-     * 
+     * The five-minute moving average rate.
      */
     rate5m?: number;
     /**
-     * 
+     * The fifteen-minute moving average rate.
      */
     rate15m?: number;
     /**
-     * 
+     * The mean rate since the metric was registered.
      */
     rateMean?: number;
     /**
-     * 
+     * The median (50th percentile) of the recorded values.
      */
     p50?: number;
     /**
-     * 
+     * The 75th percentile of the recorded values.
      */
     p75?: number;
     /**
-     * 
+     * The 95th percentile of the recorded values.
      */
     p95?: number;
     /**
-     * 
+     * The 98th percentile of the recorded values.
      */
     p98?: number;
     /**
-     * 
+     * The 99th percentile of the recorded values.
      */
     p99?: number;
     /**
-     * 
+     * The 99.9th percentile of the recorded values.
      */
     p999?: number;
     /**
-     * 
+     * The minimum recorded value.
      */
     min?: number;
     /**
-     * 
+     * The average of the recorded values.
      */
     avg?: number;
     /**
-     * 
+     * The maximum recorded value.
      */
     max?: number;
     /**
-     * 
+     * The sum of the recorded values.
      */
     sum?: number;
     /**
-     * 
+     * The standard deviation of the recorded values.
      */
     stdDev?: number;
     /**
-     * 
+     * The fields of the metric as a list of FieldJson entities.
      */
     fields?: Array<FieldJson>;
     /**
-     * 
+     * The per-field-value breakdown of the metric, as a map of field values to the recorded value for that combination.
      */
     buckets?: { [key: string]: object; };
 }

@@ -28,7 +28,7 @@ import {
  */
 export interface ValidationOptionInfos {
     /**
-     * 
+     * The list of all possible validation options.
      */
     validationOptions?: Array<ValidationOptionInfo>;
 }

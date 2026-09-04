@@ -95,11 +95,11 @@ export interface DiffPreferencesInfo {
      */
     hideLineNumbers?: boolean;
     /**
-     * 
+     * Whether the whole file should be rendered instead of only the changed parts.
      */
     renderEntireFile?: boolean;
     /**
-     * 
+     * Whether empty panes should be hidden. The left pane is empty when a file was added; the right pane is empty when a file was deleted.
      */
     hideEmptyPane?: boolean;
     /**
@@ -111,7 +111,7 @@ export interface DiffPreferencesInfo {
      */
     lineWrapping?: boolean;
     /**
-     * 
+     * The responsive-rendering mode of the diff view. Allowed values are NONE, SHRINK_ONLY and FULL_RESPONSIVE.
      */
     responsiveMode?: ResponsiveMode;
     /**
@@ -127,7 +127,7 @@ export interface DiffPreferencesInfo {
      */
     skipDeleted?: boolean;
     /**
-     * 
+     * Whether files without changes are skipped when switching between files.
      */
     skipUnchanged?: boolean;
     /**

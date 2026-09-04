@@ -80,11 +80,11 @@ export interface ConfigInput {
      */
     requireChangeId?: InheritableBoolean;
     /**
-     * 
+     * Whether signed push validation is enabled on the project. + Can be TRUE, FALSE or INHERIT. + If not set, this setting is not updated.
      */
     enableSignedPush?: InheritableBoolean;
     /**
-     * 
+     * Whether signed push validation is required on the project. + Can be TRUE, FALSE or INHERIT. + If not set, this setting is not updated.
      */
     requireSignedPush?: InheritableBoolean;
     /**
@@ -92,19 +92,19 @@ export interface ConfigInput {
      */
     rejectImplicitMerges?: InheritableBoolean;
     /**
-     * 
+     * Whether all new changes in the project are set to private by default. + Can be TRUE, FALSE or INHERIT. + If not set, this setting is not updated.
      */
     privateByDefault?: InheritableBoolean;
     /**
-     * 
+     * Whether all new changes in the project are set to work-in-progress by default. + Can be TRUE, FALSE or INHERIT. + If not set, this setting is not updated.
      */
     workInProgressByDefault?: InheritableBoolean;
     /**
-     * 
+     * Whether reviewers and CCs that do not have a Gerrit account can be added to a change by their email address. + Can be TRUE, FALSE or INHERIT. + If not set, this setting is not updated.
      */
     enableReviewerByEmail?: InheritableBoolean;
     /**
-     * 
+     * Whether a change's author date is changed to match its submit date when the change is submitted. + Can be TRUE, FALSE or INHERIT. + If not set, this setting is not updated.
      */
     matchAuthorToCommitterDate?: InheritableBoolean;
     /**
@@ -112,7 +112,7 @@ export interface ConfigInput {
      */
     rejectEmptyCommit?: InheritableBoolean;
     /**
-     * 
+     * Whether to skip adding the Git commit author and committer as reviewers of a new change. + Can be TRUE, FALSE or INHERIT. + If not set, this setting is not updated.
      */
     skipAddingAuthorAndCommitterAsReviewers?: InheritableBoolean;
     /**
@@ -132,11 +132,11 @@ export interface ConfigInput {
      */
     pluginConfigValues?: { [key: string]: { [key: string]: ConfigValue; }; };
     /**
-     * 
+     * Map of commentlink names to CommentLinkInput entities to add or update on the project. If the given commentlink already exists, it will be updated with the given values, otherwise it will be created. If the value is null, that entry is deleted.
      */
     commentLinks?: { [key: string]: CommentLinkInput; };
     /**
-     * 
+     * A commit message for this change.
      */
     commitMessage?: string;
 }

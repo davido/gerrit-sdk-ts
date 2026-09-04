@@ -77,111 +77,111 @@ import {
  */
 export interface GeneralPreferencesInfo {
     /**
-     * 
+     * The number of changes to show on each page. Allowed values are 10, 25, 50, 100.
      */
     changesPerPage?: number;
     /**
-     * 
+     * The type of download URL the user prefers to use. May be any key from the schemes map in DownloadInfo.
      */
     downloadScheme?: string;
     /**
-     * 
+     * Which theme to use. Allowed values are AUTO or DARK or LIGHT.
      */
     theme?: Theme;
     /**
-     * 
+     * The format to display the date in. Allowed values are STD, US, ISO, EURO, UK.
      */
     dateFormat?: DateFormat;
     /**
-     * 
+     * The format to display the time in. Allowed values are HHMM_12, HHMM_24.
      */
     timeFormat?: TimeFormat;
     /**
-     * 
+     * Whether to expand diffs inline instead of opening as separate page (Gerrit web app UI only).
      */
     expandInlineDiffs?: boolean;
     /**
-     * 
+     * Whether to show relative dates in the changes table.
      */
     relativeDateInChangeTable?: boolean;
     /**
-     * 
+     * The type of diff view to show. Allowed values are SIDE_BY_SIDE, UNIFIED_DIFF.
      */
     diffView?: DiffView;
     /**
-     * 
+     * Whether to show the change sizes as colored bars in the change table.
      */
     sizeBarInChangeTable?: boolean;
     /**
-     * 
+     * Whether to show change number in the change table.
      */
     legacycidInChangeTable?: boolean;
     /**
-     * 
+     * Whether to mute common path prefixes in file names in the file table.
      */
     muteCommonPathPrefixes?: boolean;
     /**
-     * 
+     * Whether to insert Signed-off-by footer in changes created with the inline edit feature.
      */
     signedOffBy?: boolean;
     /**
-     * 
+     * The type of email strategy to use. On ENABLED, the user will receive emails from Gerrit. On CC_ON_OWN_COMMENTS the user will also receive emails for their own comments. On ATTENTION_SET_ONLY, on emails about changes, the user will receive emails only if they are in the attention set of that change.
      */
     emailStrategy?: EmailStrategy;
     /**
-     * 
+     * The format to use for outgoing email. Allowed values are PLAINTEXT and HTML_PLAINTEXT.
      */
     emailFormat?: EmailFormat;
     /**
-     * 
+     * The base which should be pre-selected in the 'Diff Against' drop-down list when the change screen is opened for a merge commit. Allowed values are AUTO_MERGE and FIRST_PARENT.
      */
     defaultBaseForMerges?: DefaultBase;
     /**
-     * 
+     * Whether to publish draft comments on push by default.
      */
     publishCommentsOnPush?: boolean;
     /**
-     * 
+     * Whether to disable all keyboard shortcuts.
      */
     disableKeyboardShortcuts?: boolean;
     /**
-     * 
+     * Whether to disable token highlighting on hover.
      */
     disableTokenHighlighting?: boolean;
     /**
-     * 
+     * Whether to set work-in-progress on push or on create changes online by default.
      */
     workInProgressByDefault?: boolean;
     /**
-     * 
+     * The menu items of the MY top menu as a list of TopMenuItemInfo entities.
      */
     my?: Array<MenuItem>;
     /**
-     * 
+     * The columns to display in the change table (Gerrit web app UI only). The default is empty, which will default columns as determined by the frontend.
      */
     changeTable?: Array<string>;
     /**
-     * 
+     * Whether to prompt user to enable browser notification in browser.
      */
     allowBrowserNotifications?: boolean;
     /**
-     * 
+     * Whether to receive suggested code while writing comments. This feature needs a plugin implementation.
      */
     allowSuggestCodeWhileCommenting?: boolean;
     /**
-     * 
+     * Whether to receive autocompletions while writing comments. This feature needs a plugin implementation.
      */
     allowAutocompletingComments?: boolean;
     /**
-     * 
+     * The name of the AI model selected for the AI chat. This feature needs a plugin implementation.
      */
     aiChatSelectedModel?: string;
     /**
-     * 
+     * A comma-separated list of label names that limits which label columns are shown in the change table. If empty, all labels are shown.
      */
     labelFilter?: string;
     /**
-     * 
+     * String indicating which sidebar should be open on the diff page. Set to "NONE" if no sidebars should be open. Plugin-supplied sidebars will be prefixed with "plugin-".
      */
     diffPageSidebar?: string;
 }

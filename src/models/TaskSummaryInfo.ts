@@ -24,7 +24,7 @@ export interface TaskSummaryInfo {
      */
     total?: number;
     /**
-     * 
+     * Number of currently stopping tasks.
      */
     stopping?: number;
     /**
@@ -32,11 +32,11 @@ export interface TaskSummaryInfo {
      */
     running?: number;
     /**
-     * 
+     * Number of currently parked tasks.
      */
     parked?: number;
     /**
-     * 
+     * Number of currently starting tasks.
      */
     starting?: number;
     /**

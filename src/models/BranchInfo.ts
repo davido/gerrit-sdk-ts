@@ -35,7 +35,7 @@ import {
  */
 export interface BranchInfo {
     /**
-     * 
+     * Actions the caller might be able to perform on this branch, as a map of action name to ActionInfo entities.
      */
     actions?: { [key: string]: ActionInfo; };
     /**

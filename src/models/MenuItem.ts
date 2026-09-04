@@ -20,19 +20,19 @@ import { mapValues } from '../runtime';
  */
 export interface MenuItem {
     /**
-     * 
+     * The URL of the menu item link.
      */
     url?: string;
     /**
-     * 
+     * The name of the menu item.
      */
     name?: string;
     /**
-     * 
+     * Target attribute of the menu item link.
      */
     target?: string;
     /**
-     * 
+     * The id attribute of the menu item link.
      */
     id?: string;
 }

@@ -24,7 +24,7 @@ export interface FlowActionTypeInfo {
      */
     name?: string;
     /**
-     * 
+     * Placeholder text shown for the action's parameters in the UI.
      */
     parametersPlaceholder?: string;
 }

@@ -995,6 +995,8 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
+     * Lists the metrics of the server, returning a map of metric name to a MetricJson entity.
+     * List Metrics
      */
     async getConfigServerMetricsRaw(requestParameters: GetConfigServerMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: MetricJson; }>> {
         const requestOptions = await this.getConfigServerMetricsRequestOpts(requestParameters);
@@ -1004,6 +1006,8 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
+     * Lists the metrics of the server, returning a map of metric name to a MetricJson entity.
+     * List Metrics
      */
     async getConfigServerMetrics(requestParameters: GetConfigServerMetricsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: MetricJson; }> {
         const response = await this.getConfigServerMetricsRaw(requestParameters, initOverrides);
@@ -1045,6 +1049,8 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieves a single metric of the server. The metric name is used as the \\{metric-id\\} and must be URL-encoded because it may contain slashes.
+     * Get Metric
      */
     async getConfigServerMetricsMetricIdRaw(requestParameters: GetConfigServerMetricsMetricIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MetricJson>> {
         const requestOptions = await this.getConfigServerMetricsMetricIdRequestOpts(requestParameters);
@@ -1054,6 +1060,8 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieves a single metric of the server. The metric name is used as the \\{metric-id\\} and must be URL-encoded because it may contain slashes.
+     * Get Metric
      */
     async getConfigServerMetricsMetricId(requestParameters: GetConfigServerMetricsMetricIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MetricJson> {
         const response = await this.getConfigServerMetricsMetricIdRaw(requestParameters, initOverrides);

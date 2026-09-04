@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface PluginDefinedInfo {
     /**
-     * 
+     * The name of the plugin that contributed the information.
      */
     name?: string;
     /**
-     * 
+     * A message from the plugin.
      */
     message?: string;
 }

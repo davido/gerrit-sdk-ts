@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface GerritInfo {
     /**
-     * 
+     * The name of the All-Projects root project.
      */
     allProjects?: string;
     /**
-     * 
+     * The name of the All-Users project, in which per-user data such as account preferences and watched projects is stored.
      */
     allUsers?: string;
     /**
@@ -44,7 +44,7 @@ export interface GerritInfo {
      */
     reportBugUrl?: string;
     /**
-     * 
+     * The name of the configured primary web link (gerrit.primaryWeblinkName), if one is set.
      */
     primaryWeblinkName?: string;
     /**

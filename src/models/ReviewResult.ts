@@ -35,23 +35,23 @@ import {
  */
 export interface ReviewResult {
     /**
-     * 
+     * Map of labels to values after the review was posted. Null if any reviewer additions were rejected.
      */
     labels?: { [key: string]: number; };
     /**
-     * 
+     * Map of account or group identifier to ReviewerResult representing the outcome of adding/removing a reviewer. Absent if no reviewer additions were requested.
      */
     reviewers?: { [key: string]: ReviewerResult; };
     /**
-     * 
+     * If true, the change was moved from WIP to ready for review as a result of this action. Not set if false.
      */
     ready?: boolean;
     /**
-     * 
+     * Error message for non-200 responses.
      */
     error?: string;
     /**
-     * 
+     * Post-update change information.
      */
     changeInfo?: ChangeInfo;
 }

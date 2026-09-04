@@ -338,7 +338,7 @@ export interface ChangeInfo {
      */
     problems?: Array<ProblemInfo>;
     /**
-     * 
+     * Plugin-provided information about the change, as a list of PluginDefinedInfo entities. Only present if a plugin contributes data.
      */
     plugins?: Array<PluginDefinedInfo>;
     /**

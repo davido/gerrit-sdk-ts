@@ -4613,6 +4613,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieves an archive of the files in a revision.
+     * Get Archive
      */
     async getChangesChangeIdRevisionsRevisionIdArchiveRaw(requestParameters: GetChangesChangeIdRevisionsRevisionIdArchiveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
         const requestOptions = await this.getChangesChangeIdRevisionsRevisionIdArchiveRequestOpts(requestParameters);
@@ -4622,6 +4624,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieves an archive of the files in a revision.
+     * Get Archive
      */
     async getChangesChangeIdRevisionsRevisionIdArchive(requestParameters: GetChangesChangeIdRevisionsRevisionIdArchiveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob> {
         const response = await this.getChangesChangeIdRevisionsRevisionIdArchiveRaw(requestParameters, initOverrides);
@@ -6111,6 +6115,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Lists the robot comments of a revision.
+     * List Robot Comments
      */
     async getChangesChangeIdRevisionsRevisionIdRobotcommentsRaw(requestParameters: GetChangesChangeIdRevisionsRevisionIdRobotcommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: Array<RobotCommentInfo>; }>> {
         const requestOptions = await this.getChangesChangeIdRevisionsRevisionIdRobotcommentsRequestOpts(requestParameters);
@@ -6120,6 +6126,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Lists the robot comments of a revision.
+     * List Robot Comments
      */
     async getChangesChangeIdRevisionsRevisionIdRobotcomments(requestParameters: GetChangesChangeIdRevisionsRevisionIdRobotcommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: Array<RobotCommentInfo>; }> {
         const response = await this.getChangesChangeIdRevisionsRevisionIdRobotcommentsRaw(requestParameters, initOverrides);
@@ -6173,6 +6181,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieves a robot comment of a revision.
+     * Get Robot Comment
      */
     async getChangesChangeIdRevisionsRevisionIdRobotcommentsRobotCommentIdRaw(requestParameters: GetChangesChangeIdRevisionsRevisionIdRobotcommentsRobotCommentIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RobotCommentInfo>> {
         const requestOptions = await this.getChangesChangeIdRevisionsRevisionIdRobotcommentsRobotCommentIdRequestOpts(requestParameters);
@@ -6182,6 +6192,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieves a robot comment of a revision.
+     * Get Robot Comment
      */
     async getChangesChangeIdRevisionsRevisionIdRobotcommentsRobotCommentId(requestParameters: GetChangesChangeIdRevisionsRevisionIdRobotcommentsRobotCommentIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RobotCommentInfo> {
         const response = await this.getChangesChangeIdRevisionsRevisionIdRobotcommentsRobotCommentIdRaw(requestParameters, initOverrides);
@@ -6277,6 +6289,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Lists the robot comments of all revisions of the change.
+     * List Change Robot Comments
      */
     async getChangesChangeIdRobotcommentsRaw(requestParameters: GetChangesChangeIdRobotcommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: Array<RobotCommentInfo>; }>> {
         const requestOptions = await this.getChangesChangeIdRobotcommentsRequestOpts(requestParameters);
@@ -6286,6 +6300,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Lists the robot comments of all revisions of the change.
+     * List Change Robot Comments
      */
     async getChangesChangeIdRobotcomments(requestParameters: GetChangesChangeIdRobotcommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: Array<RobotCommentInfo>; }> {
         const response = await this.getChangesChangeIdRobotcommentsRaw(requestParameters, initOverrides);

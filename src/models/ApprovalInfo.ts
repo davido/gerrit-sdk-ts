@@ -55,51 +55,51 @@ export interface ApprovalInfo {
      */
     permittedVotingRange?: VotingRangeInfo;
     /**
-     * 
+     * The numeric ID of the account.
      */
     accountId?: number;
     /**
-     * 
+     * The full name of the user. + Only set if detailed account information is requested. + See option DETAILED_ACCOUNTS for change queries + and option DETAILS for account queries.
      */
     name?: string;
     /**
-     * 
+     * The display name of the user. + Only set if detailed account information is requested. + See option DETAILED_ACCOUNTS for change queries + and option DETAILS for account queries.
      */
     displayName?: string;
     /**
-     * 
+     * The email address the user prefers to be contacted through. + Only set if detailed account information is requested. + See option DETAILED_ACCOUNTS for change queries + and options DETAILS and ALL_EMAILS for account queries.
      */
     email?: string;
     /**
-     * 
+     * A list of the secondary email addresses of the user. + Only set for account queries when the ALL_EMAILS option or the suggest parameter is set. + Secondary emails are only included if the calling user has the Modify Account, and hence is allowed to see secondary emails of other users.
      */
     secondaryEmails?: Array<string>;
     /**
-     * 
+     * The username of the user. + Only set if detailed account information is requested. + See option DETAILED_ACCOUNTS for change queries + and option DETAILS for account queries.
      */
     username?: string;
     /**
-     * 
+     * List of AvatarInfo + entities that provide information about avatar images of the account.
      */
     avatars?: Array<AvatarInfo>;
     /**
-     * 
+     * Whether the query would deliver more results if not limited. + Only set on the last account that is returned.
      */
     moreAccounts?: boolean;
     /**
-     * 
+     * Status message of the account.
      */
     status?: string;
     /**
-     * 
+     * Whether the account is inactive.
      */
     inactive?: boolean;
     /**
-     * 
+     * Whether the account is deleted. + Only set if detailed account information is requested. + See option DETAILED_ACCOUNTS
      */
     deleted?: boolean;
     /**
-     * 
+     * List of additional tags that this account has. The only + current tag an account can have is SERVICE_USER. + Only set if detailed account information is requested. + See option DETAILED_ACCOUNTS
      */
     tags?: Array<string>;
 }

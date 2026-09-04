@@ -32,7 +32,7 @@ export interface EvaluateChangeQueryExpressionResultInfo {
      */
     failingAtoms?: Array<string>;
     /**
-     * 
+     * Explanations for why atoms pass or fail. Explanations are only available for a few atoms, for most atoms no explanation is provided. Not set if none of the atoms has an explanation.
      */
     atomExplanations?: { [key: string]: string; };
 }

@@ -35,7 +35,7 @@ import {
  */
 export interface SubmitInput {
     /**
-     * 
+     * Deprecated and no longer used. Kept for backwards compatibility.
      */
     waitForMerge?: boolean;
     /**

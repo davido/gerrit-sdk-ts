@@ -20,47 +20,47 @@ import { mapValues } from '../runtime';
  */
 export interface CommonFileInfo {
     /**
-     * 
+     * The status of the file ("A"=Added, "D"=Deleted, "R"=Renamed, "C"=Copied, "W"=Rewritten). + Not set if the file was Modified ("M").
      */
     status?: string;
     /**
-     * 
+     * File mode in octal (e.g. 100644) at the old commit. The first three digits indicate the file type and the last three digits contain the file permission bits. For added files, this field will not be present.
      */
     oldMode?: number;
     /**
-     * 
+     * File mode in octal (e.g. 100644) at the new commit. The first three digits indicate the file type and the last three digits contain the file permission bits. For deleted files, this field will not be present.
      */
     newMode?: number;
     /**
-     * 
+     * SHA-1 of the file content at the old commit. For added files, this field will not be present.
      */
     oldSha?: string;
     /**
-     * 
+     * SHA-1 of the file content at the new commit. For deleted files, this field will not be present.
      */
     newSha?: string;
     /**
-     * 
+     * Whether the file is binary.
      */
     binary?: boolean;
     /**
-     * 
+     * The old file path. + Only set if the file was renamed or copied.
      */
     oldPath?: string;
     /**
-     * 
+     * Number of inserted lines. + Not set for binary files or if no lines were inserted. + An empty last line is not included in the count and hence this number can differ by one from details provided in DiffInfo.
      */
     linesInserted?: number;
     /**
-     * 
+     * Number of deleted lines. + Not set for binary files or if no lines were deleted. + An empty last line is not included in the count and hence this number can differ by one from details provided in DiffInfo.
      */
     linesDeleted?: number;
     /**
-     * 
+     * Number of bytes by which the file size increased/decreased.
      */
     sizeDelta?: number;
     /**
-     * 
+     * File size in bytes.
      */
     size?: number;
     /**

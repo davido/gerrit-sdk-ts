@@ -20,19 +20,19 @@ import { mapValues } from '../runtime';
  */
 export interface FileChange {
     /**
-     * 
+     * The new file content, base64-encoded, for a create or update. For a 120000 (symlink) entry, the decoded content is the symlink target path.
      */
     content?: string;
     /**
-     * 
+     * The file mode in octal format (100644 regular file, 100755 executable, 120000 symlink). If not set, new files are created as 100644 and existing files keep their mode.
      */
     fileMode?: number;
     /**
-     * 
+     * If true, deletes the file at this path.
      */
     _delete?: boolean;
     /**
-     * 
+     * Source path to rename from. The file at rename_from is moved to this entry's path.
      */
     renameFrom?: string;
 }

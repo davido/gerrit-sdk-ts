@@ -28,19 +28,19 @@ import {
  */
 export interface AgreementInfo {
     /**
-     * 
+     * The unique name of the contributor agreement.
      */
     name?: string;
     /**
-     * 
+     * The description of the contributor agreement.
      */
     description?: string;
     /**
-     * 
+     * The URL of the contributor agreement.
      */
     url?: string;
     /**
-     * 
+     * The group to which a user that signs the contributor agreement online is added automatically as a GroupInfo entity. If not set, users cannot sign the contributor agreement online.
      */
     autoVerifyGroup?: GroupInfo;
 }

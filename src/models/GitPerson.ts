@@ -20,19 +20,19 @@ import { mapValues } from '../runtime';
  */
 export interface GitPerson {
     /**
-     * 
+     * The name of the author/committer.
      */
     name?: string;
     /**
-     * 
+     * The email address of the author/committer.
      */
     email?: string;
     /**
-     * 
+     * The timestamp of when this identity was constructed.
      */
     date?: string;
     /**
-     * 
+     * The timezone offset from UTC of when this identity was constructed.
      */
     tz?: number;
 }

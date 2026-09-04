@@ -28,11 +28,11 @@ import {
  */
 export interface ApplyProvidedFixInput {
     /**
-     * 
+     * The replacements that make up the fix, as a list of FixReplacementInfo entities.
      */
     fixReplacementInfos?: Array<FixReplacementInfo>;
     /**
-     * 
+     * Number of the patch set the fix was originally computed against.
      */
     originalPatchsetForFix?: number;
 }

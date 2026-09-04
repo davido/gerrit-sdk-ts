@@ -20,19 +20,19 @@ import { mapValues } from '../runtime';
  */
 export interface Range {
     /**
-     * 
+     * The start line number of the range. (1-based)
      */
     startLine?: number;
     /**
-     * 
+     * The character position in the start line. (0-based)
      */
     startCharacter?: number;
     /**
-     * 
+     * The end line number of the range. (1-based)
      */
     endLine?: number;
     /**
-     * 
+     * The character position in the end line. (0-based)
      */
     endCharacter?: number;
 }

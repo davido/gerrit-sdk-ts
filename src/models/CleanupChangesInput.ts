@@ -20,19 +20,19 @@ import { mapValues } from '../runtime';
  */
 export interface CleanupChangesInput {
     /**
-     * 
+     * Abandon all changes that weren't updated in the timespan given here
      */
     after?: string;
     /**
-     * 
+     * Whether to also abandon changes that are mergeable
      */
     ifMergeable?: boolean;
     /**
-     * 
+     * Message to post to changes abandoned by the cleanup
      */
     message?: string;
     /**
-     * 
+     * Additional query predicates appended to the base cleanup query. Can be used to limit the batch size, exclude changes, or both, e.g. age:4w limit:100 -project:some/repo -hashtag:keep-alive. By default unset.
      */
     query?: string;
 }

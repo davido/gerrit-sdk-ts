@@ -42,63 +42,63 @@ import {
  */
 export interface DraftInput {
     /**
-     * 
+     * Value of the tag field from ReviewInput set while posting the review. NOTE: To apply different tags on different votes/comments multiple invocations of the REST call are required.
      */
     tag?: string;
     /**
-     * 
+     * Whether or not the comment must be addressed by the user. The state of resolution of a comment thread is stored in the last comment in that thread chronologically.
      */
     unresolved?: boolean;
     /**
-     * 
+     * The patch set number for the comment; only set in contexts where + comments may be returned for multiple patch sets.
      */
     patchSet?: number;
     /**
-     * 
+     * The URL encoded UUID of the comment.
      */
     id?: string;
     /**
-     * 
+     * The file path for which the inline comment was done. + Not set if returned in a map where the key is the file path.
      */
     path?: string;
     /**
-     * 
+     * The side on which the comment was added. + Allowed values are REVISION and PARENT. + If not set, the default is REVISION.
      */
     side?: Side;
     /**
-     * 
+     * The 1-based parent number. Used only for merge commits when side == PARENT. When not set the comment is for the auto-merge tree.
      */
     parent?: number;
     /**
-     * 
+     * The number of the line for which the comment was done. + If range is set, this equals the end line of the range. + If neither line nor range is set, it's a file comment.
      */
     line?: number;
     /**
-     * 
+     * The range of the comment as a CommentRange entity.
      */
     range?: Range;
     /**
-     * 
+     * The URL encoded UUID of the comment to which this comment is a reply.
      */
     inReplyTo?: string;
     /**
-     * 
+     * The timestamp of when this comment was written.
      */
     updated?: string;
     /**
-     * 
+     * The comment message.
      */
     message?: string;
     /**
-     * 
+     * Hex commit SHA-1 (40 characters string) of the commit of the patchset to which this comment applies.
      */
     commitId?: string;
     /**
-     * 
+     * Suggested fixes for this comment as a list of FixSuggestionInfo entities.
      */
     fixSuggestions?: Array<FixSuggestionInfo>;
     /**
-     * 
+     * Whether the comment was created by an AI agent. Not set if false.
      */
     isAi?: boolean;
 }

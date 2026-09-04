@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface CommentInput {
     /**
-     * 
+     * Whether to include the source lines around the comment as context in the response.
      */
     enableContext?: boolean;
 }

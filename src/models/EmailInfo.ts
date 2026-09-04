@@ -28,7 +28,7 @@ export interface EmailInfo {
      */
     preferred?: boolean;
     /**
-     * 
+     * Whether this email address is the one used to display the user's avatar.
      */
     avatar?: boolean;
     /**

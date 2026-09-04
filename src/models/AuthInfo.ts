@@ -49,7 +49,7 @@ import {
  */
 export interface AuthInfo {
     /**
-     * 
+     * The authentication type that is configured on the server; see auth.type.
      */
     authType?: AuthType;
     /**

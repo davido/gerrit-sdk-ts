@@ -28,19 +28,19 @@ import {
  */
 export interface FileMeta {
     /**
-     * 
+     * The name of the file.
      */
     name?: string;
     /**
-     * 
+     * The content type of the file. For the commit message and merge list the value is text/x-gerrit-commit-message and text/x-gerrit-merge-list respectively. For git links the value is x-git/gitlink. For symlinks the value is x-git/symlink. For regular files the value is the file mime type (e.g.
      */
     contentType?: string;
     /**
-     * 
+     * The total number of lines in the file.
      */
     lines?: number;
     /**
-     * 
+     * Links to the file in external sites as a list of WebLinkInfo entries.
      */
     webLinks?: Array<WebLinkInfo>;
 }

@@ -121,7 +121,7 @@ export interface ConfigInfo {
      */
     workInProgressByDefault?: InheritedBooleanInfo;
     /**
-     * 
+     * InheritedBooleanInfo that tells whether reviewers and CCs that do not have a Gerrit account can be added to a change by their email address.
      */
     enableReviewerByEmail?: InheritedBooleanInfo;
     /**
@@ -165,7 +165,7 @@ export interface ConfigInfo {
      */
     commentlinks?: { [key: string]: CommentLinkInfo; };
     /**
-     * 
+     * Views that are shown as extension panels, as a map of panel section name to the list of panel names configured for the project.
      */
     extensionPanelNames?: { [key: string]: Array<string>; };
 }

@@ -28,15 +28,15 @@ import {
  */
 export interface EditIdentityInput {
     /**
-     * 
+     * The name of the author/committer. If not specified, the existing name will be used.
      */
     name?: string;
     /**
-     * 
+     * The email of the author/committer. If not specified, the existing email will be used.
      */
     email?: string;
     /**
-     * 
+     * Type of the identity being edited. Must be either AUTHOR or COMMITTER.
      */
     type?: ChangeEditIdentityType;
 }

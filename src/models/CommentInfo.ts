@@ -128,7 +128,7 @@ export interface CommentInfo {
      */
     fixSuggestions?: Array<FixSuggestionInfo>;
     /**
-     * 
+     * Whether the comment was created by an AI agent. Not set if false.
      */
     isAi?: boolean;
 }

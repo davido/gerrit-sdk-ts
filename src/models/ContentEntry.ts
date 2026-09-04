@@ -20,35 +20,35 @@ import { mapValues } from '../runtime';
  */
 export interface ContentEntry {
     /**
-     * 
+     * Content in the file on both sides (unchanged).
      */
     ab?: Array<string>;
     /**
-     * 
+     * Content only in the file on side A (deleted in B).
      */
     a?: Array<string>;
     /**
-     * 
+     * Content only in the file on side B (added in B).
      */
     b?: Array<string>;
     /**
-     * 
+     * Text sections deleted from side A as a DiffIntralineInfo entity.
      */
     editA?: Array<Array<number>>;
     /**
-     * 
+     * Text sections inserted in side B as a DiffIntralineInfo entity.
      */
     editB?: Array<Array<number>>;
     /**
-     * 
+     * Indicates whether this entry was introduced by a rebase.
      */
     dueToRebase?: boolean;
     /**
-     * 
+     * Set to true if the region is common according to the requested ignore-whitespace parameter, but a and b contain differing amounts of whitespace. When present and true a and b are used instead of ab.
      */
     common?: boolean;
     /**
-     * 
+     * count of lines skipped on both sides when the file is too large to include all common lines.
      */
     skip?: number;
 }

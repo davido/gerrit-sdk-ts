@@ -28,31 +28,31 @@ import {
  */
 export interface TestSubmitRuleInfo {
     /**
-     * 
+     * OK, the change can be submitted. + NOT_READY, additional labels are required before submit. + CLOSED, closed changes cannot be submitted. + RULE_ERROR, rule code failed with an error.
      */
     status?: string;
     /**
-     * 
+     * When status is RULE_ERROR this message provides some text describing the failure of the rule predicate.
      */
     errorMessage?: string;
     /**
-     * 
+     * Map of labels that are approved; an AccountInfo identifies the voter chosen by the rule.
      */
     ok?: { [key: string]: AccountInfo; };
     /**
-     * 
+     * Map of labels that are preventing submit; AccountInfo identifies voter.
      */
     reject?: { [key: string]: AccountInfo; };
     /**
-     * 
+     * Map of labels that need to be given to submit. The value is currently an empty object.
      */
     need?: { [key: string]: object; };
     /**
-     * 
+     * Map of labels that can be used, but do not affect submit. AccountInfo identifies voter, if the label has been applied.
      */
     may?: { [key: string]: AccountInfo; };
     /**
-     * 
+     * Map of labels that should have been in need but cannot be used by any user because of access restrictions. The value is currently an empty object.
      */
     impossible?: { [key: string]: object; };
 }

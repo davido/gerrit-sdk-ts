@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ChangeStatus } from './ChangeStatus';
+import {
+    ChangeStatusFromJSON,
+    ChangeStatusFromJSONTyped,
+    ChangeStatusToJSON,
+    ChangeStatusToJSONTyped,
+} from './ChangeStatus';
+
 /**
  * 
  * @export
@@ -46,8 +54,10 @@ export interface ParentInfo {
     /**
      * If the parent commit is a patch-set of another gerrit change, this field will hold the change status of the parent change. Otherwise, will be null.
      */
-    changeStatus?: string;
+    changeStatus?: ChangeStatus;
 }
+
+
 
 /**
  * Check if a given object implements the ParentInfo interface.
@@ -72,7 +82,7 @@ export function ParentInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'changeId': json['change_id'] == null ? undefined : json['change_id'],
         'changeNumber': json['change_number'] == null ? undefined : json['change_number'],
         'patchSetNumber': json['patch_set_number'] == null ? undefined : json['patch_set_number'],
-        'changeStatus': json['change_status'] == null ? undefined : json['change_status'],
+        'changeStatus': json['change_status'] == null ? undefined : ChangeStatusFromJSON(json['change_status']),
     };
 }
 
@@ -93,7 +103,7 @@ export function ParentInfoToJSONTyped(value?: ParentInfo | null, ignoreDiscrimin
         'change_id': value['changeId'],
         'change_number': value['changeNumber'],
         'patch_set_number': value['patchSetNumber'],
-        'change_status': value['changeStatus'],
+        'change_status': ChangeStatusToJSON(value['changeStatus']),
     };
 }
 

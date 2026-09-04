@@ -20,15 +20,15 @@ import { mapValues } from '../runtime';
  */
 export interface FieldJson {
     /**
-     * 
+     * The name of the field.
      */
     name?: string;
     /**
-     * 
+     * The type of the field, set only for enum-valued fields.
      */
     type?: string;
     /**
-     * 
+     * The description of the field.
      */
     description?: string;
 }

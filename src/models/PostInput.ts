@@ -20,15 +20,15 @@ import { mapValues } from '../runtime';
  */
 export interface PostInput {
     /**
-     * 
+     * Path to file to restore.
      */
     restorePath?: string;
     /**
-     * 
+     * Old path to file to rename.
      */
     oldPath?: string;
     /**
-     * 
+     * New path to file to rename.
      */
     newPath?: string;
 }

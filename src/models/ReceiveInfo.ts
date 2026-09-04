@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface ReceiveInfo {
     /**
-     * 
+     * Whether signed push validation support is enabled on the server; see the global configuration for details.
      */
     enableSignedPush?: boolean;
 }

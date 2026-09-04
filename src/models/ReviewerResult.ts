@@ -35,27 +35,27 @@ import {
  */
 export interface ReviewerResult {
     /**
-     * 
+     * Value of the reviewer field from ReviewerInput set while adding the reviewer.
      */
     input?: string;
     /**
-     * 
+     * Error message explaining why the reviewer could not be added. + If a group was specified in the input and an error is returned, it means that none of the members were added as reviewer.
      */
     error?: string;
     /**
-     * 
+     * Whether adding the reviewer requires confirmation.
      */
     confirm?: boolean;
     /**
-     * 
+     * The newly added reviewers as a list of ReviewerInfo entities.
      */
     reviewers?: Array<ReviewerInfo>;
     /**
-     * 
+     * The newly CCed accounts as a list of AccountInfo entities. This field will only appear if the requested state for the reviewer was CC.
      */
     ccs?: Array<AccountInfo>;
     /**
-     * 
+     * The newly removed accounts as a list of AccountInfo entities. This field will only appear if the requested state for the reviewer was REMOVED.
      */
     removed?: AccountInfo;
 }
