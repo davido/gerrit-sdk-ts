@@ -28,11 +28,11 @@ import {
  */
 export interface DownloadInfo {
     /**
-     * 
+     * The supported download schemes as a map which maps the scheme name to a of DownloadSchemeInfo entity.
      */
     schemes?: { [key: string]: DownloadSchemeInfo; };
     /**
-     * 
+     * List of supported archive formats. Possible values are tgz, tar, tbz2 and txz.
      */
     archives?: Array<string>;
 }

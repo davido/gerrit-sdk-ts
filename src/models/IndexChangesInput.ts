@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface IndexChangesInput {
     /**
-     * 
+     * List of change-ids. When delete_missing is true, each entry must be in project~changeNumber format.
      */
     changes?: Array<string>;
     /**
-     * 
+     * Delete changes which are missing in NoteDb from the index. This can be used to get rid of stale index entries. Possible values are true and false. By default set to false.
      */
     deleteMissing?: boolean;
 }

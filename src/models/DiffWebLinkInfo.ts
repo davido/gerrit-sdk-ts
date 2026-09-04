@@ -20,27 +20,27 @@ import { mapValues } from '../runtime';
  */
 export interface DiffWebLinkInfo {
     /**
-     * 
+     * Whether the web link should be shown on the side-by-side diff screen.
      */
     showOnSideBySideDiffView?: boolean;
     /**
-     * 
+     * Whether the web link should be shown on the unified diff screen.
      */
     showOnUnifiedDiffView?: boolean;
     /**
-     * 
+     * See WebLinkInfo
      */
     name?: string;
     /**
-     * 
+     * See WebLinkInfo
      */
     tooltip?: string;
     /**
-     * 
+     * See WebLinkInfo
      */
     imageUrl?: string;
     /**
-     * 
+     * See WebLinkInfo
      */
     url?: string;
 }

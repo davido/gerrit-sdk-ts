@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface FixInput {
     /**
-     * 
+     * If true, delete patch sets from the database if they refer to missing commit options.
      */
     deletePatchSetIfCommitMissing?: boolean;
     /**
-     * 
+     * If set, check that the change is merged into the destination branch as this exact SHA-1. If not, insert a new patch set referring to this commit.
      */
     expectMergedAs?: string;
 }

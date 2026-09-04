@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface HashtagsInput {
     /**
-     * 
+     * The list of hashtags to be added to the change.
      */
     add?: Array<string>;
     /**
-     * 
+     * The list of hashtags to be removed from the change.
      */
     remove?: Array<string>;
 }

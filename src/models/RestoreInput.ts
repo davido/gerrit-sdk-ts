@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface RestoreInput {
     /**
-     * 
+     * Message to be added as review comment to the change when restoring the change.
      */
     message?: string;
 }

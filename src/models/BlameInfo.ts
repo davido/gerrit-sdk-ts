@@ -28,23 +28,23 @@ import {
  */
 export interface BlameInfo {
     /**
-     * 
+     * The author of the commit.
      */
     author?: string;
     /**
-     * 
+     * The id of the commit.
      */
     id?: string;
     /**
-     * 
+     * Commit time.
      */
     time?: number;
     /**
-     * 
+     * The commit message.
      */
     commitMsg?: string;
     /**
-     * 
+     * The blame row coordinates as RangeInfo entities.
      */
     ranges?: Array<RangeInfo>;
 }

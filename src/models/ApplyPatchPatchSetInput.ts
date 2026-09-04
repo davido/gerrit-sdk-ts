@@ -42,27 +42,27 @@ import {
  */
 export interface ApplyPatchPatchSetInput {
     /**
-     * 
+     * The details of the patch to be applied as a ApplyPatchInput entity.
      */
     patch?: ApplyPatchInput;
     /**
-     * 
+     * The commit message for the new patch set. If not specified, the latest patch-set message will be used.
      */
     commitMessage?: string;
     /**
-     * 
+     * 40-hex digit SHA-1 of the commit which will be the parent commit of the newly created patch set. If set, it must be a merged commit or a change revision on the destination branch. Otherwise, the target change's branch tip will be used.
      */
     base?: string;
     /**
-     * 
+     * The author of the commit to create. Must be an AccountInput entity with at least the name and email fields set. The caller needs "Forge Author" permission when using this field, unless specifies their own details.
      */
     author?: AccountInput;
     /**
-     * 
+     * List of query options to format the response.
      */
     responseFormatOptions?: Array<ListChangesOption>;
     /**
-     * 
+     * If true, the revision from the URL will be amended by the patch. This will use the tree of the revision, apply the patch and create a new commit whose tree is the resulting tree of the operation and whose parent(s) are the parent(s) of the revision. Cannot be used together with base.
      */
     amend?: boolean;
 }

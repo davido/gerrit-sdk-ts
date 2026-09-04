@@ -20,35 +20,35 @@ import { mapValues } from '../runtime';
  */
 export interface ProjectWatchInfo {
     /**
-     * 
+     * The name of the project.
      */
     project?: string;
     /**
-     * 
+     * A filter string to be applied to the project.
      */
     filter?: string;
     /**
-     * 
+     * An error message when project is for example hidden or deleted.
      */
     problem?: string;
     /**
-     * 
+     * Notify on new changes.
      */
     notifyNewChanges?: boolean;
     /**
-     * 
+     * Notify on new patch sets.
      */
     notifyNewPatchSets?: boolean;
     /**
-     * 
+     * Notify on comments.
      */
     notifyAllComments?: boolean;
     /**
-     * 
+     * Notify on submitted changes.
      */
     notifySubmittedChanges?: boolean;
     /**
-     * 
+     * Notify on abandoned changes.
      */
     notifyAbandonedChanges?: boolean;
 }

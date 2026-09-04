@@ -28,19 +28,19 @@ import {
  */
 export interface MetadataInfo {
     /**
-     * 
+     * The metadata name. Not guaranteed to be unique, e.g. multiple metadata entries with the same name may be returned.
      */
     name?: string;
     /**
-     * 
+     * The metadata value.
      */
     value?: string;
     /**
-     * 
+     * A description of the metadata.
      */
     description?: string;
     /**
-     * 
+     * A list of web links as WebLinkInfo entities.
      */
     webLinks?: Array<WebLinkInfo>;
 }

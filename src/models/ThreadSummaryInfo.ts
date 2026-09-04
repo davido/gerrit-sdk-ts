@@ -20,15 +20,15 @@ import { mapValues } from '../runtime';
  */
 export interface ThreadSummaryInfo {
     /**
-     * 
+     * The number of available processors.
      */
     cpus?: number;
     /**
-     * 
+     * The total number of current threads.
      */
     threads?: number;
     /**
-     * 
+     * Detailed thread counts as a map that maps a thread kind to a map that maps a thread state to the thread count.
      */
     counts?: { [key: string]: { [key: string]: number; }; };
 }

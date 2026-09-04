@@ -28,7 +28,7 @@ import {
  */
 export interface CheckProjectResultInfo {
     /**
-     * 
+     * Results for the AutoCloseableChangesCheck as AutoCloseableChangesCheckResult entity.
      */
     autoCloseableChangesCheckResult?: AutoCloseableChangesCheckResult;
 }

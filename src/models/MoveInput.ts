@@ -20,15 +20,15 @@ import { mapValues } from '../runtime';
  */
 export interface MoveInput {
     /**
-     * 
+     * A message to be posted in this change's comments
      */
     message?: string;
     /**
-     * 
+     * Destination branch
      */
     destinationBranch?: string;
     /**
-     * 
+     * By default, only veto votes that are blocking the change from submission are moved to the destination branch. Using this option is only allowed for administrators, because it can affect the submission behaviour of the change (depending on the label access configuration and submissions rules).
      */
     keepAllVotes?: boolean;
 }

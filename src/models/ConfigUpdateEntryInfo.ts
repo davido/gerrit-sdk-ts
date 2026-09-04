@@ -20,15 +20,15 @@ import { mapValues } from '../runtime';
  */
 export interface ConfigUpdateEntryInfo {
     /**
-     * 
+     * The config key that contains the value.
      */
     configKey?: string;
     /**
-     * 
+     * The old config value. + Missing if value was not previously configured.
      */
     oldValue?: string;
     /**
-     * 
+     * The new config value, picked up after reload.
      */
     newValue?: string;
 }

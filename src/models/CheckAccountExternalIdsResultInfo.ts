@@ -28,7 +28,7 @@ import {
  */
 export interface CheckAccountExternalIdsResultInfo {
     /**
-     * 
+     * A list of ConsistencyProblemInfo entities.
      */
     problems?: Array<ConsistencyProblemInfo>;
 }

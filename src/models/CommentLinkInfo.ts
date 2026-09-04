@@ -20,27 +20,27 @@ import { mapValues } from '../runtime';
  */
 export interface CommentLinkInfo {
     /**
-     * 
+     * A JavaScript regular expression to match positions to be replaced with a hyperlink, as documented in commentlink.name.match.
      */
     match?: string;
     /**
-     * 
+     * The URL to direct the user to whenever the regular expression is matched, as documented in commentlink.name.link.
      */
     link?: string;
     /**
-     * 
+     * Text inserted before the link.
      */
     prefix?: string;
     /**
-     * 
+     * Text inserted after the link.
      */
     suffix?: string;
     /**
-     * 
+     * Text of the link.
      */
     text?: string;
     /**
-     * 
+     * Whether the commentlink is enabled, as documented in commentlink.name.enabled. If not set the commentlink is enabled.
      */
     enabled?: boolean;
 }

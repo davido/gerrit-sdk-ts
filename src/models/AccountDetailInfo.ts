@@ -28,7 +28,7 @@ import {
  */
 export interface AccountDetailInfo {
     /**
-     * 
+     * The timestamp of when the account was registered.
      */
     registeredOn?: string;
     /**

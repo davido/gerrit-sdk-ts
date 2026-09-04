@@ -28,7 +28,7 @@ import {
  */
 export interface RelatedChangesInfo {
     /**
-     * 
+     * A list of RelatedChangeAndCommitInfo entities describing the related changes. Sorted by git commit order, newest to oldest. Empty if there are no related changes.
      */
     changes?: Array<RelatedChangeAndCommitInfo>;
 }

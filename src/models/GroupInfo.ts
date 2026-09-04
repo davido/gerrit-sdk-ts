@@ -35,51 +35,51 @@ import {
  */
 export interface GroupInfo {
     /**
-     * 
+     * URL to information about the group. Typically a URL to a web page that permits users to apply to join the group, or manage their membership.
      */
     url?: string;
     /**
-     * 
+     * Options of the group
      */
     options?: GroupOptionsInfo;
     /**
-     * 
+     * The description of the group.
      */
     description?: string;
     /**
-     * 
+     * The numeric ID of the group.
      */
     groupId?: number;
     /**
-     * 
+     * The name of the owner group.
      */
     owner?: string;
     /**
-     * 
+     * The URL encoded UUID of the owner group.
      */
     ownerId?: string;
     /**
-     * 
+     * The timestamp of when the group was created.
      */
     createdOn?: string;
     /**
-     * 
+     * Whether the query would deliver more results if not limited. + Only set on the last group that is returned by a group query.
      */
     moreGroups?: boolean;
     /**
-     * 
+     * A list of AccountInfo entities describing the direct members. + Only set if members are requested.
      */
     members?: Array<AccountInfo>;
     /**
-     * 
+     * A list of GroupInfo entities describing the direct subgroups. + Only set if subgroups are requested.
      */
     includes?: Array<GroupInfo>;
     /**
-     * 
+     * The URL encoded UUID of the group.
      */
     id?: string;
     /**
-     * 
+     * The name of the group. + For external groups the group name is missing if there is no group backend that can resolve the group UUID. E.g. this can happen when a plugin that provided a group backend was uninstalled.
      */
     name?: string;
 }

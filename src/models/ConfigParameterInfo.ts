@@ -28,47 +28,47 @@ import {
  */
 export interface ConfigParameterInfo {
     /**
-     * 
+     * The display name of the configuration parameter.
      */
     displayName?: string;
     /**
-     * 
+     * The description of the configuration parameter.
      */
     description?: string;
     /**
-     * 
+     * Warning message for the configuration parameter.
      */
     warning?: string;
     /**
-     * 
+     * The type of the configuration parameter. Can be STRING, INT, LONG, BOOLEAN, LIST or ARRAY.
      */
     type?: ProjectConfigEntryType;
     /**
-     * 
+     * The value of the configuration parameter as string. If the parameter is inheritable this is the effective value which is deduced from configured_value and inherited_value.
      */
     value?: string;
     /**
-     * 
+     * Whether the value is editable.
      */
     editable?: boolean;
     /**
-     * 
+     * Whether the configuration parameter can be inherited.
      */
     inheritable?: boolean;
     /**
-     * 
+     * The value of the configuration parameter that is configured on this project, only set if inheritable is true.
      */
     configuredValue?: string;
     /**
-     * 
+     * The inherited value of the configuration parameter, only set if inheritable is true.
      */
     inheritedValue?: string;
     /**
-     * 
+     * The list of permitted values. Only set if the type is LIST.
      */
     permittedValues?: Array<string>;
     /**
-     * 
+     * The list of values. Only set if the type is ARRAY.
      */
     values?: Array<string>;
 }

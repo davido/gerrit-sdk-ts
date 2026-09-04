@@ -49,51 +49,51 @@ import {
  */
 export interface ProjectAccessInfo {
     /**
-     * 
+     * The revision of the refs/meta/config branch from which the access rights were loaded.
      */
     revision?: string;
     /**
-     * 
+     * The parent project from which permissions are inherited as a ProjectInfo entity.
      */
     inheritsFrom?: ProjectInfo;
     /**
-     * 
+     * The local access rights of the project as a map that maps the refs to AccessSectionInfo entities.
      */
     local?: { [key: string]: AccessSectionInfo; };
     /**
-     * 
+     * Whether the calling user owns this project.
      */
     isOwner?: boolean;
     /**
-     * 
+     * The list of refs owned by the calling user.
      */
     ownerOf?: Array<string>;
     /**
-     * 
+     * Whether the calling user can upload to any ref.
      */
     canUpload?: boolean;
     /**
-     * 
+     * Whether the calling user can add any ref.
      */
     canAdd?: boolean;
     /**
-     * 
+     * Whether the calling user can add any tag ref.
      */
     canAddTags?: boolean;
     /**
-     * 
+     * Whether the calling user can see the refs/meta/config branch of the project.
      */
     configVisible?: boolean;
     /**
-     * 
+     * Whether the calling user must create a change for updating project config. If true, all API requests which directly update project config are rejected.
      */
     requireChangeForConfigUpdate?: boolean;
     /**
-     * 
+     * A map of group UUID to GroupInfo objects, with names and URLs for the group UUIDs used in the local map. This will include names for groups that might be invisible to the caller.
      */
     groups?: { [key: string]: GroupInfo; };
     /**
-     * 
+     * Links to the history of the configuration file governing this project's access rights as list of WebLinkInfo entities.
      */
     configWebLinks?: Array<WebLinkInfo>;
 }

@@ -28,35 +28,35 @@ import {
  */
 export interface TaskInfo {
     /**
-     * 
+     * The ID of the task.
      */
     id?: string;
     /**
-     * 
+     * The state of the task, can be DONE, CANCELLED, RUNNING, READY, SLEEPING and OTHER.
      */
     state?: State;
     /**
-     * 
+     * The start time of the task.
      */
     startTime?: string;
     /**
-     * 
+     * The remaining delay of the task.
      */
     delay?: number;
     /**
-     * 
+     * The command of the task.
      */
     command?: string;
     /**
-     * 
+     * The remote name. May only be set for tasks that are associated with a project.
      */
     remoteName?: string;
     /**
-     * 
+     * The project the task is associated with.
      */
     projectName?: string;
     /**
-     * 
+     * The work queue the task is associated with.
      */
     queueName?: string;
 }

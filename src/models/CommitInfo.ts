@@ -35,35 +35,35 @@ import {
  */
 export interface CommitInfo {
     /**
-     * 
+     * The commit ID. Not set if included in a RevisionInfo entity that is contained in a map which has the commit ID as key.
      */
     commit?: string;
     /**
-     * 
+     * The parent commits of this commit as a list of CommitInfo entities. In each parent only the commit and subject fields are populated.
      */
     parents?: Array<CommitInfo>;
     /**
-     * 
+     * The author of the commit as a GitPersonInfo entity.
      */
     author?: GitPerson;
     /**
-     * 
+     * The committer of the commit as a GitPersonInfo entity.
      */
     committer?: GitPerson;
     /**
-     * 
+     * The subject of the commit (header line of the commit message).
      */
     subject?: string;
     /**
-     * 
+     * The commit message.
      */
     message?: string;
     /**
-     * 
+     * Links to the patch set in external sites as a list of WebLinkInfo entities.
      */
     webLinks?: Array<WebLinkInfo>;
     /**
-     * 
+     * Links to the commit in external sites for resolving conflicts as a list of WebLinkInfo entities.
      */
     resolveConflictsWebLinks?: Array<WebLinkInfo>;
 }

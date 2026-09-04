@@ -20,15 +20,15 @@ import { mapValues } from '../runtime';
  */
 export interface AuthTokenInput {
     /**
-     * 
+     * Must be the same as the id used in the URL.
      */
     id?: string;
     /**
-     * 
+     * The new token. Only Gerrit administrators may set the token directly.
      */
     token?: string;
     /**
-     * 
+     * Lifetime of the token. After the given duration the token will be invalid.
      */
     lifetime?: string;
 }

@@ -35,23 +35,23 @@ import {
  */
 export interface FlowInfo {
     /**
-     * 
+     * The universally unique identifier that identifies the flow.
      */
     uuid?: string;
     /**
-     * 
+     * The owner of the flow as an AccountInfo entity.
      */
     owner?: AccountInfo;
     /**
-     * 
+     * The timestamp of when the flow was created.
      */
     created?: string;
     /**
-     * 
+     * The stages of this flow as a list of FlowStageInfo entities (sorted by execution order).
      */
     stages?: Array<FlowStageInfo>;
     /**
-     * 
+     * The timestamp of when the flow was last evaluated. Not set if the flow has not been evaluated yet.
      */
     lastEvaluated?: string;
 }

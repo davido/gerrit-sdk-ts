@@ -20,15 +20,15 @@ import { mapValues } from '../runtime';
  */
 export interface AuthTokenInfo {
     /**
-     * 
+     * The id of the token.
      */
     id?: string;
     /**
-     * 
+     * The token in plain text. Will only be returned once when creating the token.
      */
     token?: string;
     /**
-     * 
+     * The timestamp at which the token will expire or has been expired. If null, token lifetime is unlimited.
      */
     expiration?: string;
 }

@@ -28,11 +28,11 @@ import {
  */
 export interface PushCertificateInfo {
     /**
-     * 
+     * Signed certificate payload and GPG signature block.
      */
     certificate?: string;
     /**
-     * 
+     * Information about the key that signed the push, along with any problems found while checking the signature or the key itself, as a GpgKeyInfo entity.
      */
     key?: GpgKeyInfo;
 }

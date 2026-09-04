@@ -28,31 +28,31 @@ import {
  */
 export interface SubmitRequirementExpressionInfo {
     /**
-     * 
+     * The submit requirement expression as a string, for example branch:refs/heads/foo and label:verified=+1.
      */
     expression?: string;
     /**
-     * 
+     * True if the submit requirement is fulfilled for the change.
      */
     fulfilled?: boolean;
     /**
-     * 
+     * A string containing the status of evaluating the expression which can be one of the following: + * PASS - expression was evaluated and result is true. + * FAIL - expression was evaluated and result is false. + * ERROR - an error occurred while evaluating the expression.
      */
     status?: SubmitRequirementExpressionInfoStatus;
     /**
-     * 
+     * A list of passing atoms as strings. For the above expression, passing_atoms can contain ["branch:refs/heads/foo"] if the branch predicate is fulfilled for the change.
      */
     passingAtoms?: Array<string>;
     /**
-     * 
+     * A list of failing atoms. This is similar to passing_atoms except that it contains the list of predicates that are not fulfilled for the change.
      */
     failingAtoms?: Array<string>;
     /**
-     * 
+     * A map of atoms (as strings) to strings explaining the result. This field only contains atoms for which the explanation is available.
      */
     atomExplanations?: { [key: string]: string; };
     /**
-     * 
+     * If the submit requirement fails during evaluation, this string will contain an error message describing why it failed.
      */
     errorMessage?: string;
 }

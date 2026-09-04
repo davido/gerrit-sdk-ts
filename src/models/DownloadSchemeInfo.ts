@@ -20,27 +20,27 @@ import { mapValues } from '../runtime';
  */
 export interface DownloadSchemeInfo {
     /**
-     * 
+     * The URL of the download scheme, where '${project}' is used as placeholder for the project name.
      */
     url?: string;
     /**
-     * 
+     * An optional description of how the scheme works and maybe comparing it to other schemes, explaining the pros and cons of each option.
      */
     description?: string;
     /**
-     * 
+     * Whether this download scheme requires authentication.
      */
     isAuthRequired?: boolean;
     /**
-     * 
+     * Whether this download scheme supports authentication.
      */
     isAuthSupported?: boolean;
     /**
-     * 
+     * Download commands as a map which maps the command name to the download command. In the download command '${project}' is used as placeholder for the project name, and '${ref}' is used as placeholder for the (change) ref. Empty, if accessed anonymously and the download scheme requires authentication.
      */
     commands?: { [key: string]: string; };
     /**
-     * 
+     * Clone commands as a map which maps the command name to the clone command. In the clone command '${project}' is used as placeholder for the project name and '${project-base-name}' as name for the project base name (e.g.
      */
     cloneCommands?: { [key: string]: string; };
 }

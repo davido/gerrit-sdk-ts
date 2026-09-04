@@ -20,43 +20,43 @@ import { mapValues } from '../runtime';
  */
 export interface JvmSummaryInfo {
     /**
-     * 
+     * The vendor of the virtual machine.
      */
     vmVendor?: string;
     /**
-     * 
+     * The name of the virtual machine.
      */
     vmName?: string;
     /**
-     * 
+     * The version of the virtual machine.
      */
     vmVersion?: string;
     /**
-     * 
+     * The name of the operating system.
      */
     osName?: string;
     /**
-     * 
+     * The version of the operating system.
      */
     osVersion?: string;
     /**
-     * 
+     * The architecture of the operating system.
      */
     osArch?: string;
     /**
-     * 
+     * The user that is running Gerrit.
      */
     user?: string;
     /**
-     * 
+     * The host on which Gerrit is running.
      */
     host?: string;
     /**
-     * 
+     * The current working directory.
      */
     currentWorkingDirectory?: string;
     /**
-     * 
+     * The path to the review site.
      */
     site?: string;
 }

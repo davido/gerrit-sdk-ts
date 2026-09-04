@@ -39,19 +39,19 @@ export interface BranchInfo {
      */
     actions?: { [key: string]: ActionInfo; };
     /**
-     * 
+     * Links to the branch in external sites as a list of WebLinkInfo entries.
      */
     webLinks?: Array<WebLinkInfo>;
     /**
-     * 
+     * The ref of the branch.
      */
     ref?: string;
     /**
-     * 
+     * The revision to which the branch points.
      */
     revision?: string;
     /**
-     * 
+     * Whether the calling user can delete this branch.
      */
     canDelete?: boolean;
 }

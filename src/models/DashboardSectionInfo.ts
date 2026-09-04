@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface DashboardSectionInfo {
     /**
-     * 
+     * The title of the section.
      */
     name?: string;
     /**
-     * 
+     * The query of the section. + Tokens such as ${project} are not resolved.
      */
     query?: string;
 }

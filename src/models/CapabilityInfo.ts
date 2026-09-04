@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface CapabilityInfo {
     /**
-     * 
+     * capability ID
      */
     id?: string;
     /**
-     * 
+     * capability name
      */
     name?: string;
 }

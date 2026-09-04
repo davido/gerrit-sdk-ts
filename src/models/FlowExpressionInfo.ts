@@ -28,11 +28,11 @@ import {
  */
 export interface FlowExpressionInfo {
     /**
-     * 
+     * The condition which must be satisfied for the action to be triggered. Can contain multiple conditions separated by comma. The syntax of the condition depends on the flow service implementation.
      */
     condition?: string;
     /**
-     * 
+     * The action that should be triggered when the condition is satisfied as a FlowActionInfo entity.
      */
     action?: FlowActionInfo;
 }

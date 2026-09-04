@@ -28,19 +28,19 @@ import {
  */
 export interface ProjectAccessInput {
     /**
-     * 
+     * A map of deductions to be applied to the project access, mapping refs to AccessSectionInfo entities.
      */
     remove?: { [key: string]: AccessSectionInfo; };
     /**
-     * 
+     * A map of additions to be applied to the project access, mapping refs to AccessSectionInfo entities.
      */
     add?: { [key: string]: AccessSectionInfo; };
     /**
-     * 
+     * A new parent for the project to inherit from. Changing the parent project requires administrative privileges.
      */
     parent?: string;
     /**
-     * 
+     * A commit message for this change.
      */
     message?: string;
 }

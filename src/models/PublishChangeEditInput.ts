@@ -35,11 +35,11 @@ import {
  */
 export interface PublishChangeEditInput {
     /**
-     * 
+     * Notify handling that defines to whom email notifications should be sent after the change edit is published. + Allowed values are NONE and ALL. + If not set, the default is ALL.
      */
     notify?: NotifyHandling;
     /**
-     * 
+     * Additional information about whom to notify about the update as a map of recipient type to NotifyInfo entity.
      */
     notifyDetails?: { [key: string]: NotifyInfo; };
 }

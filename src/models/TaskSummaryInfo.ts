@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface TaskSummaryInfo {
     /**
-     * 
+     * Total number of current tasks.
      */
     total?: number;
     /**
@@ -28,7 +28,7 @@ export interface TaskSummaryInfo {
      */
     stopping?: number;
     /**
-     * 
+     * Number of currently running tasks.
      */
     running?: number;
     /**
@@ -40,11 +40,11 @@ export interface TaskSummaryInfo {
      */
     starting?: number;
     /**
-     * 
+     * Number of currently ready tasks.
      */
     ready?: number;
     /**
-     * 
+     * Number of currently sleeping tasks.
      */
     sleeping?: number;
 }

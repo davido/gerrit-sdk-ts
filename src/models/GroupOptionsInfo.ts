@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface GroupOptionsInfo {
     /**
-     * 
+     * Whether the group is visible to all registered users.
      */
     visibleToAll?: boolean;
 }

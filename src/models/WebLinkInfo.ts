@@ -20,19 +20,19 @@ import { mapValues } from '../runtime';
  */
 export interface WebLinkInfo {
     /**
-     * 
+     * The text to be linkified.
      */
     name?: string;
     /**
-     * 
+     * Tooltip to show when hovering over the link. Using "Open in $NAME_OF_EXTERNAL_TOOL" is a good option here.
      */
     tooltip?: string;
     /**
-     * 
+     * URL to the icon of the link.
      */
     imageUrl?: string;
     /**
-     * 
+     * The link URL.
      */
     url?: string;
 }

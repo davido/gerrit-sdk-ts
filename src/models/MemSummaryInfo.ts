@@ -20,27 +20,27 @@ import { mapValues } from '../runtime';
  */
 export interface MemSummaryInfo {
     /**
-     * 
+     * The total size of the memory. The value is returned with a unit abbreviation (k: kilobytes, m: megabytes, g: gigabytes).
      */
     total?: string;
     /**
-     * 
+     * The size of used memory. The value is returned with a unit abbreviation (k: kilobytes, m: megabytes, g: gigabytes).
      */
     used?: string;
     /**
-     * 
+     * The size of free memory. The value is returned with a unit abbreviation (k: kilobytes, m: megabytes, g: gigabytes).
      */
     free?: string;
     /**
-     * 
+     * The size of memory used for JGit buffers. The value is returned with a unit abbreviation (k: kilobytes, m: megabytes, g: gigabytes).
      */
     buffers?: string;
     /**
-     * 
+     * The maximal memory size. The value is returned with a unit abbreviation (k: kilobytes, m: megabytes, g: gigabytes).
      */
     max?: string;
     /**
-     * 
+     * The number of open files.
      */
     openFiles?: number;
 }

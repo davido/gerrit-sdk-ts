@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface PureRevertInfo {
     /**
-     * 
+     * Outcome of the check as boolean.
      */
     isPureRevert?: boolean;
 }

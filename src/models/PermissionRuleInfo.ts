@@ -28,19 +28,19 @@ import {
  */
 export interface PermissionRuleInfo {
     /**
-     * 
+     * The action of this rule. For normal permissions this can be ALLOW, DENY or BLOCK. Special values for global capabilities are INTERACTIVE and BATCH.
      */
     action?: Action;
     /**
-     * 
+     * Whether the force flag is set.
      */
     force?: boolean;
     /**
-     * 
+     * The min value of the permission range.
      */
     min?: number;
     /**
-     * 
+     * The max value of the permission range.
      */
     max?: number;
 }

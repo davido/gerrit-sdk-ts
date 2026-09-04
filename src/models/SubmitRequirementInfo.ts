@@ -20,31 +20,31 @@ import { mapValues } from '../runtime';
  */
 export interface SubmitRequirementInfo {
     /**
-     * 
+     * The submit requirement name.
      */
     name?: string;
     /**
-     * 
+     * Description of the submit requirement.
      */
     description?: string;
     /**
-     * 
+     * The name of the project in which this submit requirement is defined. Not set for globally defined submit requirements.
      */
     projectName?: string;
     /**
-     * 
+     * Query expression that can be evaluated on any change. If evaluated to true on a change, the submit requirement is then applicable for this change. If not specified, the submit requirement is applicable for all changes.
      */
     applicabilityExpression?: string;
     /**
-     * 
+     * Query expression that can be evaluated on any change. If evaluated to true on a change, the submit requirement is fulfilled and not blocking change submission.
      */
     submittabilityExpression?: string;
     /**
-     * 
+     * Query expression that can be evaluated on any change. If evaluated to true on a change, the submit requirement is overridden and not blocking change submission.
      */
     overrideExpression?: string;
     /**
-     * 
+     * Whether this submit requirement can be overridden in child projects.
      */
     allowOverrideInChildProjects?: boolean;
 }

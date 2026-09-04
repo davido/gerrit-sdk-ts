@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface AvatarInfo {
     /**
-     * 
+     * The URL to the avatar image.
      */
     url?: string;
     /**
-     * 
+     * The height of the avatar image in pixels.
      */
     height?: number;
 }

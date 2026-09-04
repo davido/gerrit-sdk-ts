@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface IsFlowsEnabledInfo {
     /**
-     * 
+     * A boolean indicating whether the feature is enabled.
      */
     enabled?: boolean;
 }

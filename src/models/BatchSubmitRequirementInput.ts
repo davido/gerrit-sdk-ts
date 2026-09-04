@@ -28,19 +28,19 @@ import {
  */
 export interface BatchSubmitRequirementInput {
     /**
-     * 
+     * Message that should be used to commit the submit requirements updates in the project.config file to the refs/meta/config branch.
      */
     commitMessage?: string;
     /**
-     * 
+     * List of submit requirements that should be deleted.
      */
     _delete?: Array<string>;
     /**
-     * 
+     * List of SubmitRequirementInput entities that describe submit requirements that should be created.
      */
     create?: Array<SubmitRequirementInput>;
     /**
-     * 
+     * Map of submit requirement names to SubmitRequirementInput entities that describe the updates that should be done for the submit requirements. The given inputs must set all properties (including those that are not being changed).
      */
     update?: { [key: string]: SubmitRequirementInput; };
 }

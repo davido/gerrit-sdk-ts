@@ -28,11 +28,11 @@ import {
  */
 export interface ConsistencyProblemInfo {
     /**
-     * 
+     * The status of the consistency problem. + Possible values are FATAL, ERROR and WARNING.
      */
     status?: ConsistencyProblemInfoStatus;
     /**
-     * 
+     * Message describing the consistency problem.
      */
     message?: string;
 }

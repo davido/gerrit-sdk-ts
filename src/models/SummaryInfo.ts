@@ -49,19 +49,19 @@ import {
  */
 export interface SummaryInfo {
     /**
-     * 
+     * Summary about current tasks as a TaskSummaryInfo entity.
      */
     taskSummary?: TaskSummaryInfo;
     /**
-     * 
+     * Summary about current memory usage as a MemSummaryInfo entity.
      */
     memSummary?: MemSummaryInfo;
     /**
-     * 
+     * Summary about current threads as a ThreadSummaryInfo entity.
      */
     threadSummary?: ThreadSummaryInfo;
     /**
-     * 
+     * Summary about the JVM JvmSummaryInfo entity. Only set if the jvm option was set.
      */
     jvmSummary?: JvmSummaryInfo;
 }

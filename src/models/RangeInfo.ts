@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface RangeInfo {
     /**
-     * 
+     * First index.
      */
     start?: number;
     /**
-     * 
+     * Last index.
      */
     end?: number;
 }

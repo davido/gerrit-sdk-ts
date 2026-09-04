@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface SuggestInfo {
     /**
-     * 
+     * The number of characters that a user must have typed before suggestions are provided.
      */
     from?: number;
 }

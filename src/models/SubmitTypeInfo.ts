@@ -28,15 +28,15 @@ import {
  */
 export interface SubmitTypeInfo {
     /**
-     * 
+     * The effective submit type value. Never INHERIT.
      */
     value?: SubmitType;
     /**
-     * 
+     * The configured value, can be one of the submit types, or INHERIT to inherit from the parent project.
      */
     configuredValue?: SubmitType;
     /**
-     * 
+     * The effective value that would be inherited from the parent. Never INHERIT.
      */
     inheritedValue?: SubmitType;
 }

@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface EmailInfo {
     /**
-     * 
+     * The email address.
      */
     email?: string;
     /**
-     * 
+     * Whether this is the preferred email address of the user.
      */
     preferred?: boolean;
     /**
@@ -32,7 +32,7 @@ export interface EmailInfo {
      */
     avatar?: boolean;
     /**
-     * 
+     * Set true if the user must confirm control of the email address by following a verification link before Gerrit will permit use of this address.
      */
     pendingConfirmation?: boolean;
 }

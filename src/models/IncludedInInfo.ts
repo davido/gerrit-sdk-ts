@@ -20,15 +20,15 @@ import { mapValues } from '../runtime';
  */
 export interface IncludedInInfo {
     /**
-     * 
+     * The list of branches this change was merged into. Each branch is listed without the 'refs/head/' prefix.
      */
     branches?: Array<string>;
     /**
-     * 
+     * The list of tags this change was tagged with. Each tag is listed without the 'refs/tags/' prefix.
      */
     tags?: Array<string>;
     /**
-     * 
+     * A map that maps a name to a list of external systems that include this change, e.g. a list of servers on which this change is deployed.
      */
     external?: { [key: string]: Array<string>; };
 }

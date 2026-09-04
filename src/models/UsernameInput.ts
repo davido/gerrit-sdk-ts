@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface UsernameInput {
     /**
-     * 
+     * The new username of the account.
      */
     username?: string;
 }

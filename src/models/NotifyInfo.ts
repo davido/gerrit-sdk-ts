@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface NotifyInfo {
     /**
-     * 
+     * A list of account IDs that identify the accounts that should be should be notified.
      */
     accounts?: Array<string>;
 }

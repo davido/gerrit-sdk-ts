@@ -20,47 +20,47 @@ import { mapValues } from '../runtime';
  */
 export interface LabelDefinitionInfo {
     /**
-     * 
+     * The name of the label.
      */
     name?: string;
     /**
-     * 
+     * The description of the label.
      */
     description?: string;
     /**
-     * 
+     * The name of the project in which this label is defined. Not set for globally defined labels.
      */
     projectName?: string;
     /**
-     * 
+     * The function of the label (can be MaxWithBlock, AnyWithBlock, MaxNoBlock, NoBlock, NoOp and PatchSetLock.
      */
     _function?: string;
     /**
-     * 
+     * The values of the label as a map of label value to value description. The label values are formatted strings, e.g. "+1" instead of "1", " 0" instead of "0".
      */
     values?: { [key: string]: string; };
     /**
-     * 
+     * The default value of the label (as integer).
      */
     defaultValue?: number;
     /**
-     * 
+     * A list of branches for which the label applies. A branch can be a ref, a ref pattern or a regular expression. If not set, the label applies for all branches.
      */
     branches?: Array<string>;
     /**
-     * 
+     * Whether this label can be overridden by child projects.
      */
     canOverride?: boolean;
     /**
-     * 
+     * See copyCondition.
      */
     copyCondition?: string;
     /**
-     * 
+     * Whether allowPostSubmit is set on the label.
      */
     allowPostSubmit?: boolean;
     /**
-     * 
+     * Whether ignoreSelfApproval is set on the label.
      */
     ignoreSelfApproval?: boolean;
 }

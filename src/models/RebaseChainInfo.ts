@@ -28,11 +28,11 @@ import {
  */
 export interface RebaseChainInfo {
     /**
-     * 
+     * List of the unsubmitted ancestors, as ChangeInfo entities. Includes both rebased changes, and previously up-to-date ancestors. The list is ordered by ancestry, where the oldest ancestor is the first.
      */
     rebasedChanges?: Array<ChangeInfo>;
     /**
-     * 
+     * Whether any of the rebased changes has conflicts due to rebasing.
      */
     containsGitConflicts?: boolean;
 }

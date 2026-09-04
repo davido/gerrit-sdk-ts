@@ -77,47 +77,47 @@ import {
  */
 export interface ConfigInfo {
     /**
-     * 
+     * The description of the project.
      */
     description?: string;
     /**
-     * 
+     * InheritedBooleanInfo that tells whether authors must complete a contributor agreement on the site before pushing any commits or changes to this project.
      */
     useContributorAgreements?: InheritedBooleanInfo;
     /**
-     * 
+     * InheritedBooleanInfo that tells whether Gerrit will try to perform a 3-way merge of text file content when a file has been modified by both the destination branch and the change being submitted. This option only takes effect if submit type is not FAST_FORWARD_ONLY.
      */
     useContentMerge?: InheritedBooleanInfo;
     /**
-     * 
+     * InheritedBooleanInfo that tells whether each change must contain a Signed-off-by line from either the author or the uploader in the commit message.
      */
     useSignedOffBy?: InheritedBooleanInfo;
     /**
-     * 
+     * InheritedBooleanInfo that tells whether a new change is created for every commit not in target branch.
      */
     createNewChangeForAllNotInTarget?: InheritedBooleanInfo;
     /**
-     * 
+     * InheritedBooleanInfo that tells whether a valid Change-Id footer in any commit uploaded for review is required. This does not apply to commits pushed directly to a branch or tag. This property is deprecated and will be removed in a future release.
      */
     requireChangeId?: InheritedBooleanInfo;
     /**
-     * 
+     * InheritedBooleanInfo that tells whether signed push validation is enabled on the project.
      */
     enableSignedPush?: InheritedBooleanInfo;
     /**
-     * 
+     * InheritedBooleanInfo that tells whether signed push validation is required on the project.
      */
     requireSignedPush?: InheritedBooleanInfo;
     /**
-     * 
+     * InheritedBooleanInfo that tells whether implicit merges should be rejected on changes pushed to or submitted in the project.
      */
     rejectImplicitMerges?: InheritedBooleanInfo;
     /**
-     * 
+     * InheritedBooleanInfo that tells whether all new changes are set as private by default.
      */
     privateByDefault?: InheritedBooleanInfo;
     /**
-     * 
+     * InheritedBooleanInfo that tells whether all new changes are set as work-in-progress by default.
      */
     workInProgressByDefault?: InheritedBooleanInfo;
     /**
@@ -125,43 +125,43 @@ export interface ConfigInfo {
      */
     enableReviewerByEmail?: InheritedBooleanInfo;
     /**
-     * 
+     * InheritedBooleanInfo that indicates whether a change's author date will be changed to match its submitter date upon submit.
      */
     matchAuthorToCommitterDate?: InheritedBooleanInfo;
     /**
-     * 
+     * InheritedBooleanInfo that tells whether empty commits should be rejected when a change is merged. ActionInfo entities.
      */
     rejectEmptyCommit?: InheritedBooleanInfo;
     /**
-     * 
+     * Whether to skip adding the Git commit author and committer as reviewers for a new change.
      */
     skipAddingAuthorAndCommitterAsReviewers?: InheritedBooleanInfo;
     /**
-     * 
+     * The max object size limit of this project as a MaxObjectSizeLimitInfo entity.
      */
     maxObjectSizeLimit?: MaxObjectSizeLimitInfo;
     /**
-     * 
+     * Deprecated; equivalent to value in default_submit_type.
      */
     submitType?: SubmitType;
     /**
-     * 
+     * SubmitTypeInfo that describes the default submit type of the project, when not overridden at the change level.
      */
     defaultSubmitType?: SubmitTypeInfo;
     /**
-     * 
+     * The state of the project, can be ACTIVE, READ_ONLY or HIDDEN. + Not set if the project state is ACTIVE.
      */
     state?: ProjectState;
     /**
-     * 
+     * Plugin configuration as map which maps the plugin name to a map of parameter names to ConfigParameterInfo entities. Only filled for users who have read access to refs/meta/config.
      */
     pluginConfig?: { [key: string]: { [key: string]: ConfigParameterInfo; }; };
     /**
-     * 
+     * Actions the caller might be able to perform on this project. The information is a map of view names to
      */
     actions?: { [key: string]: ActionInfo; };
     /**
-     * 
+     * Map with the comment link configurations of the project. The name of the comment link configuration is mapped to a CommentlinkInfo entity.
      */
     commentlinks?: { [key: string]: CommentLinkInfo; };
     /**

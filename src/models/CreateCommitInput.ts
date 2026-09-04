@@ -28,19 +28,19 @@ import {
  */
 export interface CreateCommitInput {
     /**
-     * 
+     * The commit message. Must be non-empty.
      */
     commitMessage?: string;
     /**
-     * 
+     * The commit (SHA-1) the target branch is expected to point at: the request is rejected with "409 Conflict" if the branch tip is any other commit (optimistic concurrency).
      */
     baseRevision?: string;
     /**
-     * 
+     * A map of file path to FileChange describing the operation to apply at that path. Applied together as one commit.
      */
     files?: { [key: string]: FileChange; };
     /**
-     * 
+     * Map with key-value pairs that are forwarded as options to the ref-operation and commit validation listeners (e.g. to skip certain validations). Which options are supported depends on the installed validation listeners; Gerrit core supports none. Unknown options are silently ignored.
      */
     validationOptions?: { [key: string]: string; };
 }

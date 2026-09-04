@@ -20,15 +20,15 @@ import { mapValues } from '../runtime';
  */
 export interface ConsistencyCheckInput {
     /**
-     * 
+     * Input for the account consistency check as CheckAccountsInput entity.
      */
     checkAccounts?: object;
     /**
-     * 
+     * Input for the account external ID consistency check as CheckAccountExternalIdsInput entity.
      */
     checkAccountExternalIds?: object;
     /**
-     * 
+     * Input for the group consistency check as CheckGroupsInput entity.
      */
     checkGroups?: object;
 }

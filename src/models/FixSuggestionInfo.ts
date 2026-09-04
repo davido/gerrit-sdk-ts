@@ -28,15 +28,15 @@ import {
  */
 export interface FixSuggestionInfo {
     /**
-     * 
+     * The UUID of the suggested fix. It will be generated automatically and hence will be ignored if it's set for input objects.
      */
     fixId?: string;
     /**
-     * 
+     * A description of the suggested fix.
      */
     description?: string;
     /**
-     * 
+     * A list of FixReplacementInfo entities indicating how the content of one or several files should be modified. Within a file, they should refer to non-overlapping regions.
      */
     replacements?: Array<FixReplacementInfo>;
 }

@@ -28,7 +28,7 @@ import {
  */
 export interface AccessSectionInfo {
     /**
-     * 
+     * The permissions assigned on the ref of this access section as a map that maps the permission names to PermissionInfo entities.
      */
     permissions?: { [key: string]: PermissionInfo; };
 }

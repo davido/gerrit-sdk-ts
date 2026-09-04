@@ -69,20 +69,10 @@ import {
     GeneralPreferencesInfoToJSON,
 } from '../models/GeneralPreferencesInfo';
 import {
-    type GetConfigServerCaches200Response,
-    GetConfigServerCaches200ResponseFromJSON,
-    GetConfigServerCaches200ResponseToJSON,
-} from '../models/GetConfigServerCaches200Response';
-import {
     type GetConfigServerIndexes200ResponseInner,
     GetConfigServerIndexes200ResponseInnerFromJSON,
     GetConfigServerIndexes200ResponseInnerToJSON,
 } from '../models/GetConfigServerIndexes200ResponseInner';
-import {
-    type GetConfigServerVersion200Response,
-    GetConfigServerVersion200ResponseFromJSON,
-    GetConfigServerVersion200ResponseToJSON,
-} from '../models/GetConfigServerVersion200Response';
 import {
     type IndexChangesInput,
     IndexChangesInputFromJSON,
@@ -486,18 +476,22 @@ export class ConfigApi extends runtime.BaseAPI {
      * Lists the caches of the server. Caches defined by plugins are included.
      * List Caches
      */
-    async getConfigServerCachesRaw(requestParameters: GetConfigServerCachesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetConfigServerCaches200Response>> {
+    async getConfigServerCachesRaw(requestParameters: GetConfigServerCachesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.getConfigServerCachesRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetConfigServerCaches200ResponseFromJSON(jsonValue));
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * Lists the caches of the server. Caches defined by plugins are included.
      * List Caches
      */
-    async getConfigServerCaches(requestParameters: GetConfigServerCachesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetConfigServerCaches200Response> {
+    async getConfigServerCaches(requestParameters: GetConfigServerCachesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.getConfigServerCachesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1444,18 +1438,22 @@ export class ConfigApi extends runtime.BaseAPI {
      * Returns the version of the Gerrit server.
      * Get version
      */
-    async getConfigServerVersionRaw(requestParameters: GetConfigServerVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetConfigServerVersion200Response>> {
+    async getConfigServerVersionRaw(requestParameters: GetConfigServerVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.getConfigServerVersionRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetConfigServerVersion200ResponseFromJSON(jsonValue));
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * Returns the version of the Gerrit server.
      * Get version
      */
-    async getConfigServerVersion(requestParameters: GetConfigServerVersionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetConfigServerVersion200Response> {
+    async getConfigServerVersion(requestParameters: GetConfigServerVersionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.getConfigServerVersionRaw(requestParameters, initOverrides);
         return await response.value();
     }

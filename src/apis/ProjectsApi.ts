@@ -129,11 +129,6 @@ import {
     GarbageCollectInputToJSON,
 } from '../models/GarbageCollectInput';
 import {
-    type GetProjectsDefaultResponse,
-    GetProjectsDefaultResponseFromJSON,
-    GetProjectsDefaultResponseToJSON,
-} from '../models/GetProjectsDefaultResponse';
-import {
     type HeadInput,
     HeadInputFromJSON,
     HeadInputToJSON,
@@ -1636,18 +1631,22 @@ export class ProjectsApi extends runtime.BaseAPI {
      * Lists the projects accessible by the caller, optionally filtered by prefix, regex, or substring.
      * List projects
      */
-    async getProjectsRaw(requestParameters: GetProjectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetProjectsDefaultResponse>> {
+    async getProjectsRaw(requestParameters: GetProjectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.getProjectsRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetProjectsDefaultResponseFromJSON(jsonValue));
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * Lists the projects accessible by the caller, optionally filtered by prefix, regex, or substring.
      * List projects
      */
-    async getProjects(requestParameters: GetProjectsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetProjectsDefaultResponse> {
+    async getProjects(requestParameters: GetProjectsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.getProjectsRaw(requestParameters, initOverrides);
         return await response.value();
     }

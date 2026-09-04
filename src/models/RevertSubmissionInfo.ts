@@ -28,7 +28,7 @@ import {
  */
 export interface RevertSubmissionInfo {
     /**
-     * 
+     * A list of ChangeInfo that describes the revert changes. Each entity in that list is a revert change that was created in that revert submission.
      */
     revertChanges?: Array<ChangeInfo>;
 }

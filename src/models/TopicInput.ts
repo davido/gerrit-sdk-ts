@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface TopicInput {
     /**
-     * 
+     * The topic. + The topic will be deleted if not set. Topic can't contain quotation marks.
      */
     topic?: string;
 }

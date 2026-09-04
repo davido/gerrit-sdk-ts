@@ -126,75 +126,75 @@ import {
  */
 export interface ChangeInfo {
     /**
-     * 
+     * The ID of the change. The format is "'<project>\~<_number>'". 'project' and '_number' are URL encoded. The callers must not rely on the format.
      */
     id?: string;
     /**
-     * 
+     * The ID of the change in the format "'<project>\~<branch>~<Change-Id>'", where 'project' and 'branch' are URL encoded. For 'branch' the refs/heads/ prefix is omitted.
      */
     tripletId?: string;
     /**
-     * 
+     * The name of the project.
      */
     project?: string;
     /**
-     * 
+     * The name of the target branch. + The refs/heads/ prefix is omitted.
      */
     branch?: string;
     /**
-     * 
+     * The full name of the target branch. + Always starts with refs/.
      */
     fullBranch?: string;
     /**
-     * 
+     * The topic to which this change belongs.
      */
     topic?: string;
     /**
-     * 
+     * The map that maps account IDs to AttentionSetInfo of that account. Those are all accounts that are currently in the attention set.
      */
     attentionSet?: { [key: string]: AttentionSetInfo; };
     /**
-     * 
+     * The map that maps account IDs to AttentionSetInfo of that account. Those are all accounts that were in the attention set but were removed. The AttentionSetInfo is the latest and most recent removal of the account from the attention set.
      */
     removedFromAttentionSet?: { [key: string]: AttentionSetInfo; };
     /**
-     * 
+     * A map that maps custom keys to custom values that are tied to a specific change, both in the form of strings. Only set if custom keyed values are requested.
      */
     customKeyedValues?: { [key: string]: string; };
     /**
-     * 
+     * List of hashtags that are set on the change.
      */
     hashtags?: Array<string>;
     /**
-     * 
+     * The Change-Id of the change.
      */
     changeId?: string;
     /**
-     * 
+     * The subject of the change (header line of the commit message).
      */
     subject?: string;
     /**
-     * 
+     * The status of the change (NEW, MERGED, ABANDONED).
      */
     status?: ChangeStatus;
     /**
-     * 
+     * The timestamp of when the change was created.
      */
     created?: string;
     /**
-     * 
+     * The timestamp of when the change was last updated.
      */
     updated?: string;
     /**
-     * 
+     * The timestamp of when the change was submitted.
      */
     submitted?: string;
     /**
-     * 
+     * The user who submitted the change, as an AccountInfo entity.
      */
     submitter?: AccountInfo;
     /**
-     * 
+     * Whether the calling user has starred this change. Only set if requested.
      */
     starred?: boolean;
     /**
@@ -202,139 +202,139 @@ export interface ChangeInfo {
      */
     stars?: Array<string>;
     /**
-     * 
+     * Whether the change was reviewed by the calling user. Only set if reviewed is requested.
      */
     reviewed?: boolean;
     /**
-     * 
+     * The submit type of the change. + Not set for merged changes.
      */
     submitType?: SubmitType;
     /**
-     * 
+     * Whether the change is mergeable. + Only set for open changes if change.mergeabilityComputationBehavior is API_REF_UPDATED_AND_CHANGE_REINDEX.
      */
     mergeable?: boolean;
     /**
-     * 
+     * Whether the change has been approved by the project submit rules. + Only set if requested.
      */
     submittable?: boolean;
     /**
-     * 
+     * Number of inserted lines.
      */
     insertions?: number;
     /**
-     * 
+     * Number of deleted lines.
      */
     deletions?: number;
     /**
-     * 
+     * Total number of inline comments across all patch sets.
      */
     totalCommentCount?: number;
     /**
-     * 
+     * Number of unresolved inline comment threads across all patch sets.
      */
     unresolvedCommentCount?: number;
     /**
-     * 
+     * When present, change is marked as private.
      */
     isPrivate?: boolean;
     /**
-     * 
+     * When present, change is marked as Work In Progress.
      */
     workInProgress?: boolean;
     /**
-     * 
+     * When present, change has been marked Ready at some point in time.
      */
     hasReviewStarted?: boolean;
     /**
-     * 
+     * The change number of the change that this change reverts.
      */
     revertOf?: number;
     /**
-     * 
+     * ID of the submission of this change. Only set if the status is MERGED. This ID is equal to the change number of the change that triggered the submission. If the change that triggered the submission also has a topic, it will be "<id>-<topic>" of the change that triggered the submission.
      */
     submissionId?: string;
     /**
-     * 
+     * The change number of the change that this change was cherry-picked from. Only set if the cherry-pick has been done through the Gerrit REST API (and not if a cherry-picked commit was pushed).
      */
     cherryPickOfChange?: number;
     /**
-     * 
+     * The patchset number of the change that this change was cherry-picked from. Only set if the cherry-pick has been done through the Gerrit REST API (and not if a cherry-picked commit was pushed).
      */
     cherryPickOfPatchSet?: number;
     /**
-     * 
+     * The SHA-1 of the NoteDb meta ref.
      */
     metaRevId?: string;
     /**
-     * 
+     * Whether the change contains conflicts. + If true, some of the file contents of the change contain git conflict markers to indicate the conflicts. + Only set if this change info is returned in response to a request that creates a new change or patch set and conflicts are allowed.
      */
     containsGitConflicts?: boolean;
     /**
-     * 
+     * The change number. (The underscore is just a relict of a prior attempt to deprecate the change number.)
      */
     number?: number;
     /**
-     * 
+     * The virtual id number is globally unique. For local changes, it is equal to the _number attribute. For imported changes, the original _number is processed through a function designed to prevent conflicts with local change numbers.
      */
     virtualIdNumber?: number;
     /**
-     * 
+     * The owner of the change as an AccountInfo entity.
      */
     owner?: AccountInfo;
     /**
-     * 
+     * Actions the caller might be able to perform on this revision. The information is a map of view name to ActionInfo entities.
      */
     actions?: { [key: string]: ActionInfo; };
     /**
-     * 
+     * The labels of the change as a map that maps the label names to LabelInfo entries. + Only set if labels or detailed labels are requested.
      */
     labels?: { [key: string]: LabelInfo; };
     /**
-     * 
+     * A map of the permitted labels that maps a label name to the list of values that the current user can vote on. + Only set if detailed labels are requested.
      */
     permittedLabels?: { [key: string]: Array<string>; };
     /**
-     * 
+     * A map of the removable labels that maps a label name to the map of values and reviewers ( AccountInfo entities) that are allowed to be removed from the change. + Only set if labels or detailed labels are requested.
      */
     removableLabels?: { [key: string]: { [key: string]: Array<AccountInfo>; }; };
     /**
-     * 
+     * The reviewers that can be removed by the calling user as a list of AccountInfo entities. + Only set if labels or detailed labels are requested.
      */
     removableReviewers?: Array<AccountInfo>;
     /**
-     * 
+     * The reviewers as a map that maps a reviewer state to a list of AccountInfo entities. Possible reviewer states are REVIEWER, CC. + REVIEWER: Users with at least one non-zero vote on the change. + CC: Users that were added to the change, but have not voted.
      */
     reviewers?: { [key: string]: Array<AccountInfo>; };
     /**
-     * 
+     * Updates to reviewers that have been made while the change was in the WIP state. Only present on WIP changes and only if there are pending reviewer updates to report. These are reviewers who have not yet been notified about being added to or removed from the change.
      */
     pendingReviewers?: { [key: string]: Array<AccountInfo>; };
     /**
-     * 
+     * Updates to reviewers set for the change as ReviewerUpdateInfo entities. Only set if reviewer updates are requested.
      */
     reviewerUpdates?: Array<ReviewerUpdateInfo>;
     /**
-     * 
+     * Messages associated with the change as a list of ChangeMessageInfo entities. + Only set if messages are requested.
      */
     messages?: Array<ChangeMessageInfo>;
     /**
-     * 
+     * The number of the current patch set of this change. +
      */
     currentRevisionNumber?: number;
     /**
-     * 
+     * The commit ID of the current patch set of this change. + Only set if the current revision is requested or if all revisions are requested.
      */
     currentRevision?: string;
     /**
-     * 
+     * All patch sets of this change as a map that maps the commit ID of the patch set to a RevisionInfo entity. + Only set if the current revision is requested (in which case it will only contain a key for the current revision) or if all revisions are requested.
      */
     revisions?: { [key: string]: RevisionInfo; };
     /**
-     * 
+     * Whether the query would deliver more results if not limited. + Only set on the last change that is returned.
      */
     moreChanges?: boolean;
     /**
-     * 
+     * A list of ProblemInfo entities describing potential problems with this change. Only set if CHECK is set.
      */
     problems?: Array<ProblemInfo>;
     /**
@@ -342,19 +342,19 @@ export interface ChangeInfo {
      */
     plugins?: Array<PluginDefinedInfo>;
     /**
-     * 
+     * A list of TrackingIdInfo entities describing references to external tracking systems. Only set if tracking ids are requested.
      */
     trackingIds?: Array<TrackingIdInfo>;
     /**
-     * 
+     * List of the requirements to be met before this change can be submitted. This field is deprecated in favour of submit_requirements. Only set if SUBMIT_REQUIREMENTS is requested.
      */
     requirements?: Array<LegacySubmitRequirementInfo>;
     /**
-     * 
+     * List of the SubmitRecordInfo containing the submit records for the change at the latest patchset. This field is deprecated in favour of submit_requirements. Only set if SUBMIT_REQUIREMENTS is requested.
      */
     submitRecords?: Array<SubmitRecordInfo>;
     /**
-     * 
+     * List of the SubmitRequirementResultInfo containing the evaluated submit requirements for the change. Only set if SUBMIT_REQUIREMENTS is requested.
      */
     submitRequirements?: Array<SubmitRequirementResultInfo>;
 }

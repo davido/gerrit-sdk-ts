@@ -28,15 +28,15 @@ import {
  */
 export interface InheritedBooleanInfo {
     /**
-     * 
+     * The effective boolean value.
      */
     value?: boolean;
     /**
-     * 
+     * The configured value, can be TRUE, FALSE or INHERIT.
      */
     configuredValue?: InheritableBoolean;
     /**
-     * 
+     * The boolean value inherited from the parent. + Not set if there is no parent.
      */
     inheritedValue?: boolean;
 }

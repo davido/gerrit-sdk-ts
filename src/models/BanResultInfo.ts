@@ -20,15 +20,15 @@ import { mapValues } from '../runtime';
  */
 export interface BanResultInfo {
     /**
-     * 
+     * List of newly banned commits.
      */
     newlyBanned?: Array<string>;
     /**
-     * 
+     * List of commits that were already banned.
      */
     alreadyBanned?: Array<string>;
     /**
-     * 
+     * List of object IDs that were ignored.
      */
     ignored?: Array<string>;
 }

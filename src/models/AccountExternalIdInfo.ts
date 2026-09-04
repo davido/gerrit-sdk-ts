@@ -20,19 +20,19 @@ import { mapValues } from '../runtime';
  */
 export interface AccountExternalIdInfo {
     /**
-     * 
+     * The account external id.
      */
     identity?: string;
     /**
-     * 
+     * The email address for the external id.
      */
     emailAddress?: string;
     /**
-     * 
+     * Whether the external id is trusted.
      */
     trusted?: boolean;
     /**
-     * 
+     * Whether the external id can be deleted by the calling user.
      */
     canDelete?: boolean;
 }

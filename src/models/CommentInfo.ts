@@ -56,75 +56,75 @@ import {
  */
 export interface CommentInfo {
     /**
-     * 
+     * The author of the message as an AccountInfo entity. + Unset for draft comments, assumed to be the calling user.
      */
     author?: AccountInfo;
     /**
-     * 
+     * Value of the tag field from ReviewInput set while posting the review. NOTE: To apply different tags on different votes/comments multiple invocations of the REST call are required.
      */
     tag?: string;
     /**
-     * 
+     * Available with the list change comments endpoint. Contains the id of the change message that this comment is linked to.
      */
     changeMessageId?: string;
     /**
-     * 
+     * Whether or not the comment must be addressed by the user. The state of resolution of a comment thread is stored in the last comment in that thread chronologically.
      */
     unresolved?: boolean;
     /**
-     * 
+     * A list of ContextLine containing the lines of the source file where the comment was written. Available only if the "enable-context" parameter (see List Change Comments) is set.
      */
     contextLines?: Array<ContextLineInfo>;
     /**
-     * 
+     * Mime type of the file where the comment is written. Available only if the "enable-context" parameter (see List Change Comments) is set.
      */
     sourceContentType?: string;
     /**
-     * 
+     * The patch set number for the comment; only set in contexts where + comments may be returned for multiple patch sets.
      */
     patchSet?: number;
     /**
-     * 
+     * The URL encoded UUID of the comment.
      */
     id?: string;
     /**
-     * 
+     * The file path for which the inline comment was done. + Not set if returned in a map where the key is the file path.
      */
     path?: string;
     /**
-     * 
+     * The side on which the comment was added. + Allowed values are REVISION and PARENT. + If not set, the default is REVISION.
      */
     side?: Side;
     /**
-     * 
+     * The 1-based parent number. Used only for merge commits when side == PARENT. When not set the comment is for the auto-merge tree.
      */
     parent?: number;
     /**
-     * 
+     * The number of the line for which the comment was done. + If range is set, this equals the end line of the range. + If neither line nor range is set, it's a file comment.
      */
     line?: number;
     /**
-     * 
+     * The range of the comment as a CommentRange entity.
      */
     range?: Range;
     /**
-     * 
+     * The URL encoded UUID of the comment to which this comment is a reply.
      */
     inReplyTo?: string;
     /**
-     * 
+     * The timestamp of when this comment was written.
      */
     updated?: string;
     /**
-     * 
+     * The comment message.
      */
     message?: string;
     /**
-     * 
+     * Hex commit SHA-1 (40 characters string) of the commit of the patchset to which this comment applies.
      */
     commitId?: string;
     /**
-     * 
+     * Suggested fixes for this comment as a list of FixSuggestionInfo entities.
      */
     fixSuggestions?: Array<FixSuggestionInfo>;
     /**

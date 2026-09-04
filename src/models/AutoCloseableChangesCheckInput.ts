@@ -20,19 +20,19 @@ import { mapValues } from '../runtime';
  */
 export interface AutoCloseableChangesCheckInput {
     /**
-     * 
+     * Whether auto-closeable changes should be closed automatically.
      */
     fix?: boolean;
     /**
-     * 
+     * The branch for which the AutoCloseableChangesCheck should be performed. The 'refs/heads/' prefix for the branch name can be omitted.
      */
     branch?: string;
     /**
-     * 
+     * Number of commits that should be skipped when walking the commits of the branch.
      */
     skipCommits?: number;
     /**
-     * 
+     * Maximum number of commits to walk. If not specified this defaults to 10,000 commits. 10,000 is also the maximum that can be set. Auto-closing changes is an expensive operation and the more commits are walked the slower it gets. This is why you should avoid walking too many commits.
      */
     maxCommits?: number;
 }

@@ -28,7 +28,7 @@ import {
  */
 export interface CheckProjectInput {
     /**
-     * 
+     * Parameters for the AutoCloseableChangesCheck as AutoCloseableChangesCheckInput entity.
      */
     autoCloseableChangesCheck?: AutoCloseableChangesCheckInput;
 }

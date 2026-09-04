@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface ExperimentInfo {
     /**
-     * 
+     * Whether the experiment is enabled.
      */
     enabled?: boolean;
 }

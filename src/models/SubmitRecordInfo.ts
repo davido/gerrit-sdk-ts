@@ -42,23 +42,23 @@ import {
  */
 export interface SubmitRecordInfo {
     /**
-     * 
+     * The name of the submit rule that created this submit record. The submit rule is specified in the form of "$plugin~$rule" where $plugin is the plugin name and $rule is the name of the class that implemented the submit rule.
      */
     ruleName?: string;
     /**
-     * 
+     * OK, the change can be submitted. + NOT_READY, additional labels are required before submit. + CLOSED, closed changes cannot be submitted. + FORCED, the change was submitted bypassing the submit rule. + RULE_ERROR, rule code failed with an error.
      */
     status?: SubmitRecordInfoStatus;
     /**
-     * 
+     * A list of labels, each containing the following fields. + * label: the label name. + * status: the label status: {OK, REJECT, MAY, NEED, IMPOSSIBLE}. + * appliedBy: the AccountInfo that applied the vote to the label.
      */
     labels?: Array<Label>;
     /**
-     * 
+     * List of the requirements to be met before this change can be submitted.
      */
     requirements?: Array<LegacySubmitRequirementInfo>;
     /**
-     * 
+     * When status is RULE_ERROR this message provides some text describing the failure of the rule predicate.
      */
     errorMessage?: string;
 }

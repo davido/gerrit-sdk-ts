@@ -28,19 +28,19 @@ import {
  */
 export interface ReflogEntryInfo {
     /**
-     * 
+     * The old commit ID.
      */
     oldId?: string;
     /**
-     * 
+     * The new commit ID.
      */
     newId?: string;
     /**
-     * 
+     * The user performing the change as a GitPersonInfo entity.
      */
     who?: GitPerson;
     /**
-     * 
+     * Comment of the reflog entry.
      */
     comment?: string;
 }

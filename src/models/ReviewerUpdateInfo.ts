@@ -35,23 +35,23 @@ import {
  */
 export interface ReviewerUpdateInfo {
     /**
-     * 
+     * Timestamp of the update.
      */
     updated?: string;
     /**
-     * 
+     * The account which modified state of the reviewer in question as AccountInfo entity.
      */
     updatedBy?: AccountInfo;
     /**
-     * 
+     * The account which actually modified the state of the reviewer in question as AccountInfo entity. This will be different from updated_by in case of impersonation. For example, if Alice impersonates Bob and changes the state of a reviewer, updated_by will be Bob and real_updated_by will be Alice.
      */
     realUpdatedBy?: AccountInfo;
     /**
-     * 
+     * The reviewer added or removed from the change as an AccountInfo entity. For reviewers by email the AccountInfo doesn't contain an account ID but only the email and optionally a name.
      */
     reviewer?: AccountInfo;
     /**
-     * 
+     * The reviewer state, one of REVIEWER, CC or REMOVED.
      */
     state?: ReviewerState;
 }

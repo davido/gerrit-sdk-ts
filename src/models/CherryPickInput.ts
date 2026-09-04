@@ -35,51 +35,51 @@ import {
  */
 export interface CherryPickInput {
     /**
-     * 
+     * Commit message for the cherry-pick change. If not set, the commit message of the cherry-picked commit is used.
      */
     message?: string;
     /**
-     * 
+     * Destination branch
      */
     destination?: string;
     /**
-     * 
+     * 40-hex digit SHA-1 of the commit which will be the parent commit of the newly created change. If set, it must be a merged commit or a change revision on the destination branch.
      */
     base?: string;
     /**
-     * 
+     * Number of the parent relative to which the cherry-pick should be considered.
      */
     parent?: number;
     /**
-     * 
+     * Notify handling that defines to whom email notifications should be sent after the cherry-pick. + Allowed values are NONE, OWNER, OWNER_REVIEWERS and ALL. + If not set, the default is ALL.
      */
     notify?: NotifyHandling;
     /**
-     * 
+     * Additional information about whom to notify about the update as a map of recipient type to NotifyInfo entity.
      */
     notifyDetails?: { [key: string]: NotifyInfo; };
     /**
-     * 
+     * If true, carries reviewers and ccs over from original change to newly created one.
      */
     keepReviewers?: boolean;
     /**
-     * 
+     * If true, the cherry-pick uses content merge and succeeds also if there are conflicts. If there are conflicts the file contents of the created change contain git conflict markers to indicate the conflicts.
      */
     allowConflicts?: boolean;
     /**
-     * 
+     * The topic of the created cherry-picked change. If not set, the default depends on the source. If the source is a change with a topic, the resulting topic of the cherry-picked change will be {source_change_topic}-{destination_branch}.
      */
     topic?: string;
     /**
-     * 
+     * If true, the cherry-pick succeeds also if the created commit will be empty. If false, a cherry-pick that would create an empty commit fails without creating the commit.
      */
     allowEmpty?: boolean;
     /**
-     * 
+     * Map with key-value pairs that are forwarded as options to the commit validation listeners (e.g. can be used to skip certain validations). Which validation options are supported depends on the installed commit validation listeners.
      */
     validationOptions?: { [key: string]: string; };
     /**
-     * 
+     * Cherry-pick is committed using this email address. Only the registered emails of the calling user are considered valid. Defaults to source commit's committer email if it is a registered email of the calling user, else defaults to calling user's preferred email.
      */
     committerEmail?: string;
 }

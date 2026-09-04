@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface PluginConfigInfo {
     /**
-     * 
+     * Whether an avatar provider is registered.
      */
     hasAvatars?: boolean;
     /**
-     * 
+     * A list of relative paths (strings). Each path points to a frontend plugin that should be loaded, e.g. plugins/codemirror_editor/static/codemirror_editor.js.
      */
     jsResourcePaths?: Array<string>;
 }

@@ -20,15 +20,15 @@ import { mapValues } from '../runtime';
  */
 export interface CommitMessageInfo {
     /**
-     * 
+     * The subject of the change (first line of the commit message).
      */
     subject?: string;
     /**
-     * 
+     * Full commit message of the change.
      */
     fullMessage?: string;
     /**
-     * 
+     * The footers from the commit message as a map of key-value pairs. If there are multiple footers with the same key, only the last footer with that key is returned.
      */
     footers?: { [key: string]: string; };
 }

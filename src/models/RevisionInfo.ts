@@ -84,67 +84,67 @@ import {
  */
 export interface RevisionInfo {
     /**
-     * 
+     * The change kind. Valid values are REWORK, TRIVIAL_REBASE, TRIVIAL_REBASE_WITH_MESSAGE_UPDATE, MERGE_FIRST_PARENT_UPDATE, NO_CODE_CHANGE, and NO_CHANGE.
      */
     kind?: ChangeKind;
     /**
-     * 
+     * The patch set number, or edit if the patch set is an edit.
      */
     number?: number;
     /**
-     * 
+     * The timestamp of when the patch set was created.
      */
     created?: string;
     /**
-     * 
+     * The uploader of the patch set as an AccountInfo entity.
      */
     uploader?: AccountInfo;
     /**
-     * 
+     * The real uploader of the patch set as an AccountInfo entity. + Only set if the upload was done on behalf of another user.
      */
     realUploader?: AccountInfo;
     /**
-     * 
+     * The Git reference for the patch set.
      */
     ref?: string;
     /**
-     * 
+     * Information about how to fetch this patch set. The fetch information is provided as a map that maps the protocol name ("git", "http", "ssh") to FetchInfo entities. This information is only included if a plugin implementing the download commands interface is installed.
      */
     fetch?: { [key: string]: FetchInfo; };
     /**
-     * 
+     * The commit of the patch set as CommitInfo entity.
      */
     commit?: CommitInfo;
     /**
-     * 
+     * The parent commits of this patch-set commit as a list of ParentInfo entities. In each parent, we include the target branch name if the parent is a merged commit in the target branch. Otherwise, we include the change and patch-set numbers of the parent change. + Only set if the PARENTS option is set.
      */
     parentsData?: Array<ParentInfo>;
     /**
-     * 
+     * The name of the target branch that this revision is set to be merged into. + Note that if the change is moved with the Move Change endpoint, this field can be different for different patchsets.
      */
     branch?: string;
     /**
-     * 
+     * The files of the patch set as a map that maps the file names to FileInfo entities. Only set if CURRENT_FILES or ALL_FILES option is requested.
      */
     files?: { [key: string]: CommonFileInfo; };
     /**
-     * 
+     * Actions the caller might be able to perform on this revision. The information is a map of view name to ActionInfo entities.
      */
     actions?: { [key: string]: ActionInfo; };
     /**
-     * 
+     * If the COMMIT_FOOTERS option is requested and this is the current patch set, contains the full commit message with Gerrit-specific commit footers, as if this revision were submitted using the Cherry Pick submit type.
      */
     commitWithFooters?: string;
     /**
-     * 
+     * If the PUSH_CERTIFICATES option is requested, contains the push certificate provided by the user when uploading this patch set as a PushCertificateInfo entity. This field is always set if the option is requested; if no push certificate was provided, it is set to an empty object.
      */
     pushCertificate?: PushCertificateInfo;
     /**
-     * 
+     * The description of this patchset, as displayed in the patchset selector menu. May be null if no description is set.
      */
     description?: string;
     /**
-     * 
+     * Information about conflicts in this revision as a ConflictsInfo entity.
      */
     conflicts?: ConflictsInfo;
 }

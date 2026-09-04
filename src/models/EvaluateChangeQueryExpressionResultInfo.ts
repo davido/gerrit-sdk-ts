@@ -20,15 +20,15 @@ import { mapValues } from '../runtime';
  */
 export interface EvaluateChangeQueryExpressionResultInfo {
     /**
-     * 
+     * Whether the change matches the change query expression.
      */
     status?: boolean;
     /**
-     * 
+     * List of passing leaf atoms (atoms that match the change).
      */
     passingAtoms?: Array<string>;
     /**
-     * 
+     * List of failing leaf atoms (atoms that do not match the change).
      */
     failingAtoms?: Array<string>;
     /**

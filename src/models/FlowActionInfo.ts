@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface FlowActionInfo {
     /**
-     * 
+     * The name of the action. Which actions are supported depends on the flow service implementation.
      */
     name?: string;
     /**
-     * 
+     * Parameters for the action as list of strings. Which parameters are supported and their format depends on the flow service implementation.
      */
     parameters?: Array<string>;
 }

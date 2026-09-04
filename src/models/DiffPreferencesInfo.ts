@@ -35,63 +35,63 @@ import {
  */
 export interface DiffPreferencesInfo {
     /**
-     * 
+     * The number of lines of context when viewing a patch.
      */
     context?: number;
     /**
-     * 
+     * Number of spaces that should be used to display one tab.
      */
     tabSize?: number;
     /**
-     * 
+     * Default font size in pixels for change to be displayed in the diff view.
      */
     fontSize?: number;
     /**
-     * 
+     * Number of characters that should be displayed in one line.
      */
     lineLength?: number;
     /**
-     * 
+     * Half-period in milliseconds used for cursor blinking. Setting it to 0 disables cursor blinking.
      */
     cursorBlinkRate?: number;
     /**
-     * 
+     * Whether all inline comments should be automatically expanded.
      */
     expandAllComments?: boolean;
     /**
-     * 
+     * Whether intraline differences should be highlighted.
      */
     intralineDifference?: boolean;
     /**
-     * 
+     * Whether the 'Reviewed' flag should not be set automatically on a patch when it is viewed.
      */
     manualReview?: boolean;
     /**
-     * 
+     * Whether Windows EOL/Cr-Lf should be displayed as '\r' in a dotted-line box.
      */
     showLineEndings?: boolean;
     /**
-     * 
+     * Whether tabs should be shown.
      */
     showTabs?: boolean;
     /**
-     * 
+     * Whether whitespace errors should be shown.
      */
     showWhitespaceErrors?: boolean;
     /**
-     * 
+     * Whether syntax highlighting should be enabled.
      */
     syntaxHighlighting?: boolean;
     /**
-     * 
+     * If true the top menu header and site header are hidden.
      */
     hideTopMenu?: boolean;
     /**
-     * 
+     * If true the diff table header is automatically hidden when scrolling down more than half of a page.
      */
     autoHideDiffTableHeader?: boolean;
     /**
-     * 
+     * If true the line numbers are hidden.
      */
     hideLineNumbers?: boolean;
     /**
@@ -103,11 +103,11 @@ export interface DiffPreferencesInfo {
      */
     hideEmptyPane?: boolean;
     /**
-     * 
+     * Whether matching brackets should be highlighted.
      */
     matchBrackets?: boolean;
     /**
-     * 
+     * Whether to enable line wrapping or not.
      */
     lineWrapping?: boolean;
     /**
@@ -115,15 +115,15 @@ export interface DiffPreferencesInfo {
      */
     responsiveMode?: ResponsiveMode;
     /**
-     * 
+     * Whether whitespace changes should be ignored and if yes, which whitespace changes should be ignored. + Allowed values are IGNORE_NONE, IGNORE_TRAILING, IGNORE_LEADING_AND_TRAILING, IGNORE_ALL.
      */
     ignoreWhitespace?: Whitespace;
     /**
-     * 
+     * Whether the header that is displayed above the patch (that either shows the commit message, the diff preferences, the patch sets or the files) should be retained on file switch.
      */
     retainHeader?: boolean;
     /**
-     * 
+     * Whether deleted files should be skipped on file switch.
      */
     skipDeleted?: boolean;
     /**
@@ -131,7 +131,7 @@ export interface DiffPreferencesInfo {
      */
     skipUnchanged?: boolean;
     /**
-     * 
+     * Whether uncommented files should be skipped on file switch.
      */
     skipUncommented?: boolean;
 }

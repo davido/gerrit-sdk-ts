@@ -28,7 +28,7 @@ import {
  */
 export interface MigrateLabelsInfo {
     /**
-     * 
+     * The status of the migration. Takes one of the following values: MIGRATED, HAS_PROLOG, PREVIOUSLY_MIGRATED, NO_CHANGE
      */
     status?: SchemaMigrateLabelFunctionsToSubmitRequirementStatus;
 }

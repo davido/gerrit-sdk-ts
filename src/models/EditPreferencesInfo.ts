@@ -20,59 +20,59 @@ import { mapValues } from '../runtime';
  */
 export interface EditPreferencesInfo {
     /**
-     * 
+     * Number of spaces that should be used to display one tab.
      */
     tabSize?: number;
     /**
-     * 
+     * Number of characters that should be displayed per line.
      */
     lineLength?: number;
     /**
-     * 
+     * Number of spaces that should be used for auto-indent.
      */
     indentUnit?: number;
     /**
-     * 
+     * Half-period in milliseconds used for cursor blinking. Setting it to 0 disables cursor blinking.
      */
     cursorBlinkRate?: number;
     /**
-     * 
+     * If true the top menu header and site header is hidden.
      */
     hideTopMenu?: boolean;
     /**
-     * 
+     * Whether tabs should be shown.
      */
     showTabs?: boolean;
     /**
-     * 
+     * Whether whitespace errors should be shown.
      */
     showWhitespaceErrors?: boolean;
     /**
-     * 
+     * Whether syntax highlighting should be enabled.
      */
     syntaxHighlighting?: boolean;
     /**
-     * 
+     * Whether line numbers should be hidden.
      */
     hideLineNumbers?: boolean;
     /**
-     * 
+     * Whether matching brackets should be highlighted.
      */
     matchBrackets?: boolean;
     /**
-     * 
+     * Whether to enable line wrapping or not.
      */
     lineWrapping?: boolean;
     /**
-     * 
+     * Whether to indent with tabs or not.
      */
     indentWithTabs?: boolean;
     /**
-     * 
+     * Whether brackets and quotes should be auto-closed during typing.
      */
     autoCloseBrackets?: boolean;
     /**
-     * 
+     * Whether to show the inline edit base version or not.
      */
     showBase?: boolean;
 }

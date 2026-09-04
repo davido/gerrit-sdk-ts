@@ -42,31 +42,31 @@ import {
  */
 export interface EditInfo {
     /**
-     * 
+     * The commit of change edit as CommitInfo entity.
      */
     commit?: CommitInfo;
     /**
-     * 
+     * The patch set number of the patch set the change edit is based on.
      */
     basePatchSetNumber?: number;
     /**
-     * 
+     * The revision of the patch set the change edit is based on.
      */
     baseRevision?: string;
     /**
-     * 
+     * The ref of the change edit.
      */
     ref?: string;
     /**
-     * 
+     * Information about how to fetch this patch set. The fetch information is provided as a map that maps the protocol name ("git", "http", "ssh") to FetchInfo entities.
      */
     fetch?: { [key: string]: FetchInfo; };
     /**
-     * 
+     * The files of the change edit as a map that maps the file names to FileInfo entities.
      */
     files?: { [key: string]: CommonFileInfo; };
     /**
-     * 
+     * Whether the change edit contains conflicts. + If true, some of the file contents of the change edit contain git conflict markers to indicate the conflicts. + Only set if this edit info is returned in response to a request that rebases the change edit and conflicts are allowed.
      */
     containsGitConflicts?: boolean;
 }

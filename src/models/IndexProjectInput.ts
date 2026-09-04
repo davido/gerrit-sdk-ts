@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface IndexProjectInput {
     /**
-     * 
+     * If children should be indexed recursively.
      */
     indexChildren?: boolean;
     /**
-     * 
+     * If projects should be indexed asynchronously.
      */
     async?: boolean;
 }

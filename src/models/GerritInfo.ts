@@ -28,19 +28,19 @@ export interface GerritInfo {
      */
     allUsers?: string;
     /**
-     * 
+     * Whether documentation search is available.
      */
     docSearch?: boolean;
     /**
-     * 
+     * Custom base URL where Gerrit server documentation is located. (Documentation may still be available at /Documentation relative to the Gerrit base path even if this value is unset.)
      */
     docUrl?: string;
     /**
-     * 
+     * Whether to enable the web UI for editing GPG keys.
      */
     editGpgKeys?: boolean;
     /**
-     * 
+     * URL to report bugs.
      */
     reportBugUrl?: string;
     /**
@@ -48,15 +48,15 @@ export interface GerritInfo {
      */
     primaryWeblinkName?: string;
     /**
-     * 
+     * Short identifier for this Gerrit installation.
      */
     instanceId?: string;
     /**
-     * 
+     * Name of the default branch to use on the project creation.
      */
     defaultBranch?: string;
     /**
-     * 
+     * Whether the instance supports filtering projects by state.
      */
     projectStatePredicateEnabled?: boolean;
 }

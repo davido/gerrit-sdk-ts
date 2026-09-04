@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface CustomKeyedValuesInput {
     /**
-     * 
+     * The map of custom keyed values to be added to the change.
      */
     add?: { [key: string]: string; };
     /**
-     * 
+     * The list of custom keys to be removed from the change.
      */
     remove?: Array<string>;
 }

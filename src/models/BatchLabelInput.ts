@@ -28,19 +28,19 @@ import {
  */
 export interface BatchLabelInput {
     /**
-     * 
+     * Message that should be used to commit the label updates in the project.config file to the refs/meta/config branch.
      */
     commitMessage?: string;
     /**
-     * 
+     * List of labels that should be deleted.
      */
     _delete?: Array<string>;
     /**
-     * 
+     * List of LabelDefinitionInput entities that describe labels that should be created.
      */
     create?: Array<LabelDefinitionInput>;
     /**
-     * 
+     * Map of label names to LabelDefinitionInput entities that describe the updates that should be done for the labels. The given inputs only need to set the properties that are being changed.
      */
     update?: { [key: string]: LabelDefinitionInput; };
 }

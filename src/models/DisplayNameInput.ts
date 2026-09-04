@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface DisplayNameInput {
     /**
-     * 
+     * The new display name of the account.
      */
     displayName?: string;
 }

@@ -42,39 +42,39 @@ import {
  */
 export interface ProjectInfo {
     /**
-     * 
+     * The URL encoded project name.
      */
     id?: string;
     /**
-     * 
+     * The name of the project.
      */
     name?: string;
     /**
-     * 
+     * The name of the parent project. + ?-<n> if the parent project is not visible (<n> is a number which is increased for each non-visible project).
      */
     parent?: string;
     /**
-     * 
+     * The description of the project.
      */
     description?: string;
     /**
-     * 
+     * ACTIVE, READ_ONLY or HIDDEN.
      */
     state?: ProjectState;
     /**
-     * 
+     * Map of branch names to HEAD revisions.
      */
     branches?: { [key: string]: string; };
     /**
-     * 
+     * Links to the project in external sites as a list of WebLinkInfo entries.
      */
     webLinks?: Array<WebLinkInfo>;
     /**
-     * 
+     * Map of label names to LabelTypeInfo entries. This field is filled for Create Project and Get Project calls.
      */
     labels?: { [key: string]: LabelTypeInfo; };
     /**
-     * 
+     * Whether the query would deliver more results if not limited. + Only set on the last project that is returned.
      */
     moreProjects?: boolean;
 }

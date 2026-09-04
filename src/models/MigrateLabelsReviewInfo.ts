@@ -35,11 +35,11 @@ import {
  */
 export interface MigrateLabelsReviewInfo {
     /**
-     * 
+     * The status of the migration. Takes one of the following values: MIGRATED, HAS_PROLOG, PREVIOUSLY_MIGRATED, NO_CHANGE
      */
     status?: MigrateLabelFunctionsToSubmitRequirementStatus;
     /**
-     * 
+     * The change created. It is a ChangeInfo entity and is set only when the status value is MIGRATED.
      */
     change?: ChangeInfo;
 }

@@ -28,35 +28,35 @@ import {
  */
 export interface AccountInput {
     /**
-     * 
+     * The user name. If provided, must match the user name from the URL.
      */
     username?: string;
     /**
-     * 
+     * The full name of the user.
      */
     name?: string;
     /**
-     * 
+     * The display name of the user.
      */
     displayName?: string;
     /**
-     * 
+     * The email address of the user.
      */
     email?: string;
     /**
-     * 
+     * The public SSH key of the user.
      */
     sshKey?: string;
     /**
-     * 
+     * The HTTP password of the user. (deprecated)
      */
     httpPassword?: string;
     /**
-     * 
+     * A list of tokens in the form of AuthTokenInputs to assign to the user.
      */
     tokens?: Array<AuthTokenInput>;
     /**
-     * 
+     * A list of group IDs that identify the groups to which the user should be added.
      */
     groups?: Array<string>;
 }

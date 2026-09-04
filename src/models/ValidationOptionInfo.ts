@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface ValidationOptionInfo {
     /**
-     * 
+     * The name of the validation option.
      */
     name?: string;
     /**
-     * 
+     * The description of the validation option.
      */
     description?: string;
 }

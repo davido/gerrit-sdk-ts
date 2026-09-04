@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface ApplyPatchInput {
     /**
-     * 
+     * The patch to be applied. Must be compatible with git diff output. For example, Get Patch output. The patch must be provided as UTF-8 text, either directly or base64-encoded.
      */
     patch?: string;
     /**
-     * 
+     * If true, tolerate conflicts and add conflict markers where required.
      */
     allowConflicts?: boolean;
 }

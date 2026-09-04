@@ -63,39 +63,39 @@ import {
  */
 export interface DiffInfo {
     /**
-     * 
+     * Meta information about the file on side A as a DiffFileMetaInfo entity.
      */
     metaA?: FileMeta;
     /**
-     * 
+     * Meta information about the file on side B as a DiffFileMetaInfo entity.
      */
     metaB?: FileMeta;
     /**
-     * 
+     * Intraline status (OK, ERROR, TIMEOUT).
      */
     intralineStatus?: IntraLineStatus;
     /**
-     * 
+     * The type of change (ADDED, MODIFIED, DELETED, RENAMED COPIED, REWRITE).
      */
     changeType?: ChangeType;
     /**
-     * 
+     * A list of strings representing the patch set diff header.
      */
     diffHeader?: Array<string>;
     /**
-     * 
+     * The content differences in the file as a list of DiffContent entities.
      */
     content?: Array<ContentEntry>;
     /**
-     * 
+     * Links to the file diff in external sites as a list of DiffWebLinkInfo entries.
      */
     webLinks?: Array<DiffWebLinkInfo>;
     /**
-     * 
+     * Links to edit the file in external sites as a list of WebLinkInfo entries.
      */
     editWebLinks?: Array<WebLinkInfo>;
     /**
-     * 
+     * Whether the file is binary.
      */
     binary?: boolean;
 }

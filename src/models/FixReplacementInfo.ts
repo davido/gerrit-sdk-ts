@@ -28,15 +28,15 @@ import {
  */
 export interface FixReplacementInfo {
     /**
-     * 
+     * The path of the file which should be modified. Any file in the repository may be modified. The commit message can be modified via the magic file /COMMIT_MSG though only the part below the generated header of that magic file can be modified.
      */
     path?: string;
     /**
-     * 
+     * A CommentRange indicating which content of the file should be replaced. Lines in the file are assumed to be separated by the line feed character.
      */
     range?: Range;
     /**
-     * 
+     * The content which should be used instead of the current one.
      */
     replacement?: string;
 }

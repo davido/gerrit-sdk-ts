@@ -49,23 +49,23 @@ import {
  */
 export interface AccountStateInfo {
     /**
-     * 
+     * The account details as AccountDetailInfo entity.
      */
     account?: AccountDetailInfo;
     /**
-     * 
+     * The global capabilities of the account as a CapabilityInfo entity. Not set if the permission backend doesn't use default capabilities.
      */
     capabilities?: { [key: string]: object; };
     /**
-     * 
+     * The groups that contain the account as a member as a list of GroupInfo entries.
      */
     groups?: Array<GroupInfo>;
     /**
-     * 
+     * The external IDs of the account as a list of AccountExternalIdInfo entities.
      */
     externalIds?: Array<AccountExternalIdInfo>;
     /**
-     * 
+     * Optional account metadata as a list of MetadataInfo entities. If and which metadata is provided depends on the Gerrit setup.
      */
     metadata?: Array<MetadataInfo>;
 }

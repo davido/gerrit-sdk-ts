@@ -28,7 +28,7 @@ import {
  */
 export interface FlowInput {
     /**
-     * 
+     * The expressions for the stages of the flow (sorted by execution order) as a list of FlowExpressionInfo entities.
      */
     stageExpressions?: Array<FlowExpressionInfo>;
 }

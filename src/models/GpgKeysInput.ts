@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface GpgKeysInput {
     /**
-     * 
+     * List of ASCII armored public key strings to add.
      */
     add?: Array<string>;
     /**
-     * 
+     * List of \{gpg-key-id\}s to delete.
      */
     _delete?: Array<string>;
 }

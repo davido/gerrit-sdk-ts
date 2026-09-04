@@ -35,11 +35,11 @@ import {
  */
 export interface DeletedDraftCommentInfo {
     /**
-     * 
+     * ChangeInfo entity describing the change on which one or more comments was deleted. Populated with no change list options.
      */
     change?: ChangeInfo;
     /**
-     * 
+     * List of CommentInfo entities for each comment that was deleted.
      */
     deleted?: Array<CommentInfo>;
 }

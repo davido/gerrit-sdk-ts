@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface LabelTypeInfo {
     /**
-     * 
+     * Map of the available values to their description.
      */
     values?: { [key: string]: string; };
     /**
-     * 
+     * The default value of this label.
      */
     defaultValue?: number;
 }

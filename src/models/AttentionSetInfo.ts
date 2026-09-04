@@ -28,19 +28,19 @@ import {
  */
 export interface AttentionSetInfo {
     /**
-     * 
+     * AccountInfo entity.
      */
     account?: AccountInfo;
     /**
-     * 
+     * The timestamp of the last update.
      */
     lastUpdate?: string;
     /**
-     * 
+     * The reason for adding or removing the user. If the update was caused by another user, that account is represented by account ID in reason as <GERRIT_ACCOUNT_18419> and the corresponding AccountInfo can be found in reason_account field.
      */
     reason?: string;
     /**
-     * 
+     * AccountInfo of the user who caused the update.
      */
     reasonAccount?: AccountInfo;
 }

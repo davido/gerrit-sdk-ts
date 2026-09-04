@@ -42,23 +42,23 @@ import {
  */
 export interface CacheInfo {
     /**
-     * 
+     * The cache name. If the cache is defined by a plugin the cache name includes the plugin name: "<plugin-name>-<cache-name>".
      */
     name?: string;
     /**
-     * 
+     * The type of the cache (MEM: in memory cache, DISK: disk cache).
      */
     type?: CacheType;
     /**
-     * 
+     * Information about the entries in the cache as a EntriesInfo entity.
      */
     entries?: EntriesInfo;
     /**
-     * 
+     * The average duration of getting one entry from the cache. The value is returned with a standard time unit abbreviation (ns: nanoseconds, us: microseconds, ms: milliseconds, s: seconds).
      */
     averageGet?: string;
     /**
-     * 
+     * Information about the hit ratio as a HitRatioInfo entity.
      */
     hitRatio?: HitRatioInfo;
 }

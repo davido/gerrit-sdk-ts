@@ -53,51 +53,51 @@ export interface AuthInfo {
      */
     authType?: AuthType;
     /**
-     * 
+     * Whether contributor agreements are required.
      */
     useContributorAgreements?: boolean;
     /**
-     * 
+     * List of contributor agreements as ContributorAgreementInfo entities.
      */
     contributorAgreements?: Array<AgreementInfo>;
     /**
-     * 
+     * List of account fields that are editable. Possible values are FULL_NAME, USER_NAME and REGISTER_NEW_EMAIL.
      */
     editableAccountFields?: Array<AccountFieldName>;
     /**
-     * 
+     * The login URL. Only set if authentication type is HTTP or HTTP_LDAP.
      */
     loginUrl?: string;
     /**
-     * 
+     * The login text. Only set if authentication type is HTTP or HTTP_LDAP.
      */
     loginText?: string;
     /**
-     * 
+     * The URL to switch accounts.
      */
     switchAccountUrl?: string;
     /**
-     * 
+     * The register URL. Only set if authentication type is LDAP, LDAP_BIND or CUSTOM_EXTENSION.
      */
     registerUrl?: string;
     /**
-     * 
+     * The register text. Only set if authentication type is LDAP, LDAP_BIND or CUSTOM_EXTENSION.
      */
     registerText?: string;
     /**
-     * 
+     * The URL to edit the full name. Only set if authentication type is LDAP, LDAP_BIND or CUSTOM_EXTENSION.
      */
     editFullNameUrl?: string;
     /**
-     * 
+     * The URL to obtain an HTTP password. Only set if authentication type is CUSTOM_EXTENSION.
      */
     httpPasswordUrl?: string;
     /**
-     * 
+     * The policy to authenticate Git over HTTP and REST API requests when authentication type is LDAP, LDAP_BIND or OAUTH. Can be HTTP, LDAP, HTTP_LDAP or OAUTH.
      */
     gitBasicAuthPolicy?: GitBasicAuthPolicy;
     /**
-     * 
+     * The maximum lifetime of authentication tokens.
      */
     maxTokenLifetime?: number;
 }

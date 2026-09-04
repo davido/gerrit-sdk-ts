@@ -28,39 +28,39 @@ import {
  */
 export interface RelatedChangeAndCommitInfo {
     /**
-     * 
+     * The project of the change or commit.
      */
     project?: string;
     /**
-     * 
+     * The Change-Id of the change.
      */
     changeId?: string;
     /**
-     * 
+     * The commit as a CommitInfo entity.
      */
     commit?: CommitInfo;
     /**
-     * 
+     * The change number.
      */
     changeNumber?: number;
     /**
-     * 
+     * The revision number.
      */
     revisionNumber?: number;
     /**
-     * 
+     * The current revision number.
      */
     currentRevisionNumber?: number;
     /**
-     * 
+     * The status of the change. The status of the change is one of (NEW, MERGED, ABANDONED).
      */
     status?: string;
     /**
-     * 
+     * Boolean indicating whether the change is submittable. + Only populated if requested.
      */
     submittable?: boolean;
     /**
-     * 
+     * Boolean indicating whether the change is work in progress.
      */
     workInProgress?: boolean;
 }

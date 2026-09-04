@@ -35,23 +35,23 @@ import {
  */
 export interface DeleteVoteInput {
     /**
-     * 
+     * The label for which the vote should be deleted. + If set, must match the label in the URL.
      */
     label?: string;
     /**
-     * 
+     * Notify handling that defines to whom email notifications should be sent after the vote is deleted. + Allowed values are NONE, OWNER, OWNER_REVIEWERS and ALL. + If not set, the default is ALL.
      */
     notify?: NotifyHandling;
     /**
-     * 
+     * Additional information about whom to notify about the update as a map of recipient type to NotifyInfo entity.
      */
     notifyDetails?: { [key: string]: NotifyInfo; };
     /**
-     * 
+     * If set to true, ignore all automatic attention set rules described in the attention set. When not set, the default is false.
      */
     ignoreAutomaticAttentionSetRules?: boolean;
     /**
-     * 
+     * The reason why this vote is deleted. Will + go into the change message.
      */
     reason?: string;
 }

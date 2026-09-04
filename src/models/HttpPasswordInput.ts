@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface HttpPasswordInput {
     /**
-     * 
+     * The new HTTP password. Only Gerrit administrators may set the HTTP password directly. + If empty or not set and generate is false or not set, the HTTP password is deleted.
      */
     httpPassword?: string;
     /**
-     * 
+     * Whether a new HTTP password should be generated
      */
     generate?: boolean;
 }

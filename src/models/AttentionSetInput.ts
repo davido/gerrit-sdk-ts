@@ -35,19 +35,19 @@ import {
  */
 export interface AttentionSetInput {
     /**
-     * 
+     * ID of the account that should be added to the attention set. For removals, this field should be empty or the same as the field in the request header.
      */
     user?: string;
     /**
-     * 
+     * The reason of for adding or removing the user.
      */
     reason?: string;
     /**
-     * 
+     * Notify handling that defines to whom email notifications should be sent after the change is created. + Allowed values are NONE, OWNER, OWNER_REVIEWERS and ALL. + If not set, the default is OWNER.
      */
     notify?: NotifyHandling;
     /**
-     * 
+     * Additional information about whom to notify about the change creation as a map of recipient type to NotifyInfo entity.
      */
     notifyDetails?: { [key: string]: NotifyInfo; };
 }

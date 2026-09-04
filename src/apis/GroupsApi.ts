@@ -34,11 +34,6 @@ import {
     CommonDescriptionInputToJSON,
 } from '../models/CommonDescriptionInput';
 import {
-    type GetGroupsDefaultResponse,
-    GetGroupsDefaultResponseFromJSON,
-    GetGroupsDefaultResponseToJSON,
-} from '../models/GetGroupsDefaultResponse';
-import {
     type GroupAuditEventInfo,
     GroupAuditEventInfoFromJSON,
     GroupAuditEventInfoToJSON,
@@ -737,18 +732,22 @@ export class GroupsApi extends runtime.BaseAPI {
      * Lists the internal groups visible to the caller.
      * List groups
      */
-    async getGroupsRaw(requestParameters: GetGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetGroupsDefaultResponse>> {
+    async getGroupsRaw(requestParameters: GetGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.getGroupsRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetGroupsDefaultResponseFromJSON(jsonValue));
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * Lists the internal groups visible to the caller.
      * List groups
      */
-    async getGroups(requestParameters: GetGroupsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetGroupsDefaultResponse> {
+    async getGroups(requestParameters: GetGroupsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.getGroupsRaw(requestParameters, initOverrides);
         return await response.value();
     }

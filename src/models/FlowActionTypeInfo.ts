@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface FlowActionTypeInfo {
     /**
-     * 
+     * The name of the action.
      */
     name?: string;
     /**

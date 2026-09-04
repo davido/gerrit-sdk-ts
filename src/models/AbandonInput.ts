@@ -35,15 +35,15 @@ import {
  */
 export interface AbandonInput {
     /**
-     * 
+     * Message to be added as review comment to the change when abandoning the change.
      */
     message?: string;
     /**
-     * 
+     * Notify handling that defines to whom email notifications should be sent after the change is abandoned. + Allowed values are NONE, OWNER, OWNER_REVIEWERS and ALL. + If not set, the default is ALL.
      */
     notify?: NotifyHandling;
     /**
-     * 
+     * Additional information about whom to notify about the update as a map of recipient type to NotifyInfo entity.
      */
     notifyDetails?: { [key: string]: NotifyInfo; };
 }

@@ -98,67 +98,67 @@ import {
  */
 export interface ServerInfo {
     /**
-     * 
+     * Information about the configuration from the accounts section as AccountsConfigInfo entity.
      */
     accounts?: AccountsInfo;
     /**
-     * 
+     * Information about the authentication configuration as AuthInfo entity.
      */
     auth?: AuthInfo;
     /**
-     * 
+     * Information about the configuration from the change section as ChangeConfigInfo entity.
      */
     change?: ChangeConfigInfo;
     /**
-     * 
+     * Information about the configured download options as DownloadInfo entity. information about Gerrit
      */
     download?: DownloadInfo;
     /**
-     * 
+     * Information about the configuration from the gerrit section as GerritInfo entity.
      */
     gerrit?: GerritInfo;
     /**
-     * 
+     * Information about the configuration from the groups section as GroupsConfigInfo entity.
      */
     groups?: GroupsInfo;
     /**
-     * 
+     * Whether the NoteDb storage backend is fully enabled.
      */
     noteDbEnabled?: boolean;
     /**
-     * 
+     * Information about Gerrit extensions by plugins as PluginConfigInfo entity.
      */
     plugin?: PluginConfigInfo;
     /**
-     * 
+     * Information about the configuration from the sshd section as SshdInfo entity. Not set if SSHD is disabled.
      */
     sshd?: object;
     /**
-     * 
+     * Information about the configuration from the suggest section as SuggestInfo entity.
      */
     suggest?: SuggestInfo;
     /**
-     * 
+     * Information about the configuration from the user section as UserConfigInfo entity.
      */
     user?: UserConfigInfo;
     /**
-     * 
+     * Information about the receive-pack configuration as a ReceiveInfo entity.
      */
     receive?: ReceiveInfo;
     /**
-     * 
+     * URL to a default Gerrit UI theme plugin, if available. Located in /static/gerrit-theme.js by default.
      */
     defaultTheme?: string;
     /**
-     * 
+     * The list of submit requirement names that should be displayed as separate columns in the dashboard. If empty, the default is to display all submit requirements that are applicable for changes appearing in the dashboard.
      */
     submitRequirementDashboardColumns?: Array<string>;
     /**
-     * 
+     * Whether to show all labels in the dashboard, even if they are not submit requirements.
      */
     dashboardShowAllLabels?: boolean;
     /**
-     * 
+     * Optional server metadata as a list of MetadataInfo entities. If and which metadata is provided depends on the Gerrit setup.
      */
     metadata?: Array<MetadataInfo>;
 }

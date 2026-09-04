@@ -28,31 +28,31 @@ import {
  */
 export interface MergeableInfo {
     /**
-     * 
+     * Submit type used for this change, can be MERGE_IF_NECESSARY, FAST_FORWARD_ONLY, REBASE_IF_NECESSARY, REBASE_ALWAYS, MERGE_ALWAYS or CHERRY_PICK.
      */
     submitType?: SubmitType;
     /**
-     * 
+     * The strategy of the merge, can be recursive, resolve, simple-two-way-in-core, ours or theirs.
      */
     strategy?: string;
     /**
-     * 
+     * true if this change is cleanly mergeable or already merged, false otherwise
      */
     mergeable?: boolean;
     /**
-     * 
+     * true if this change is already merged, false otherwise
      */
     commitMerged?: boolean;
     /**
-     * 
+     * true if the content of this change is already merged, false otherwise
      */
     contentMerged?: boolean;
     /**
-     * 
+     * A list of paths with conflicts
      */
     conflicts?: Array<string>;
     /**
-     * 
+     * A list of other branch names where this change could merge cleanly
      */
     mergeableInto?: Array<string>;
 }

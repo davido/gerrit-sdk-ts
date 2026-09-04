@@ -35,31 +35,31 @@ import {
  */
 export interface SubmitRequirementResultInfo {
     /**
-     * 
+     * The submit requirement name.
      */
     name?: string;
     /**
-     * 
+     * Description of the submit requirement.
      */
     description?: string;
     /**
-     * 
+     * Status describing the result of evaluating the submit requirement. The status is one of (SATISFIED, UNSATISFIED, OVERRIDDEN, NOT_APPLICABLE, ERROR, FORCED, TIMEOUT).
      */
     status?: SubmitRequirementResultInfoStatus;
     /**
-     * 
+     * If true, this submit requirement result was created from a legacy SubmitRecord. Otherwise, it was created by evaluating a submit requirement.
      */
     isLegacy?: boolean;
     /**
-     * 
+     * A SubmitRequirementExpressionInfo containing the result of evaluating the applicability expression. Not set if the submit requirement did not define an applicability expression. Note that fields expression, passing_atoms and failing_atoms are always omitted for the applicability_expression_result.
      */
     applicabilityExpressionResult?: SubmitRequirementExpressionInfo;
     /**
-     * 
+     * A SubmitRequirementExpressionInfo containing the result of evaluating the submittability expression. + If the submit requirement does not apply, the status field of the result will be set to NOT_EVALUATED.
      */
     submittabilityExpressionResult?: SubmitRequirementExpressionInfo;
     /**
-     * 
+     * A SubmitRequirementExpressionInfo containing the result of evaluating the override expression. + Not set if the submit requirement did not define an override expression. If the submit requirement does not apply, the status field of the result will be set to NOT_EVALUATED.
      */
     overrideExpressionResult?: SubmitRequirementExpressionInfo;
 }

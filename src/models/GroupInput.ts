@@ -20,27 +20,27 @@ import { mapValues } from '../runtime';
  */
 export interface GroupInput {
     /**
-     * 
+     * The name of the group (not encoded). + If set, must match the group name in the URL.
      */
     name?: string;
     /**
-     * 
+     * The UUID of the group.
      */
     uuid?: string;
     /**
-     * 
+     * The description of the group.
      */
     description?: string;
     /**
-     * 
+     * Whether the group is visible to all registered users. + false if not set.
      */
     visibleToAll?: boolean;
     /**
-     * 
+     * The URL encoded ID of the owner group. + This can be a group UUID, a legacy numeric group ID or a unique group name. + If not set, the new group will be self-owned.
      */
     ownerId?: string;
     /**
-     * 
+     * The initial members in a list of + account ids.
      */
     members?: Array<string>;
 }

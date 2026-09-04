@@ -20,19 +20,19 @@ import { mapValues } from '../runtime';
  */
 export interface TagInput {
     /**
-     * 
+     * The name of the tag. The leading refs/tags/ is optional.
      */
     ref?: string;
     /**
-     * 
+     * The revision to which the tag should point. If not specified, the project's HEAD will be used.
      */
     revision?: string;
     /**
-     * 
+     * The tag message. When set, the tag will be created as an annotated tag.
      */
     message?: string;
     /**
-     * 
+     * Creation timestamp for annotated tags. Must not be a date in the future.
      */
     date?: string;
 }

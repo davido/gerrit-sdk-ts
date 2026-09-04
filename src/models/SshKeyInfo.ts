@@ -20,27 +20,27 @@ import { mapValues } from '../runtime';
  */
 export interface SshKeyInfo {
     /**
-     * 
+     * The sequence number of the SSH key.
      */
     seq?: number;
     /**
-     * 
+     * The complete public SSH key.
      */
     sshPublicKey?: string;
     /**
-     * 
+     * The encoded key.
      */
     encodedKey?: string;
     /**
-     * 
+     * The algorithm of the SSH key.
      */
     algorithm?: string;
     /**
-     * 
+     * The comment of the SSH key.
      */
     comment?: string;
     /**
-     * 
+     * Whether the SSH key is valid.
      */
     valid?: boolean;
 }

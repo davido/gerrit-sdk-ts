@@ -20,15 +20,15 @@ import { mapValues } from '../runtime';
  */
 export interface FetchInfo {
     /**
-     * 
+     * The URL of the project.
      */
     url?: string;
     /**
-     * 
+     * The ref of the patch set.
      */
     ref?: string;
     /**
-     * 
+     * The download commands for this patch set as a map that maps the command names to the commands. + Only set if download commands are requested.
      */
     commands?: { [key: string]: string; };
 }

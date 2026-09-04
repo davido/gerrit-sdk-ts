@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface VotingRangeInfo {
     /**
-     * 
+     * The minimum voting value.
      */
     min?: number;
     /**
-     * 
+     * The maximum voting value.
      */
     max?: number;
 }

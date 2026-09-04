@@ -42,79 +42,79 @@ import {
  */
 export interface ProjectInput {
     /**
-     * 
+     * The name of the project (not encoded). + If set, must match the project name in the URL. + If name ends with .git the suffix will be automatically removed.
      */
     name?: string;
     /**
-     * 
+     * The name of the parent project. + If not set, the All-Projects project will be the parent project.
      */
     parent?: string;
     /**
-     * 
+     * The description of the project.
      */
     description?: string;
     /**
-     * 
+     * Whether a permission-only project should be created.
      */
     permissionsOnly?: boolean;
     /**
-     * 
+     * Whether an empty initial commit should be created.
      */
     createEmptyCommit?: boolean;
     /**
-     * 
+     * The submit type that should be set for the project (MERGE_IF_NECESSARY, REBASE_IF_NECESSARY, REBASE_ALWAYS, FAST_FORWARD_ONLY, MERGE_ALWAYS, CHERRY_PICK). + If not set, MERGE_IF_NECESSARY is set as submit type unless repository.<name>.defaultSubmitType is set to a different value.
      */
     submitType?: SubmitType;
     /**
-     * 
+     * A list of branches that should be initially created. + For the branch names the refs/heads/ prefix can be omitted. + The first entry of the list will be the default branch. + If the list is empty, host-level default is used.
      */
     branches?: Array<string>;
     /**
-     * 
+     * A list of groups that should be assigned as project owner. + Each group in the list must be specified as group-id. + If not set, the groups that are configured as default owners are set as project owners.
      */
     owners?: Array<string>;
     /**
-     * 
+     * Whether contributor agreements should be used for the project (TRUE, FALSE, INHERIT).
      */
     useContributorAgreements?: InheritableBoolean;
     /**
-     * 
+     * Whether the usage of 'Signed-Off-By' footers is required for the project (TRUE, FALSE, INHERIT).
      */
     useSignedOffBy?: InheritableBoolean;
     /**
-     * 
+     * Whether content merge should be enabled for the project (TRUE, FALSE, INHERIT). + FALSE, if the submit_type is FAST_FORWARD_ONLY.
      */
     useContentMerge?: InheritableBoolean;
     /**
-     * 
+     * Whether the usage of Change-Ids is required for the project (TRUE, FALSE, INHERIT). This property is deprecated and will be removed in a future release.
      */
     requireChangeId?: InheritableBoolean;
     /**
-     * 
+     * Whether a new change is created for every commit not in target branch for the project (TRUE, FALSE, INHERIT).
      */
     createNewChangeForAllNotInTarget?: InheritableBoolean;
     /**
-     * 
+     * Whether empty commits should be rejected when a change is merged (TRUE, FALSE, INHERIT).
      */
     rejectEmptyCommit?: InheritableBoolean;
     /**
-     * 
+     * Whether signed push validation is enabled on the project (TRUE, FALSE, INHERIT).
      */
     enableSignedPush?: InheritableBoolean;
     /**
-     * 
+     * Whether signed push validation is required on the project (TRUE, FALSE, INHERIT).
      */
     requireSignedPush?: InheritableBoolean;
     /**
-     * 
+     * Max allowed Git object size for this project. Common unit suffixes of 'k', 'm', or 'g' are supported.
      */
     maxObjectSizeLimit?: string;
     /**
-     * 
+     * Plugin configuration values as map which maps the plugin name to a map of parameter names to values.
      */
     pluginConfigValues?: { [key: string]: { [key: string]: ConfigValue; }; };
     /**
-     * 
+     * If set, only the project initialization is being (re-)done and the repository creation is skipped. The project initialization consists out of setting HEAD, creating the project.config file in refs/meta/config and creating initial branches with empty commits.
      */
     initOnly?: boolean;
 }

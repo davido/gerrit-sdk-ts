@@ -20,31 +20,31 @@ import { mapValues } from '../runtime';
  */
 export interface ParentInfo {
     /**
-     * 
+     * Name of the target branch into which the parent commit is merged.
      */
     branchName?: string;
     /**
-     * 
+     * The commit SHA-1 of the parent commit, or null if the current commit is root.
      */
     commitId?: string;
     /**
-     * 
+     * Set to true if the parent commit is merged into the target branch.
      */
     isMergedInTargetBranch?: boolean;
     /**
-     * 
+     * If the parent commit is a patch-set of another gerrit change, this field will hold the change ID of the parent change. Otherwise, will be null.
      */
     changeId?: string;
     /**
-     * 
+     * If the parent commit is a patch-set of another gerrit change, this field will hold the change number of the parent change. Otherwise, will be null.
      */
     changeNumber?: number;
     /**
-     * 
+     * If the parent commit is a patch-set of another gerrit change, this field will hold the patch-set number of the parent change. Otherwise, will be null.
      */
     patchSetNumber?: number;
     /**
-     * 
+     * If the parent commit is a patch-set of another gerrit change, this field will hold the change status of the parent change. Otherwise, will be null.
      */
     changeStatus?: string;
 }

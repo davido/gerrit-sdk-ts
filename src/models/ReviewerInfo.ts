@@ -28,11 +28,11 @@ import {
  */
 export interface ReviewerInfo {
     /**
-     * 
+     * The approvals of the reviewer as a map that maps the label names to the approval values ("-2", "-1", "0", "+1", "+2").
      */
     approvals?: { [key: string]: string; };
     /**
-     * 
+     * This field is inherited from AccountInfo but is optional here if an unregistered reviewer was added by email. See add-reviewer for details.
      */
     accountId?: number;
     /**

@@ -20,15 +20,15 @@ import { mapValues } from '../runtime';
  */
 export interface AccessCheckInfo {
     /**
-     * 
+     * A clarifying message if status is not 200.
      */
     message?: string;
     /**
-     * 
+     * The HTTP status code for the access. 200 means success and 403 means denied.
      */
     status?: number;
     /**
-     * 
+     * Debug logs that may help to understand why a permission is denied or allowed.
      */
     debugLogs?: Array<string>;
 }

@@ -59,6 +59,11 @@ import {
     AuthTokenInputToJSON,
 } from '../models/AuthTokenInput';
 import {
+    type ChangeInfo,
+    ChangeInfoFromJSON,
+    ChangeInfoToJSON,
+} from '../models/ChangeInfo';
+import {
     type DeleteDraftCommentsInput,
     DeleteDraftCommentsInputFromJSON,
     DeleteDraftCommentsInputToJSON,
@@ -2453,25 +2458,21 @@ export class AccountsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Gets the changes that were starred with the default star by the identified user account. This URL endpoint is functionally identical to the changes query GET /changes/?q=is:starred. The result is a list of ChangeInfo entities.
-     * Get Changes With Default Star
+     * Gets the changes that were starred with the default star by the identified user account.
+     * Get changes with default star
      */
-    async getAccountsAccountIdStarredChangesRaw(requestParameters: GetAccountsAccountIdStarredChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
+    async getAccountsAccountIdStarredChangesRaw(requestParameters: GetAccountsAccountIdStarredChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ChangeInfo>>> {
         const requestOptions = await this.getAccountsAccountIdStarredChangesRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<any>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ChangeInfoFromJSON));
     }
 
     /**
-     * Gets the changes that were starred with the default star by the identified user account. This URL endpoint is functionally identical to the changes query GET /changes/?q=is:starred. The result is a list of ChangeInfo entities.
-     * Get Changes With Default Star
+     * Gets the changes that were starred with the default star by the identified user account.
+     * Get changes with default star
      */
-    async getAccountsAccountIdStarredChanges(requestParameters: GetAccountsAccountIdStarredChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
+    async getAccountsAccountIdStarredChanges(requestParameters: GetAccountsAccountIdStarredChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ChangeInfo>> {
         const response = await this.getAccountsAccountIdStarredChangesRaw(requestParameters, initOverrides);
         return await response.value();
     }

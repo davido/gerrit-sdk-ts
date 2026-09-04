@@ -28,15 +28,15 @@ import {
  */
 export interface ProblemInfo {
     /**
-     * 
+     * Plaintext message describing the problem with the change.
      */
     message?: string;
     /**
-     * 
+     * The status of fixing the problem (FIXED, FIX_FAILED). Only set if a fix was attempted.
      */
     status?: ProblemInfoStatus;
     /**
-     * 
+     * If status is set, an additional plaintext message describing the outcome of the fix.
      */
     outcome?: string;
 }

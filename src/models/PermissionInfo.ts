@@ -28,15 +28,15 @@ import {
  */
 export interface PermissionInfo {
     /**
-     * 
+     * The name of the label. Not set if it's not a label permission.
      */
     label?: string;
     /**
-     * 
+     * Whether this permission is assigned exclusively.
      */
     exclusive?: boolean;
     /**
-     * 
+     * The rules assigned for this permission as a map that maps the UUIDs of the groups for which the permission are assigned to PermissionRuleInfo entities.
      */
     rules?: { [key: string]: PermissionRuleInfo; };
 }

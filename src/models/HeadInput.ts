@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface HeadInput {
     /**
-     * 
+     * The ref to which HEAD should be set, the refs/heads prefix can be omitted.
      */
     ref?: string;
 }

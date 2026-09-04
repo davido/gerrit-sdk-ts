@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface TrackingIdInfo {
     /**
-     * 
+     * The name of the external tracking system.
      */
     system?: string;
     /**
-     * 
+     * The tracking id.
      */
     id?: string;
 }

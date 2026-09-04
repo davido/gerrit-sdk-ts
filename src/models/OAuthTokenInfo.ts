@@ -20,27 +20,27 @@ import { mapValues } from '../runtime';
  */
 export interface OAuthTokenInfo {
     /**
-     * 
+     * The owner of the OAuth access token.
      */
     username?: string;
     /**
-     * 
+     * The host of the Gerrit instance.
      */
     resourceHost?: string;
     /**
-     * 
+     * The actual token value.
      */
     accessToken?: string;
     /**
-     * 
+     * The identifier of the OAuth provider in the form plugin-name:provider-name.
      */
     providerId?: string;
     /**
-     * 
+     * Time of expiration of this token in milliseconds.
      */
     expiresAt?: string;
     /**
-     * 
+     * The type of the OAuth access token, always bearer.
      */
     type?: string;
 }

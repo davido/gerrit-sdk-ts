@@ -42,15 +42,15 @@ import {
  */
 export interface ConsistencyCheckInfo {
     /**
-     * 
+     * The result of running the account consistency check as a CheckAccountsResultInfo entity.
      */
     checkAccountsResult?: CheckAccountsResultInfo;
     /**
-     * 
+     * The result of running the account external ID consistency check as a CheckAccountExternalIdsResultInfo entity.
      */
     checkAccountExternalIdsResult?: CheckAccountExternalIdsResultInfo;
     /**
-     * 
+     * The result of running the group consistency check as a CheckGroupsResultInfo entity.
      */
     checkGroupsResult?: CheckGroupsResultInfo;
 }

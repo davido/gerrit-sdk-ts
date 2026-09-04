@@ -28,27 +28,27 @@ import {
  */
 export interface GpgKeyInfo {
     /**
-     * 
+     * The 8-char hex GPG key ID.
      */
     id?: string;
     /**
-     * 
+     * The 40-char (plus spaces) hex GPG key fingerprint.
      */
     fingerprint?: string;
     /**
-     * 
+     * OpenPGP User IDs,role=external,window=_blank associated with the public key.
      */
     userIds?: Array<string>;
     /**
-     * 
+     * ASCII armored public key material.
      */
     key?: string;
     /**
-     * 
+     * The result of server-side checks on the key; one of BAD, OK, or TRUSTED. BAD keys have serious problems and should not be used. If a key is OK, inspecting only that key found no problems, but the system does not fully trust the key's origin.
      */
     status?: GpgKeyInfoStatus;
     /**
-     * 
+     * A list of human-readable problem strings found in the course of checking whether the key is valid and trusted.
      */
     problems?: Array<string>;
 }

@@ -20,27 +20,27 @@ import { mapValues } from '../runtime';
  */
 export interface PluginInfo {
     /**
-     * 
+     * The ID of the plugin.
      */
     id?: string;
     /**
-     * 
+     * The version of the plugin.
      */
     version?: string;
     /**
-     * 
+     * The version of the Gerrit Api used by the plugin.
      */
     apiVersion?: string;
     /**
-     * 
+     * URL of the plugin's default page.
      */
     indexUrl?: string;
     /**
-     * 
+     * The plugin's filename.
      */
     filename?: string;
     /**
-     * 
+     * Whether the plugin is disabled.
      */
     disabled?: boolean;
 }

@@ -20,51 +20,51 @@ import { mapValues } from '../runtime';
  */
 export interface LabelDefinitionInput {
     /**
-     * 
+     * The new name of the label.+ For label creation the name is required if this LabelDefinitionInput entity is contained in a BatchLabelInput entity.
      */
     name?: string;
     /**
-     * 
+     * The new description for the label.
      */
     description?: string;
     /**
-     * 
+     * The new function of the label (can be NoOp/NoBlock and PatchSetLock). By default NoOp when creating new labels.
      */
     _function?: string;
     /**
-     * 
+     * The new values of the label as a map of label value to value description. The label values are formatted strings, e.g. "+1" instead of "1", " 0" instead of "0".
      */
     values?: { [key: string]: string; };
     /**
-     * 
+     * The new default value of the label (as integer).
      */
     defaultValue?: number;
     /**
-     * 
+     * The new branches for which the label applies as a list of branches. A branch can be a ref, a ref pattern or a regular expression. If not set, the label applies for all branches.
      */
     branches?: Array<string>;
     /**
-     * 
+     * Whether this label can be overridden by child projects.
      */
     canOverride?: boolean;
     /**
-     * 
+     * See copyCondition.
      */
     copyCondition?: string;
     /**
-     * 
+     * If true, clears the value stored in copy_condition.
      */
     unsetCopyCondition?: boolean;
     /**
-     * 
+     * Whether allowPostSubmit is set on the label.
      */
     allowPostSubmit?: boolean;
     /**
-     * 
+     * Whether ignoreSelfApproval is set on the label.
      */
     ignoreSelfApproval?: boolean;
     /**
-     * 
+     * Message that should be used to commit the change of the label in the project.config file to the refs/meta/config branch.+ Must not be set if this LabelDefinitionInput entity is contained in a BatchLabelInput entity.
      */
     commitMessage?: string;
 }

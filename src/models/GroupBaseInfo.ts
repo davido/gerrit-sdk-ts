@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface GroupBaseInfo {
     /**
-     * 
+     * The UUID of the group.
      */
     id?: string;
     /**
-     * 
+     * The name of the group.
      */
     name?: string;
 }

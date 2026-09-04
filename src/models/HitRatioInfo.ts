@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface HitRatioInfo {
     /**
-     * 
+     * Hit ratio for cache entries that are held in memory (0 \<= value \<= 100).
      */
     mem?: number;
     /**
-     * 
+     * Hit ratio for cache entries that are held on disk (0 \<= value \<= 100). Only set for disk caches.
      */
     disk?: number;
 }

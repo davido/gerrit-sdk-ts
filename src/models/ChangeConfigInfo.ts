@@ -20,31 +20,31 @@ import { mapValues } from '../runtime';
  */
 export interface ChangeConfigInfo {
     /**
-     * 
+     * Whether blame on side by side diff is allowed.
      */
     allowBlame?: boolean;
     /**
-     * 
+     * Returns true if private changes are disabled.
      */
     disablePrivateChanges?: boolean;
     /**
-     * 
+     * How often in seconds the web interface should poll for updates to the currently open change.
      */
     updateDelay?: number;
     /**
-     * 
+     * A configuration if the whole topic is submitted.
      */
     submitWholeTopic?: boolean;
     /**
-     * 
+     * Value of the configuration parameter that controls whether the mergeability bit in ChangeInfo will never be set and if the bit is indexed.
      */
     mergeabilityComputationBehavior?: string;
     /**
-     * 
+     * Are conflicts enabled?.
      */
     conflictsPredicateEnabled?: boolean;
     /**
-     * 
+     * Are markdown base64 images in comments allowed?.
      */
     allowMarkdownBase64ImagesInComments?: boolean;
 }
