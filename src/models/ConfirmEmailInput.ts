@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface ConfirmEmailInput {
     /**
-     * 
+     * The token that was sent by mail to a newly registered email address.
      */
     token?: string;
 }

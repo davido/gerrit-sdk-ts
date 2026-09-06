@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface BanCommitInput {
     /**
-     * 
+     * List of commits to be banned.
      */
     commits?: Array<string>;
     /**
-     * 
+     * Reason for banning the commits.
      */
     reason?: string;
 }

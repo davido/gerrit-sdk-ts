@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface SetDashboardInput {
     /**
-     * 
+     * URL encoded ID of a dashboard to which this dashboard should link to.
      */
     id?: string;
     /**
-     * 
+     * Message that should be used to commit the change of the dashboard.
      */
     commitMessage?: string;
 }

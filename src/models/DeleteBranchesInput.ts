@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface DeleteBranchesInput {
     /**
-     * 
+     * A list of branch names that identify the branches that should be deleted.
      */
     branches?: Array<string>;
 }

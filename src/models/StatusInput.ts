@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface StatusInput {
     /**
-     * 
+     * The new status of the account. + If not set or if set to an empty string, the account status is deleted.
      */
     status?: string;
 }

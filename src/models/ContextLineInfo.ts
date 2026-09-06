@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface ContextLineInfo {
     /**
-     * 
+     * The line number of the source line.
      */
     lineNumber?: number;
     /**
-     * 
+     * The text of the context line.
      */
     contextLine?: string;
 }

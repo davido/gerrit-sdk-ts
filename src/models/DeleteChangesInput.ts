@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface DeleteChangesInput {
     /**
-     * 
+     * A list of changes (Change-Id or Change-Number) that identify the changes that should be deleted.
      */
     changes?: Array<string>;
 }

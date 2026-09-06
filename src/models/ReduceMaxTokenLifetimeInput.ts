@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface ReduceMaxTokenLifetimeInput {
     /**
-     * 
+     * The new maximum lifetime that will be applied to authentication tokens.
      */
     lifetime?: string;
 }

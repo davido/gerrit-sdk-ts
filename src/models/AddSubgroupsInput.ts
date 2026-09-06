@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface AddSubgroupsInput {
     /**
-     * 
+     * The id of one group that should be included or deleted.
      */
     oneGroup?: string;
     /**
-     * 
+     * A list of group ids that identify the groups that should be included or deleted.
      */
     groups?: Array<string>;
 }

@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface InstallPluginInput {
     /**
-     * 
+     * URL to the plugin jar.
      */
     url?: string;
     /**
-     * 
+     * The raw plugin content (the plugin jar) uploaded in the request body, as an alternative to url.
      */
     raw?: object;
 }

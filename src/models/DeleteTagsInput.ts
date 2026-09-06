@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface DeleteTagsInput {
     /**
-     * 
+     * A list of tag names that identify the tags that should be deleted.
      */
     tags?: Array<string>;
 }

@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface AgreementInput {
     /**
-     * 
+     * The name of the agreement.
      */
     name?: string;
 }

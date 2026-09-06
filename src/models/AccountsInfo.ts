@@ -35,11 +35,11 @@ import {
  */
 export interface AccountsInfo {
     /**
-     * 
+     * Visibility setting for accounts.
      */
     visibility?: AccountVisibility;
     /**
-     * 
+     * The default strategy for choosing the display name in the UI, see also gerrit.config.
      */
     defaultDisplayName?: AccountDefaultDisplayName;
 }

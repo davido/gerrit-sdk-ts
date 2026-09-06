@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface SnapshotIndexInput {
     /**
-     * 
+     * A string ID that will be used as the folder name containing the snapshots. Defaults to current timestamp.
      */
     id?: string;
 }

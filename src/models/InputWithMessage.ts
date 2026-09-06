@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface InputWithMessage {
     /**
-     * 
+     * The message to use.
      */
     message?: string;
 }

@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface AddMembersInput {
     /**
-     * 
+     * The id of one account that should be added or deleted.
      */
     oneMember?: string;
     /**
-     * 
+     * A list of account ids that identify the accounts that should be added or deleted.
      */
     members?: Array<string>;
 }

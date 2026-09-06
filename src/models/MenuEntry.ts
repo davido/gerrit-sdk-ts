@@ -28,11 +28,11 @@ import {
  */
 export interface MenuEntry {
     /**
-     * 
+     * Name of the top menu entry.
      */
     name?: string;
     /**
-     * 
+     * List of menu items.
      */
     items?: Array<MenuItem>;
 }

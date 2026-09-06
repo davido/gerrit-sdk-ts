@@ -28,11 +28,11 @@ import {
  */
 export interface WorkInProgressOpInput {
     /**
-     * 
+     * Notify handling that defines to whom email notifications should be sent after the change is set to WorkInProgress/ReadyForReview. Allowed values are NONE, OWNER, OWNER_REVIEWERS and ALL.
      */
     notify?: NotifyHandling;
     /**
-     * 
+     * Message to be added as a review comment to the change being set WorkInProgress/ReadyForReview.
      */
     message?: string;
 }

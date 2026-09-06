@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface InputWithCommitMessage {
     /**
-     * 
+     * The commit message to use.
      */
     commitMessage?: string;
 }

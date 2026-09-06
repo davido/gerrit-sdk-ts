@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface NameInput {
     /**
-     * 
+     * The new full name of the account. + If not set or if set to an empty string, the account name is deleted.
      */
     name?: string;
 }

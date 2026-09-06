@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface ReindexIndexVersionInput {
     /**
-     * 
+     * Whether existing documents may be reused instead of being recomputed while reindexing.
      */
     reuse?: boolean;
     /**
-     * 
+     * Whether index listeners should be notified about the reindex progress.
      */
     notifyListeners?: boolean;
 }

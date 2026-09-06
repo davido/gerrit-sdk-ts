@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface ConfigValue {
     /**
-     * 
+     * The new single value for the configuration parameter.
      */
     value?: string;
     /**
-     * 
+     * The new list of values for a multi-valued configuration parameter.
      */
     values?: Array<string>;
 }

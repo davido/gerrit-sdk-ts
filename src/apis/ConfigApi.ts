@@ -1940,7 +1940,7 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
-     * This endpoint allows to trigger background reindexing of an index version. It is also supported to specify whether to reuse existing up-to-date (non-stale) index documents and whether to notifyListeners or not.
+     * This endpoint allows to trigger background reindexing of an index version. It is also supported to specify whether to reuse existing up-to-date (non-stale) index documents and whether to notifyListeners or not. The options are provided in the request body as a ReindexIndexVersion.Input entity.
      * Reindex an Index Version
      */
     async postConfigServerIndexesIndexIdVersionsIndexVersionIdReindexRaw(requestParameters: PostConfigServerIndexesIndexIdVersionsIndexVersionIdReindexRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
@@ -1955,7 +1955,7 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
-     * This endpoint allows to trigger background reindexing of an index version. It is also supported to specify whether to reuse existing up-to-date (non-stale) index documents and whether to notifyListeners or not.
+     * This endpoint allows to trigger background reindexing of an index version. It is also supported to specify whether to reuse existing up-to-date (non-stale) index documents and whether to notifyListeners or not. The options are provided in the request body as a ReindexIndexVersion.Input entity.
      * Reindex an Index Version
      */
     async postConfigServerIndexesIndexIdVersionsIndexVersionIdReindex(requestParameters: PostConfigServerIndexesIndexIdVersionsIndexVersionIdReindexRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
@@ -2005,7 +2005,7 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
-     * This creates a snapshot of one index version of the specified index.
+     * This creates a snapshot of one index version of the specified index. The snapshot id may be provided in the request body as a SnapshotIndexVersion.Input entity.
      * Create Snapshot of one Index Version
      */
     async postConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshotRaw(requestParameters: PostConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
@@ -2020,7 +2020,7 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
-     * This creates a snapshot of one index version of the specified index.
+     * This creates a snapshot of one index version of the specified index. The snapshot id may be provided in the request body as a SnapshotIndexVersion.Input entity.
      * Create Snapshot of one Index Version
      */
     async postConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshot(requestParameters: PostConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
@@ -2193,6 +2193,7 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
+     * This creates a snapshot of all write index versions. The snapshot id may be provided in the request body as a SnapshotIndexes.Input entity.
      * Create Snapshot of All Indexes
      */
     async postConfigServerSnapshotIndexesRaw(requestParameters: PostConfigServerSnapshotIndexesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
@@ -2207,6 +2208,7 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
+     * This creates a snapshot of all write index versions. The snapshot id may be provided in the request body as a SnapshotIndexes.Input entity.
      * Create Snapshot of All Indexes
      */
     async postConfigServerSnapshotIndexes(requestParameters: PostConfigServerSnapshotIndexesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {

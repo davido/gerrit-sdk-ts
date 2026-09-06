@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface CommonDescriptionInput {
     /**
-     * 
+     * The description text.
      */
     description?: string;
 }

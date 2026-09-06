@@ -64,7 +64,7 @@ export interface CommonFileInfo {
      */
     size?: number;
     /**
-     * 
+     * Whether the diff of the file is too expensive to compute; when set the diff content is omitted.
      */
     diffsTooExpensiveToCompute?: boolean;
 }

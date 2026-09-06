@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface GroupsInfo {
     /**
-     * 
+     * gerrit.config.
      */
     enableDeleteGroup?: boolean;
 }

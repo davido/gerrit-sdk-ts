@@ -198,7 +198,7 @@ export interface ChangeInfo {
      */
     starred?: boolean;
     /**
-     * 
+     * List of star labels that are applied by the calling user to this change.
      */
     stars?: Array<string>;
     /**

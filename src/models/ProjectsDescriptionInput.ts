@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface ProjectsDescriptionInput {
     /**
-     * 
+     * Message that should be used to commit the change of the project description in the project.config file to the refs/meta/config branch.
      */
     commitMessage?: string;
 }

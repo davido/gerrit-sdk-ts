@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface MigratePasswordsToTokensInput {
     /**
-     * 
+     * Lifetime of the migrated token.
      */
     lifetime?: string;
 }

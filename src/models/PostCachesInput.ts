@@ -28,11 +28,11 @@ import {
  */
 export interface PostCachesInput {
     /**
-     * 
+     * The cache operation that should be executed: FLUSH_ALL: Flushes all caches, except the web_sessions cache. FLUSH: Flushes the specified caches.
      */
     operation?: Operation;
     /**
-     * 
+     * A list of cache names. This list defines the caches on which the specified operation should be executed. Whether this list must be specified depends on the operation being executed.
      */
     caches?: Array<string>;
 }

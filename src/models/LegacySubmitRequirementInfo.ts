@@ -20,15 +20,15 @@ import { mapValues } from '../runtime';
  */
 export interface LegacySubmitRequirementInfo {
     /**
-     * 
+     * The status of the submit requirement, for example OK or NOT_READY.
      */
     status?: string;
     /**
-     * 
+     * A human readable description of the submit requirement.
      */
     fallbackText?: string;
     /**
-     * 
+     * The type of the submit requirement.
      */
     type?: string;
 }

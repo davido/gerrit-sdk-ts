@@ -35,15 +35,15 @@ import {
  */
 export interface Label {
     /**
-     * 
+     * The name of the label.
      */
     label?: string;
     /**
-     * 
+     * The status of the label, one of OK, REJECT, NEED, MAY or IMPOSSIBLE.
      */
     status?: LabelStatus;
     /**
-     * 
+     * The AccountInfo of the user that applied the vote to the label.
      */
     appliedBy?: AccountInfo;
 }

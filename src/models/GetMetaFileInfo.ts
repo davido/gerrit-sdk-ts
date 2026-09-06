@@ -28,7 +28,7 @@ import {
  */
 export interface GetMetaFileInfo {
     /**
-     * 
+     * Links to the file in external sites as a list of DiffWebLinkInfo entities.
      */
     webLinks?: Array<DiffWebLinkInfo>;
 }
