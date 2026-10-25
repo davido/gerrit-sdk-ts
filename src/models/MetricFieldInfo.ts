@@ -16,9 +16,9 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface FieldJson
+ * @interface MetricFieldInfo
  */
-export interface FieldJson {
+export interface MetricFieldInfo {
     /**
      * The name of the field.
      */
@@ -34,17 +34,17 @@ export interface FieldJson {
 }
 
 /**
- * Check if a given object implements the FieldJson interface.
+ * Check if a given object implements the MetricFieldInfo interface.
  */
-export function instanceOfFieldJson(value: object): value is FieldJson {
+export function instanceOfMetricFieldInfo(value: object): value is MetricFieldInfo {
     return true;
 }
 
-export function FieldJsonFromJSON(json: any): FieldJson {
-    return FieldJsonFromJSONTyped(json, false);
+export function MetricFieldInfoFromJSON(json: any): MetricFieldInfo {
+    return MetricFieldInfoFromJSONTyped(json, false);
 }
 
-export function FieldJsonFromJSONTyped(json: any, ignoreDiscriminator: boolean): FieldJson {
+export function MetricFieldInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): MetricFieldInfo {
     if (json == null) {
         return json;
     }
@@ -56,11 +56,11 @@ export function FieldJsonFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     };
 }
 
-export function FieldJsonToJSON(json: any): FieldJson {
-    return FieldJsonToJSONTyped(json, false);
+export function MetricFieldInfoToJSON(json: any): MetricFieldInfo {
+    return MetricFieldInfoToJSONTyped(json, false);
 }
 
-export function FieldJsonToJSONTyped(value?: FieldJson | null, ignoreDiscriminator: boolean = false): any {
+export function MetricFieldInfoToJSONTyped(value?: MetricFieldInfo | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

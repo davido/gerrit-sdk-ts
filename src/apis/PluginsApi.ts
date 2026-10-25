@@ -299,6 +299,7 @@ export class PluginsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Disables a plugin on the Gerrit server.
      * Disable Plugin
      */
     async postPluginsPluginIdGerritDisableRaw(requestParameters: PostPluginsPluginIdGerritDisableRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PluginInfo>> {
@@ -309,6 +310,7 @@ export class PluginsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Disables a plugin on the Gerrit server.
      * Disable Plugin
      */
     async postPluginsPluginIdGerritDisable(requestParameters: PostPluginsPluginIdGerritDisableRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PluginInfo> {

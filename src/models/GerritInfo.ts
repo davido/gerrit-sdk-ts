@@ -59,6 +59,10 @@ export interface GerritInfo {
      * Whether the instance supports filtering projects by state.
      */
     projectStatePredicateEnabled?: boolean;
+    /**
+     * 
+     */
+    submitCommitUrl?: string;
 }
 
 /**
@@ -88,6 +92,7 @@ export function GerritInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'instanceId': json['instance_id'] == null ? undefined : json['instance_id'],
         'defaultBranch': json['default_branch'] == null ? undefined : json['default_branch'],
         'projectStatePredicateEnabled': json['project_state_predicate_enabled'] == null ? undefined : json['project_state_predicate_enabled'],
+        'submitCommitUrl': json['submit_commit_url'] == null ? undefined : json['submit_commit_url'],
     };
 }
 
@@ -112,6 +117,7 @@ export function GerritInfoToJSONTyped(value?: GerritInfo | null, ignoreDiscrimin
         'instance_id': value['instanceId'],
         'default_branch': value['defaultBranch'],
         'project_state_predicate_enabled': value['projectStatePredicateEnabled'],
+        'submit_commit_url': value['submitCommitUrl'],
     };
 }
 

@@ -805,6 +805,24 @@ export interface GetProjectsProjectIdSubmitRequirementsSubmitRequirementIdReques
     submitRequirementId: string;
 }
 
+export interface GetProjectsProjectIdSubmitRequirementsTemplatesRequest {
+    /**
+     * 
+     */
+    projectId: string;
+}
+
+export interface GetProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateIdRequest {
+    /**
+     * 
+     */
+    projectId: string;
+    /**
+     * 
+     */
+    submitRequirementTemplateId: string;
+}
+
 export interface GetProjectsProjectIdTagsRequest {
     /**
      * 
@@ -2004,6 +2022,8 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Gets the diff for a single file between two commits. The base query parameter is required (same as Diff Between Commits).
+     * Get Diff for File
      */
     async getProjectsProjectIdBranchesBranchIdFilesFileIdDiffRaw(requestParameters: GetProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiffInfo>> {
         const requestOptions = await this.getProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequestOpts(requestParameters);
@@ -2013,6 +2033,8 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Gets the diff for a single file between two commits. The base query parameter is required (same as Diff Between Commits).
+     * Get Diff for File
      */
     async getProjectsProjectIdBranchesBranchIdFilesFileIdDiff(requestParameters: GetProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiffInfo> {
         const response = await this.getProjectsProjectIdBranchesBranchIdFilesFileIdDiffRaw(requestParameters, initOverrides);
@@ -3543,6 +3565,114 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getProjectsProjectIdSubmitRequirementsTemplates without sending the request
+     */
+    async getProjectsProjectIdSubmitRequirementsTemplatesRequestOpts(requestParameters: GetProjectsProjectIdSubmitRequirementsTemplatesRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getProjectsProjectIdSubmitRequirementsTemplates().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && (this.configuration.username !== undefined || this.configuration.password !== undefined)) {
+            headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
+        }
+
+        let urlPath = `/projects/{project-id}/submit_requirements_templates`;
+        urlPath = urlPath.replace('{project-id}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Retrieves submit requirement templates configured in project.config and in its parent projects.
+     * Get Submit Requirement Templates
+     */
+    async getProjectsProjectIdSubmitRequirementsTemplatesRaw(requestParameters: GetProjectsProjectIdSubmitRequirementsTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SubmitRequirementInfo>>> {
+        const requestOptions = await this.getProjectsProjectIdSubmitRequirementsTemplatesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(SubmitRequirementInfoFromJSON));
+    }
+
+    /**
+     * Retrieves submit requirement templates configured in project.config and in its parent projects.
+     * Get Submit Requirement Templates
+     */
+    async getProjectsProjectIdSubmitRequirementsTemplates(requestParameters: GetProjectsProjectIdSubmitRequirementsTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SubmitRequirementInfo>> {
+        const response = await this.getProjectsProjectIdSubmitRequirementsTemplatesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateId without sending the request
+     */
+    async getProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateIdRequestOpts(requestParameters: GetProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateIdRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateId().'
+            );
+        }
+
+        if (requestParameters['submitRequirementTemplateId'] == null) {
+            throw new runtime.RequiredError(
+                'submitRequirementTemplateId',
+                'Required parameter "submitRequirementTemplateId" was null or undefined when calling getProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateId().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && (this.configuration.username !== undefined || this.configuration.password !== undefined)) {
+            headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
+        }
+
+        let urlPath = `/projects/{project-id}/submit_requirements_templates/{submit-requirement-template-id}`;
+        urlPath = urlPath.replace('{project-id}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{submit-requirement-template-id}', encodeURIComponent(String(requestParameters['submitRequirementTemplateId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Retrieves a single effective submit requirement template for a project. The returned template may be defined in the project itself or inherited from one of its parent projects.
+     * Get Submit Requirement Template
+     */
+    async getProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateIdRaw(requestParameters: GetProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubmitRequirementInfo>> {
+        const requestOptions = await this.getProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SubmitRequirementInfoFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves a single effective submit requirement template for a project. The returned template may be defined in the project itself or inherited from one of its parent projects.
+     * Get Submit Requirement Template
+     */
+    async getProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateId(requestParameters: GetProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubmitRequirementInfo> {
+        const response = await this.getProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateIdRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for getProjectsProjectIdTags without sending the request
      */
     async getProjectsProjectIdTagsRequestOpts(requestParameters: GetProjectsProjectIdTagsRequest): Promise<runtime.RequestOpts> {
@@ -3927,6 +4057,8 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Performs consistency checks on the project.
+     * Check project consistency
      */
     async postProjectsProjectIdCheckRaw(requestParameters: PostProjectsProjectIdCheckRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckProjectResultInfo>> {
         const requestOptions = await this.postProjectsProjectIdCheckRequestOpts(requestParameters);
@@ -3936,6 +4068,8 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Performs consistency checks on the project.
+     * Check project consistency
      */
     async postProjectsProjectIdCheck(requestParameters: PostProjectsProjectIdCheckRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CheckProjectResultInfo> {
         const response = await this.postProjectsProjectIdCheckRaw(requestParameters, initOverrides);
@@ -4037,6 +4171,8 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
+     * This endpoint is functionally equivalent to create change in the change API, but it has the project name in the URL, which is easier to route in sharded deployments.
+     * Create Change for review
      */
     async postProjectsProjectIdCreateChangeRaw(requestParameters: PostProjectsProjectIdCreateChangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChangeInfo>> {
         const requestOptions = await this.postProjectsProjectIdCreateChangeRequestOpts(requestParameters);
@@ -4046,6 +4182,8 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
+     * This endpoint is functionally equivalent to create change in the change API, but it has the project name in the URL, which is easier to route in sharded deployments.
+     * Create Change for review
      */
     async postProjectsProjectIdCreateChange(requestParameters: PostProjectsProjectIdCreateChangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChangeInfo> {
         const response = await this.postProjectsProjectIdCreateChangeRaw(requestParameters, initOverrides);
@@ -4143,6 +4281,8 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Adds or updates the current project (and children, if specified) in the secondary index. The indexing task is executed asynchronously in background and this command returns immediately if async is specified in the input.
+     * Index project
      */
     async postProjectsProjectIdIndexRaw(requestParameters: PostProjectsProjectIdIndexRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.postProjectsProjectIdIndexRequestOpts(requestParameters);
@@ -4156,6 +4296,8 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Adds or updates the current project (and children, if specified) in the secondary index. The indexing task is executed asynchronously in background and this command returns immediately if async is specified in the input.
+     * Index project
      */
     async postProjectsProjectIdIndex(requestParameters: PostProjectsProjectIdIndexRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.postProjectsProjectIdIndexRaw(requestParameters, initOverrides);
@@ -4193,6 +4335,8 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Adds or updates all the changes belonging to a project in the secondary index. The indexing task is executed asynchronously in background, so this command returns immediately.
+     * Index all changes in a project
      */
     async postProjectsProjectIdIndexChangesRaw(requestParameters: PostProjectsProjectIdIndexChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.postProjectsProjectIdIndexChangesRequestOpts(requestParameters);
@@ -4206,6 +4350,8 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Adds or updates all the changes belonging to a project in the secondary index. The indexing task is executed asynchronously in background, so this command returns immediately.
+     * Index all changes in a project
      */
     async postProjectsProjectIdIndexChanges(requestParameters: PostProjectsProjectIdIndexChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.postProjectsProjectIdIndexChangesRaw(requestParameters, initOverrides);
@@ -4671,6 +4817,8 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Sets access rights for the project using the diff schema provided by ProjectAccessInput
+     * Create Access Rights Change for review
      */
     async putProjectsProjectIdAccessReviewRaw(requestParameters: PutProjectsProjectIdAccessReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChangeInfo>> {
         const requestOptions = await this.putProjectsProjectIdAccessReviewRequestOpts(requestParameters);
@@ -4680,6 +4828,8 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Sets access rights for the project using the diff schema provided by ProjectAccessInput
+     * Create Access Rights Change for review
      */
     async putProjectsProjectIdAccessReview(requestParameters: PutProjectsProjectIdAccessReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChangeInfo> {
         const response = await this.putProjectsProjectIdAccessReviewRaw(requestParameters, initOverrides);

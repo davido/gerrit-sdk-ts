@@ -24,11 +24,6 @@ import {
     CapabilityInfoToJSON,
 } from '../models/CapabilityInfo';
 import {
-    type CleanupChangesInput,
-    CleanupChangesInputFromJSON,
-    CleanupChangesInputToJSON,
-} from '../models/CleanupChangesInput';
-import {
     type ConfigUpdateEntryInfo,
     ConfigUpdateEntryInfoFromJSON,
     ConfigUpdateEntryInfoToJSON,
@@ -89,10 +84,10 @@ import {
     MenuEntryToJSON,
 } from '../models/MenuEntry';
 import {
-    type MetricJson,
-    MetricJsonFromJSON,
-    MetricJsonToJSON,
-} from '../models/MetricJson';
+    type MetricInfo,
+    MetricInfoFromJSON,
+    MetricInfoToJSON,
+} from '../models/MetricInfo';
 import {
     type MigratePasswordsToTokensInput,
     MigratePasswordsToTokensInputFromJSON,
@@ -242,6 +237,13 @@ export interface GetConfigServerSummaryRequest {
     jvm?: boolean;
 }
 
+export interface GetConfigServerTasksRequest {
+    /**
+     * 
+     */
+    state?: Array<string>;
+}
+
 export interface GetConfigServerTasksTaskIdRequest {
     /**
      * 
@@ -275,13 +277,6 @@ export interface PostConfigServerCheckConsistencyRequest {
      * 
      */
     consistencyCheckInput?: ConsistencyCheckInput;
-}
-
-export interface PostConfigServerCleanupChangesRequest {
-    /**
-     * 
-     */
-    cleanupChangesInput?: CleanupChangesInput;
 }
 
 export interface PostConfigServerIndexChangesRequest {
@@ -665,6 +660,8 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieves the details of the experiment with the given name.
+     * Get Experiment
      */
     async getConfigServerExperimentsExperimentIdRaw(requestParameters: GetConfigServerExperimentsExperimentIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExperimentInfo>> {
         const requestOptions = await this.getConfigServerExperimentsExperimentIdRequestOpts(requestParameters);
@@ -674,6 +671,8 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieves the details of the experiment with the given name.
+     * Get Experiment
      */
     async getConfigServerExperimentsExperimentId(requestParameters: GetConfigServerExperimentsExperimentIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExperimentInfo> {
         const response = await this.getConfigServerExperimentsExperimentIdRaw(requestParameters, initOverrides);
@@ -945,7 +944,7 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lists the globally defined labels (labels that are added programatically via the LabelType extension point).
+     * Lists the globally defined labels (labels that are added programmatically via the LabelType extension point).
      * List Global Labels
      */
     async getConfigServerLabelsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LabelDefinitionInfo>>> {
@@ -956,7 +955,7 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lists the globally defined labels (labels that are added programatically via the LabelType extension point).
+     * Lists the globally defined labels (labels that are added programmatically via the LabelType extension point).
      * List Global Labels
      */
     async getConfigServerLabels(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LabelDefinitionInfo>> {
@@ -995,21 +994,21 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lists the metrics of the server, returning a map of metric name to a MetricJson entity.
+     * Lists the metrics of the server, returning a map of metric name to a MetricInfo entity.
      * List Metrics
      */
-    async getConfigServerMetricsRaw(requestParameters: GetConfigServerMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: MetricJson; }>> {
+    async getConfigServerMetricsRaw(requestParameters: GetConfigServerMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: MetricInfo; }>> {
         const requestOptions = await this.getConfigServerMetricsRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => runtime.mapValues(jsonValue, MetricJsonFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => runtime.mapValues(jsonValue, MetricInfoFromJSON));
     }
 
     /**
-     * Lists the metrics of the server, returning a map of metric name to a MetricJson entity.
+     * Lists the metrics of the server, returning a map of metric name to a MetricInfo entity.
      * List Metrics
      */
-    async getConfigServerMetrics(requestParameters: GetConfigServerMetricsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: MetricJson; }> {
+    async getConfigServerMetrics(requestParameters: GetConfigServerMetricsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: MetricInfo; }> {
         const response = await this.getConfigServerMetricsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1052,18 +1051,18 @@ export class ConfigApi extends runtime.BaseAPI {
      * Retrieves a single metric of the server. The metric name is used as the \\{metric-id\\} and must be URL-encoded because it may contain slashes.
      * Get Metric
      */
-    async getConfigServerMetricsMetricIdRaw(requestParameters: GetConfigServerMetricsMetricIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MetricJson>> {
+    async getConfigServerMetricsMetricIdRaw(requestParameters: GetConfigServerMetricsMetricIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MetricInfo>> {
         const requestOptions = await this.getConfigServerMetricsMetricIdRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => MetricJsonFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => MetricInfoFromJSON(jsonValue));
     }
 
     /**
      * Retrieves a single metric of the server. The metric name is used as the \\{metric-id\\} and must be URL-encoded because it may contain slashes.
      * Get Metric
      */
-    async getConfigServerMetricsMetricId(requestParameters: GetConfigServerMetricsMetricIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MetricJson> {
+    async getConfigServerMetricsMetricId(requestParameters: GetConfigServerMetricsMetricIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MetricInfo> {
         const response = await this.getConfigServerMetricsMetricIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1217,7 +1216,7 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lists the globally defined submit requirements (submit requirements that are added programatically via the SubmitRequirement extension point).
+     * Lists the globally defined submit requirements (submit requirements that are added programmatically via the SubmitRequirement extension point).
      * List Global Submit Requirements
      */
     async getConfigServerSubmitRequirementsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SubmitRequirementInfo>>> {
@@ -1228,7 +1227,7 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lists the globally defined submit requirements (submit requirements that are added programatically via the SubmitRequirement extension point).
+     * Lists the globally defined submit requirements (submit requirements that are added programmatically via the SubmitRequirement extension point).
      * List Global Submit Requirements
      */
     async getConfigServerSubmitRequirements(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SubmitRequirementInfo>> {
@@ -1285,8 +1284,12 @@ export class ConfigApi extends runtime.BaseAPI {
     /**
      * Creates request options for getConfigServerTasks without sending the request
      */
-    async getConfigServerTasksRequestOpts(): Promise<runtime.RequestOpts> {
+    async getConfigServerTasksRequestOpts(requestParameters: GetConfigServerTasksRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
+
+        if (requestParameters['state'] != null) {
+            queryParameters['state'] = requestParameters['state'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -1308,8 +1311,8 @@ export class ConfigApi extends runtime.BaseAPI {
      * Lists the tasks from the background work queues that the Gerrit daemon is currently performing, or will perform in the near future.
      * List Tasks
      */
-    async getConfigServerTasksRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TaskInfo>>> {
-        const requestOptions = await this.getConfigServerTasksRequestOpts();
+    async getConfigServerTasksRaw(requestParameters: GetConfigServerTasksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TaskInfo>>> {
+        const requestOptions = await this.getConfigServerTasksRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(TaskInfoFromJSON));
@@ -1319,8 +1322,8 @@ export class ConfigApi extends runtime.BaseAPI {
      * Lists the tasks from the background work queues that the Gerrit daemon is currently performing, or will perform in the near future.
      * List Tasks
      */
-    async getConfigServerTasks(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<TaskInfo>> {
-        const response = await this.getConfigServerTasksRaw(initOverrides);
+    async getConfigServerTasks(requestParameters: GetConfigServerTasksRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<TaskInfo>> {
+        const response = await this.getConfigServerTasksRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1615,51 +1618,6 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for postConfigServerCleanupChanges without sending the request
-     */
-    async postConfigServerCleanupChangesRequestOpts(requestParameters: PostConfigServerCleanupChangesRequest): Promise<runtime.RequestOpts> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && (this.configuration.username !== undefined || this.configuration.password !== undefined)) {
-            headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
-        }
-
-        let urlPath = `/config/server/cleanup.changes`;
-
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: CleanupChangesInputToJSON(requestParameters['cleanupChangesInput']),
-        };
-    }
-
-    /**
-     */
-    async postConfigServerCleanupChangesRaw(requestParameters: PostConfigServerCleanupChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
-        const requestOptions = await this.postConfigServerCleanupChangesRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<any>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
-    }
-
-    /**
-     */
-    async postConfigServerCleanupChanges(requestParameters: PostConfigServerCleanupChangesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
-        const response = await this.postConfigServerCleanupChangesRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
      * Creates request options for postConfigServerCleanupDraftComments without sending the request
      */
     async postConfigServerCleanupDraftCommentsRequestOpts(): Promise<runtime.RequestOpts> {
@@ -1682,6 +1640,8 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
+     * This endpoint allows Gerrit administrators to cleanup already published draft comments that were not deleted.
+     * Cleanup of already published draft comments
      */
     async postConfigServerCleanupDraftCommentsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.postConfigServerCleanupDraftCommentsRequestOpts();
@@ -1695,6 +1655,8 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
+     * This endpoint allows Gerrit administrators to cleanup already published draft comments that were not deleted.
+     * Cleanup of already published draft comments
      */
     async postConfigServerCleanupDraftComments(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.postConfigServerCleanupDraftCommentsRaw(initOverrides);
@@ -1773,6 +1735,8 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
+     * This endpoint allows Gerrit admins to index a set of changes with one request by providing a IndexChangesInput entity.
+     * Index a set of changes
      */
     async postConfigServerIndexChangesRaw(requestParameters: PostConfigServerIndexChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
         const requestOptions = await this.postConfigServerIndexChangesRequestOpts(requestParameters);
@@ -1786,6 +1750,8 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
+     * This endpoint allows Gerrit admins to index a set of changes with one request by providing a IndexChangesInput entity.
+     * Index a set of changes
      */
     async postConfigServerIndexChanges(requestParameters: PostConfigServerIndexChangesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.postConfigServerIndexChangesRaw(requestParameters, initOverrides);
@@ -2054,6 +2020,8 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
+     * This endpoint allows Gerrit administrators to migrate remaining HTTP passwords to authentication tokens. For the user the migration is invisible, i.e. the same credential is still valid.
+     * Migration of HTTP passwords to authentication tokens
      */
     async postConfigServerPasswordsToTokensRaw(requestParameters: PostConfigServerPasswordsToTokensRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.postConfigServerPasswordsToTokensRequestOpts(requestParameters);
@@ -2067,6 +2035,8 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
+     * This endpoint allows Gerrit administrators to migrate remaining HTTP passwords to authentication tokens. For the user the migration is invisible, i.e. the same credential is still valid.
+     * Migration of HTTP passwords to authentication tokens
      */
     async postConfigServerPasswordsToTokens(requestParameters: PostConfigServerPasswordsToTokensRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.postConfigServerPasswordsToTokensRaw(requestParameters, initOverrides);
@@ -2099,6 +2069,8 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
+     * This endpoint allows Gerrit administrators to apply a shorter maximum lifetime to existing authentication tokens. This is required, when a shorter maximum lifetime is enforced. Changing the configuration will not apply that maximum to existing tokens.
+     * Apply maximum lifetime to authentication tokens
      */
     async postConfigServerReduceTokenLifetimeRaw(requestParameters: PostConfigServerReduceTokenLifetimeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.postConfigServerReduceTokenLifetimeRequestOpts(requestParameters);
@@ -2112,6 +2084,8 @@ export class ConfigApi extends runtime.BaseAPI {
     }
 
     /**
+     * This endpoint allows Gerrit administrators to apply a shorter maximum lifetime to existing authentication tokens. This is required, when a shorter maximum lifetime is enforced. Changing the configuration will not apply that maximum to existing tokens.
+     * Apply maximum lifetime to authentication tokens
      */
     async postConfigServerReduceTokenLifetime(requestParameters: PostConfigServerReduceTokenLifetimeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any | null | undefined > {
         const response = await this.postConfigServerReduceTokenLifetimeRaw(requestParameters, initOverrides);

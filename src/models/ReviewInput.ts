@@ -78,6 +78,10 @@ export interface ReviewInput {
      */
     tag?: string;
     /**
+     * Whether the votes in labels were created by an AI agent.
+     */
+    isAi?: boolean;
+    /**
      * The votes that should be added to the revision as a map that maps the label names to the voting values.
      */
     labels?: { [key: string]: number; };
@@ -160,6 +164,7 @@ export function ReviewInputFromJSONTyped(json: any, ignoreDiscriminator: boolean
         
         'message': json['message'] == null ? undefined : json['message'],
         'tag': json['tag'] == null ? undefined : json['tag'],
+        'isAi': json['is_ai'] == null ? undefined : json['is_ai'],
         'labels': json['labels'] == null ? undefined : json['labels'],
         'comments': json['comments'] == null ? undefined : json['comments'],
         'drafts': json['drafts'] == null ? undefined : DraftHandlingFromJSON(json['drafts']),
@@ -191,6 +196,7 @@ export function ReviewInputToJSONTyped(value?: ReviewInput | null, ignoreDiscrim
         
         'message': value['message'],
         'tag': value['tag'],
+        'is_ai': value['isAi'],
         'labels': value['labels'],
         'comments': value['comments'],
         'drafts': DraftHandlingToJSON(value['drafts']),

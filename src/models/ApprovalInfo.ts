@@ -51,6 +51,10 @@ export interface ApprovalInfo {
      */
     postSubmit?: boolean;
     /**
+     * If true, this vote was created by an AI agent.
+     */
+    isAi?: boolean;
+    /**
      * The VotingRangeInfo the user is authorized to vote on that label. If present, the user is permitted to vote on the label regarding the range values. If absent, the user is not permitted to vote on that label.
      */
     permittedVotingRange?: VotingRangeInfo;
@@ -125,6 +129,7 @@ export function ApprovalInfoFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'value': json['value'] == null ? undefined : json['value'],
         'date': json['date'] == null ? undefined : json['date'],
         'postSubmit': json['post_submit'] == null ? undefined : json['post_submit'],
+        'isAi': json['is_ai'] == null ? undefined : json['is_ai'],
         'permittedVotingRange': json['permitted_voting_range'] == null ? undefined : VotingRangeInfoFromJSON(json['permitted_voting_range']),
         'accountId': json['_account_id'] == null ? undefined : json['_account_id'],
         'name': json['name'] == null ? undefined : json['name'],
@@ -156,6 +161,7 @@ export function ApprovalInfoToJSONTyped(value?: ApprovalInfo | null, ignoreDiscr
         'value': value['value'],
         'date': value['date'],
         'post_submit': value['postSubmit'],
+        'is_ai': value['isAi'],
         'permitted_voting_range': VotingRangeInfoToJSON(value['permittedVotingRange']),
         '_account_id': value['accountId'],
         'name': value['name'],

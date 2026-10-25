@@ -2803,6 +2803,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * \'POST /changes/\\{change-id\\}/reviewers/\\{account-id\\}/delete\' --
+     * Delete Reviewer
      */
     async deleteChangesChangeIdRevisionsRevisionIdReviewersReviewerIdRaw(requestParameters: DeleteChangesChangeIdRevisionsRevisionIdReviewersReviewerIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const requestOptions = await this.deleteChangesChangeIdRevisionsRevisionIdReviewersReviewerIdRequestOpts(requestParameters);
@@ -2812,6 +2814,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * \'POST /changes/\\{change-id\\}/reviewers/\\{account-id\\}/delete\' --
+     * Delete Reviewer
      */
     async deleteChangesChangeIdRevisionsRevisionIdReviewersReviewerId(requestParameters: DeleteChangesChangeIdRevisionsRevisionIdReviewersReviewerIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteChangesChangeIdRevisionsRevisionIdReviewersReviewerIdRaw(requestParameters, initOverrides);
@@ -2872,6 +2876,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * \'POST /changes/\\{change-id\\}/reviewers/\\{account-id\\}/votes/\\{label-id\\}/delete\' --
+     * Delete Vote
      */
     async deleteChangesChangeIdRevisionsRevisionIdReviewersReviewerIdVotesVoteIdRaw(requestParameters: DeleteChangesChangeIdRevisionsRevisionIdReviewersReviewerIdVotesVoteIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const requestOptions = await this.deleteChangesChangeIdRevisionsRevisionIdReviewersReviewerIdVotesVoteIdRequestOpts(requestParameters);
@@ -2881,6 +2887,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * \'POST /changes/\\{change-id\\}/reviewers/\\{account-id\\}/votes/\\{label-id\\}/delete\' --
+     * Delete Vote
      */
     async deleteChangesChangeIdRevisionsRevisionIdReviewersReviewerIdVotesVoteId(requestParameters: DeleteChangesChangeIdRevisionsRevisionIdReviewersReviewerIdVotesVoteIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteChangesChangeIdRevisionsRevisionIdReviewersReviewerIdVotesVoteIdRaw(requestParameters, initOverrides);
@@ -3518,6 +3526,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieves content of a file from a change edit.
+     * Retrieve file content from Change Edit
      */
     async getChangesChangeIdEditChangeEditIdRaw(requestParameters: GetChangesChangeIdEditChangeEditIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
         const requestOptions = await this.getChangesChangeIdEditChangeEditIdRequestOpts(requestParameters);
@@ -3527,6 +3537,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieves content of a file from a change edit.
+     * Retrieve file content from Change Edit
      */
     async getChangesChangeIdEditChangeEditId(requestParameters: GetChangesChangeIdEditChangeEditIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob | null | undefined > {
         const response = await this.getChangesChangeIdEditChangeEditIdRaw(requestParameters, initOverrides);
@@ -3579,6 +3591,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieves meta data of a file from a change edit. Currently only web links are returned.
+     * Retrieve meta data of a file from Change Edit
      */
     async getChangesChangeIdEditChangeEditIdMetaRaw(requestParameters: GetChangesChangeIdEditChangeEditIdMetaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMetaFileInfo>> {
         const requestOptions = await this.getChangesChangeIdEditChangeEditIdMetaRequestOpts(requestParameters);
@@ -3588,6 +3602,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieves meta data of a file from a change edit. Currently only web links are returned.
+     * Retrieve meta data of a file from Change Edit
      */
     async getChangesChangeIdEditChangeEditIdMeta(requestParameters: GetChangesChangeIdEditChangeEditIdMetaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetMetaFileInfo> {
         const response = await this.getChangesChangeIdEditChangeEditIdMetaRaw(requestParameters, initOverrides);
@@ -3629,6 +3645,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieves commit message from change edit.
+     * Retrieve commit message from Change Edit or current patch set of the change
      */
     async getChangesChangeIdEditMessageRaw(requestParameters: GetChangesChangeIdEditMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
         const requestOptions = await this.getChangesChangeIdEditMessageRequestOpts(requestParameters);
@@ -3638,6 +3656,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieves commit message from change edit.
+     * Retrieve commit message from Change Edit or current patch set of the change
      */
     async getChangesChangeIdEditMessage(requestParameters: GetChangesChangeIdEditMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob> {
         const response = await this.getChangesChangeIdEditMessageRaw(requestParameters, initOverrides);
@@ -5995,6 +6015,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieves a reviewer of a change.
+     * Get Reviewer
      */
     async getChangesChangeIdRevisionsRevisionIdReviewersReviewerIdRaw(requestParameters: GetChangesChangeIdRevisionsRevisionIdReviewersReviewerIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ReviewerInfo>>> {
         const requestOptions = await this.getChangesChangeIdRevisionsRevisionIdReviewersReviewerIdRequestOpts(requestParameters);
@@ -6004,6 +6026,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieves a reviewer of a change.
+     * Get Reviewer
      */
     async getChangesChangeIdRevisionsRevisionIdReviewersReviewerId(requestParameters: GetChangesChangeIdRevisionsRevisionIdReviewersReviewerIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ReviewerInfo>> {
         const response = await this.getChangesChangeIdRevisionsRevisionIdReviewersReviewerIdRaw(requestParameters, initOverrides);
@@ -6996,6 +7020,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Promotes change edit to a regular patch set.
+     * Publish Change Edit
      */
     async postChangesChangeIdEditPublishRaw(requestParameters: PostChangesChangeIdEditPublishRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const requestOptions = await this.postChangesChangeIdEditPublishRequestOpts(requestParameters);
@@ -7005,6 +7031,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Promotes change edit to a regular patch set.
+     * Publish Change Edit
      */
     async postChangesChangeIdEditPublish(requestParameters: PostChangesChangeIdEditPublishRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postChangesChangeIdEditPublishRaw(requestParameters, initOverrides);
@@ -7529,6 +7557,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Marks the change to be non-private. Note users can only unmark own private changes.
+     * Unmark Private
      */
     async postChangesChangeIdPrivateDeleteRaw(requestParameters: PostChangesChangeIdPrivateDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const requestOptions = await this.postChangesChangeIdPrivateDeleteRequestOpts(requestParameters);
@@ -7538,6 +7568,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Marks the change to be non-private. Note users can only unmark own private changes.
+     * Unmark Private
      */
     async postChangesChangeIdPrivateDelete(requestParameters: PostChangesChangeIdPrivateDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postChangesChangeIdPrivateDeleteRaw(requestParameters, initOverrides);
@@ -8528,6 +8560,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Adds one user or all members of one group as reviewer to the change.
+     * Add Reviewer
      */
     async postChangesChangeIdRevisionsRevisionIdReviewersRaw(requestParameters: PostChangesChangeIdRevisionsRevisionIdReviewersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReviewerResult>> {
         const requestOptions = await this.postChangesChangeIdRevisionsRevisionIdReviewersRequestOpts(requestParameters);
@@ -8537,6 +8571,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Adds one user or all members of one group as reviewer to the change.
+     * Add Reviewer
      */
     async postChangesChangeIdRevisionsRevisionIdReviewers(requestParameters: PostChangesChangeIdRevisionsRevisionIdReviewersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReviewerResult> {
         const response = await this.postChangesChangeIdRevisionsRevisionIdReviewersRaw(requestParameters, initOverrides);
@@ -8593,6 +8629,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Deletes a reviewer from a change. Deleting a reviewer also removes that user from the attention set.
+     * Delete Reviewer
      */
     async postChangesChangeIdRevisionsRevisionIdReviewersReviewerIdDeleteRaw(requestParameters: PostChangesChangeIdRevisionsRevisionIdReviewersReviewerIdDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const requestOptions = await this.postChangesChangeIdRevisionsRevisionIdReviewersReviewerIdDeleteRequestOpts(requestParameters);
@@ -8602,6 +8640,8 @@ export class ChangesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Deletes a reviewer from a change. Deleting a reviewer also removes that user from the attention set.
+     * Delete Reviewer
      */
     async postChangesChangeIdRevisionsRevisionIdReviewersReviewerIdDelete(requestParameters: PostChangesChangeIdRevisionsRevisionIdReviewersReviewerIdDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postChangesChangeIdRevisionsRevisionIdReviewersReviewerIdDeleteRaw(requestParameters, initOverrides);

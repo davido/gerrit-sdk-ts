@@ -36,7 +36,7 @@ export interface ActionInfo {
      */
     enabled?: boolean;
     /**
-     * Optional list of enabled options. + See the list of suppported options below.
+     * Optional list of enabled options. + See the list of supported options below.
      */
     enabledOptions?: Array<string>;
 }

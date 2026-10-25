@@ -13,20 +13,20 @@
  */
 
 import { mapValues } from '../runtime';
-import type { FieldJson } from './FieldJson';
+import type { MetricFieldInfo } from './MetricFieldInfo';
 import {
-    FieldJsonFromJSON,
-    FieldJsonFromJSONTyped,
-    FieldJsonToJSON,
-    FieldJsonToJSONTyped,
-} from './FieldJson';
+    MetricFieldInfoFromJSON,
+    MetricFieldInfoFromJSONTyped,
+    MetricFieldInfoToJSON,
+    MetricFieldInfoToJSONTyped,
+} from './MetricFieldInfo';
 
 /**
  * 
  * @export
- * @interface MetricJson
+ * @interface MetricInfo
  */
-export interface MetricJson {
+export interface MetricInfo {
     /**
      * The description of the metric.
      */
@@ -120,9 +120,9 @@ export interface MetricJson {
      */
     stdDev?: number;
     /**
-     * The fields of the metric as a list of FieldJson entities.
+     * The fields of the metric as a list of MetricFieldInfo entities.
      */
-    fields?: Array<FieldJson>;
+    fields?: Array<MetricFieldInfo>;
     /**
      * The per-field-value breakdown of the metric, as a map of field values to the recorded value for that combination.
      */
@@ -130,17 +130,17 @@ export interface MetricJson {
 }
 
 /**
- * Check if a given object implements the MetricJson interface.
+ * Check if a given object implements the MetricInfo interface.
  */
-export function instanceOfMetricJson(value: object): value is MetricJson {
+export function instanceOfMetricInfo(value: object): value is MetricInfo {
     return true;
 }
 
-export function MetricJsonFromJSON(json: any): MetricJson {
-    return MetricJsonFromJSONTyped(json, false);
+export function MetricInfoFromJSON(json: any): MetricInfo {
+    return MetricInfoFromJSONTyped(json, false);
 }
 
-export function MetricJsonFromJSONTyped(json: any, ignoreDiscriminator: boolean): MetricJson {
+export function MetricInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): MetricInfo {
     if (json == null) {
         return json;
     }
@@ -169,16 +169,16 @@ export function MetricJsonFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'max': json['max'] == null ? undefined : json['max'],
         'sum': json['sum'] == null ? undefined : json['sum'],
         'stdDev': json['std_dev'] == null ? undefined : json['std_dev'],
-        'fields': json['fields'] == null ? undefined : ((json['fields'] as Array<any>).map(FieldJsonFromJSON)),
+        'fields': json['fields'] == null ? undefined : ((json['fields'] as Array<any>).map(MetricFieldInfoFromJSON)),
         'buckets': json['buckets'] == null ? undefined : json['buckets'],
     };
 }
 
-export function MetricJsonToJSON(json: any): MetricJson {
-    return MetricJsonToJSONTyped(json, false);
+export function MetricInfoToJSON(json: any): MetricInfo {
+    return MetricInfoToJSONTyped(json, false);
 }
 
-export function MetricJsonToJSONTyped(value?: MetricJson | null, ignoreDiscriminator: boolean = false): any {
+export function MetricInfoToJSONTyped(value?: MetricInfo | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -208,7 +208,7 @@ export function MetricJsonToJSONTyped(value?: MetricJson | null, ignoreDiscrimin
         'max': value['max'],
         'sum': value['sum'],
         'std_dev': value['stdDev'],
-        'fields': value['fields'] == null ? undefined : ((value['fields'] as Array<any>).map(FieldJsonToJSON)),
+        'fields': value['fields'] == null ? undefined : ((value['fields'] as Array<any>).map(MetricFieldInfoToJSON)),
         'buckets': value['buckets'],
     };
 }

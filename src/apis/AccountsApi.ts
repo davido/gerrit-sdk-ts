@@ -3428,6 +3428,8 @@ export class AccountsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Sets an email address as the avatar email address for an account. The avatar email address is used for avatar lookup, e.g. via Gravatar.
+     * Set Avatar Email
      */
     async putAccountsAccountIdEmailsEmailIdAvatarRaw(requestParameters: PutAccountsAccountIdEmailsEmailIdAvatarRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
         const requestOptions = await this.putAccountsAccountIdEmailsEmailIdAvatarRequestOpts(requestParameters);
@@ -3441,6 +3443,8 @@ export class AccountsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Sets an email address as the avatar email address for an account. The avatar email address is used for avatar lookup, e.g. via Gravatar.
+     * Set Avatar Email
      */
     async putAccountsAccountIdEmailsEmailIdAvatar(requestParameters: PutAccountsAccountIdEmailsEmailIdAvatarRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.putAccountsAccountIdEmailsEmailIdAvatarRaw(requestParameters, initOverrides);

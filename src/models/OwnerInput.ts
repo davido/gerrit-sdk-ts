@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface OwnerInput {
     /**
-     * The id of the group that should own this group.
+     * The group id of the group that should own this group. The group can be specified by UUID, legacy numeric ID, or unique name.
      */
     owner?: string;
 }
