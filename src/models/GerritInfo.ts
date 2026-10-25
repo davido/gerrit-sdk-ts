@@ -60,7 +60,7 @@ export interface GerritInfo {
      */
     projectStatePredicateEnabled?: boolean;
     /**
-     * 
+     * URL used to link commit hashes in submit messages.
      */
     submitCommitUrl?: string;
 }
