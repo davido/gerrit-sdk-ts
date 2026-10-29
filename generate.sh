@@ -40,4 +40,21 @@ j.version = process.argv[1];
 fs.writeFileSync("package.json", JSON.stringify(j, null, 2) + "\n");
 ' "$VERSION"
 
+echo "4/4 sync the Gerrit version tokens in README (protected by .openapi-generator-ignore)"
+# README is NOT rewritten by the generator (.openapi-generator-ignore), so keep its
+# Gerrit-version references in step with the spec here. Each substitution is anchored to
+# its Gerrit-version context so it can never touch an unrelated version number (the
+# openapi-generator-cli pin, package deps, etc.) -- we rewrite only the four known tokens:
+#   - the `github:...#v<VER>` install tags
+#   - "Generated from Gerrit <VER>"
+#   - the tagged **`v<VER>`**
+#   - the `<VER>` is valid npm semver note
+sed -E -i.bak \
+  -e "s|(gerrit-sdk-ts#v)[0-9]+\.[0-9]+\.[0-9]+(-SNAPSHOT)?|\1${VERSION}|g" \
+  -e "s|(Gerrit )[0-9]+\.[0-9]+\.[0-9]+(-SNAPSHOT)?|\1${VERSION}|g" \
+  -e "s|(tagged \*\*\`v)[0-9]+\.[0-9]+\.[0-9]+(-SNAPSHOT)?|\1${VERSION}|g" \
+  -e "s|(\`)[0-9]+\.[0-9]+\.[0-9]+(-SNAPSHOT)?(\` is valid npm semver)|\1${VERSION}\3|g" \
+  README.md
+rm -f README.md.bak
+
 echo "done: src/ regenerated from $SPEC; XSSI handled by xssi.ts middleware (no source patch)"
