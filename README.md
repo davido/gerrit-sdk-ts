@@ -20,7 +20,7 @@ the client never drifts from the server.
 2. **This repo pins that spec.** `rest-api-openapi.json` is a checked-in snapshot.
 3. **`generate.sh` generates the client.** openapi-generator (`typescript-fetch`) turns
    the spec into `src/`.
-4. **A consumer reuses it by tag.** `npm install "github:davido/gerrit-sdk-ts#v3.15.0-SNAPSHOT"`,
+4. **A consumer reuses it by tag.** `npm install "github:davido/gerrit-sdk-ts#v3.16.0-SNAPSHOT"`,
    or run the bundled example — see [Use it](#use-it).
 
 Demonstrates feasibility for Gerrit issue
@@ -28,8 +28,8 @@ Demonstrates feasibility for Gerrit issue
 
 ## Version
 
-Generated from **Gerrit 3.15.0-SNAPSHOT** and tagged **`v3.15.0-SNAPSHOT`** — the tag
-mirrors the Gerrit version, and `3.15.0-SNAPSHOT` is valid npm semver, so the package
+Generated from **Gerrit 3.16.0-SNAPSHOT** and tagged **`v3.16.0-SNAPSHOT`** — the tag
+mirrors the Gerrit version, and `3.16.0-SNAPSHOT` is valid npm semver, so the package
 version matches it directly (no PEP 440 munging or `/vN` suffix like Python/Go).
 
 ## What's in this repo
@@ -86,7 +86,7 @@ npx tsx examples/get-change-detail.ts --change 622261
 `npm install` the SDK straight from the tag (npm builds it via the `prepare` script):
 
 ```bash
-npm install "github:davido/gerrit-sdk-ts#v3.15.0-SNAPSHOT"
+npm install "github:davido/gerrit-sdk-ts#v3.16.0-SNAPSHOT"
 ```
 
 ```ts
