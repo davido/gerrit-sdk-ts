@@ -57,4 +57,22 @@ sed -E -i.bak \
   README.md
 rm -f README.md.bak
 
+echo "5/5 sync the surface counts in README (operations / API classes / models)"
+# Derived straight from the freshly generated src/: one *Raw method per operation, one
+# non-index *.ts per API class and per model. Anchored to the "N operations ... N API
+# classes ... N models" phrasing so no unrelated number is touched.
+OPS=$(grep -hE '^    async [a-zA-Z]+Raw\(' src/apis/*.ts | wc -l | tr -d ' ')
+APIS=$(ls src/apis/*.ts | grep -v '/index\.ts$' | wc -l | tr -d ' ')
+MODELS=$(ls src/models/*.ts | grep -v '/index\.ts$' | wc -l | tr -d ' ')
+# The models count can wrap to the next line (**279\n  models**), so rewrite the number
+# where it sits -- right after "operations** across **N API classes** and **" -- rather
+# than anchoring on the word "models". Each count is anchored to its own context.
+sed -E -i.bak \
+  -e "s|\*\*[0-9]+ operations\*\*|**${OPS} operations**|g" \
+  -e "s|\*\*[0-9]+ API classes\*\*|**${APIS} API classes**|g" \
+  -e "s|(and )\*\*[0-9]+\$|\1**${MODELS}|g" \
+  -e "s|\*\*[0-9]+ models\*\*|**${MODELS} models**|g" \
+  README.md
+rm -f README.md.bak
+
 echo "done: src/ regenerated from $SPEC; XSSI handled by xssi.ts middleware (no source patch)"

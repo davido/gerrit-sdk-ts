@@ -34,7 +34,7 @@ version matches it directly (no PEP 440 munging or `/vN` suffix like Python/Go).
 
 ## What's in this repo
 
-- `src/` — the generated client: **341 operations** across **7 API classes** and **277
+- `src/` — the generated client: **338 operations** across **7 API classes** and **279
   models**, over the native `fetch` API (no runtime dependencies).
 - `xssi.ts` — a hand-written `Middleware` that strips Gerrit's `)]}'` XSSI guard (the one
   Gerrit-specific step; see below). It lives outside the generated `src/`, so
