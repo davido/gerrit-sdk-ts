@@ -199,6 +199,11 @@ import {
     ProjectsDescriptionInputToJSON,
 } from '../models/ProjectsDescriptionInput';
 import {
+    type RefStorageInput,
+    RefStorageInputFromJSON,
+    RefStorageInputToJSON,
+} from '../models/RefStorageInput';
+import {
     type ReflogEntryInfo,
     ReflogEntryInfoFromJSON,
     ReflogEntryInfoToJSON,
@@ -937,6 +942,17 @@ export interface PostProjectsProjectIdCommitsCommitIdCherrypickRequest {
      * 
      */
     cherryPickInput?: CherryPickInput;
+}
+
+export interface PostProjectsProjectIdConvertRefStorageRequest {
+    /**
+     * 
+     */
+    projectId: string;
+    /**
+     * 
+     */
+    refStorageInput?: RefStorageInput;
 }
 
 export interface PostProjectsProjectIdCreateChangeRequest {
@@ -4134,6 +4150,63 @@ export class ProjectsApi extends runtime.BaseAPI {
      */
     async postProjectsProjectIdCommitsCommitIdCherrypick(requestParameters: PostProjectsProjectIdCommitsCommitIdCherrypickRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChangeInfo> {
         const response = await this.postProjectsProjectIdCommitsCommitIdCherrypickRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for postProjectsProjectIdConvertRefStorage without sending the request
+     */
+    async postProjectsProjectIdConvertRefStorageRequestOpts(requestParameters: PostProjectsProjectIdConvertRefStorageRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling postProjectsProjectIdConvertRefStorage().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && (this.configuration.username !== undefined || this.configuration.password !== undefined)) {
+            headerParameters["Authorization"] = "Basic " + btoa(this.configuration.username + ":" + this.configuration.password);
+        }
+
+        let urlPath = `/projects/{project-id}/convert-ref-storage`;
+        urlPath = urlPath.replace('{project-id}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: RefStorageInputToJSON(requestParameters['refStorageInput']),
+        };
+    }
+
+    /**
+     * Converts the ref storage of a project\'s repository between FILES and REFTABLE.
+     * Convert Ref Storage
+     */
+    async postProjectsProjectIdConvertRefStorageRaw(requestParameters: PostProjectsProjectIdConvertRefStorageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.postProjectsProjectIdConvertRefStorageRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<string>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * Converts the ref storage of a project\'s repository between FILES and REFTABLE.
+     * Convert Ref Storage
+     */
+    async postProjectsProjectIdConvertRefStorage(requestParameters: PostProjectsProjectIdConvertRefStorageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.postProjectsProjectIdConvertRefStorageRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

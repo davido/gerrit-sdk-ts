@@ -34,6 +34,13 @@ import {
     InheritableBooleanToJSON,
     InheritableBooleanToJSONTyped,
 } from './InheritableBoolean';
+import type { RefStorage } from './RefStorage';
+import {
+    RefStorageFromJSON,
+    RefStorageFromJSONTyped,
+    RefStorageToJSON,
+    RefStorageToJSONTyped,
+} from './RefStorage';
 
 /**
  * 
@@ -61,6 +68,10 @@ export interface ProjectInput {
      * Whether an empty initial commit should be created.
      */
     createEmptyCommit?: boolean;
+    /**
+     * The ref storage format for the project's repository (FILES, REFTABLE). + If not set, the repository manager selects the format. Local disk storage uses JGit's init defaults, falling back to FILES.
+     */
+    refStorage?: RefStorage;
     /**
      * The submit type that should be set for the project (MERGE_IF_NECESSARY, REBASE_IF_NECESSARY, REBASE_ALWAYS, FAST_FORWARD_ONLY, MERGE_ALWAYS, CHERRY_PICK). + If not set, MERGE_IF_NECESSARY is set as submit type unless repository.<name>.defaultSubmitType is set to a different value.
      */
@@ -143,6 +154,7 @@ export function ProjectInputFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'description': json['description'] == null ? undefined : json['description'],
         'permissionsOnly': json['permissions_only'] == null ? undefined : json['permissions_only'],
         'createEmptyCommit': json['create_empty_commit'] == null ? undefined : json['create_empty_commit'],
+        'refStorage': json['ref_storage'] == null ? undefined : RefStorageFromJSON(json['ref_storage']),
         'submitType': json['submit_type'] == null ? undefined : SubmitTypeFromJSON(json['submit_type']),
         'branches': json['branches'] == null ? undefined : json['branches'],
         'owners': json['owners'] == null ? undefined : json['owners'],
@@ -176,6 +188,7 @@ export function ProjectInputToJSONTyped(value?: ProjectInput | null, ignoreDiscr
         'description': value['description'],
         'permissions_only': value['permissionsOnly'],
         'create_empty_commit': value['createEmptyCommit'],
+        'ref_storage': RefStorageToJSON(value['refStorage']),
         'submit_type': SubmitTypeToJSON(value['submitType']),
         'branches': value['branches'],
         'owners': value['owners'],

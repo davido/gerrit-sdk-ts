@@ -62,6 +62,13 @@ import {
     ConfigParameterInfoToJSON,
     ConfigParameterInfoToJSONTyped,
 } from './ConfigParameterInfo';
+import type { RefStorage } from './RefStorage';
+import {
+    RefStorageFromJSON,
+    RefStorageFromJSONTyped,
+    RefStorageToJSON,
+    RefStorageToJSONTyped,
+} from './RefStorage';
 import type { InheritedBooleanInfo } from './InheritedBooleanInfo';
 import {
     InheritedBooleanInfoFromJSON,
@@ -153,6 +160,10 @@ export interface ConfigInfo {
      */
     state?: ProjectState;
     /**
+     * The ref storage format of the project's repository (FILES or REFTABLE). The request fails if the repository cannot be opened.
+     */
+    refStorage?: RefStorage;
+    /**
      * Plugin configuration as map which maps the plugin name to a map of parameter names to ConfigParameterInfo entities. Only filled for users who have read access to refs/meta/config.
      */
     pluginConfig?: { [key: string]: { [key: string]: ConfigParameterInfo; }; };
@@ -208,6 +219,7 @@ export function ConfigInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'submitType': json['submit_type'] == null ? undefined : SubmitTypeFromJSON(json['submit_type']),
         'defaultSubmitType': json['default_submit_type'] == null ? undefined : SubmitTypeInfoFromJSON(json['default_submit_type']),
         'state': json['state'] == null ? undefined : ProjectStateFromJSON(json['state']),
+        'refStorage': json['ref_storage'] == null ? undefined : RefStorageFromJSON(json['ref_storage']),
         'pluginConfig': json['plugin_config'] == null ? undefined : json['plugin_config'],
         'actions': json['actions'] == null ? undefined : (mapValues(json['actions'], ActionInfoFromJSON)),
         'commentlinks': json['commentlinks'] == null ? undefined : (mapValues(json['commentlinks'], CommentLinkInfoFromJSON)),
@@ -245,6 +257,7 @@ export function ConfigInfoToJSONTyped(value?: ConfigInfo | null, ignoreDiscrimin
         'submit_type': SubmitTypeToJSON(value['submitType']),
         'default_submit_type': SubmitTypeInfoToJSON(value['defaultSubmitType']),
         'state': ProjectStateToJSON(value['state']),
+        'ref_storage': RefStorageToJSON(value['refStorage']),
         'plugin_config': value['pluginConfig'],
         'actions': value['actions'] == null ? undefined : (mapValues(value['actions'], ActionInfoToJSON)),
         'commentlinks': value['commentlinks'] == null ? undefined : (mapValues(value['commentlinks'], CommentLinkInfoToJSON)),

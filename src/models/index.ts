@@ -218,6 +218,8 @@ export * from './RebaseChangeEditInput';
 export * from './RebaseInput';
 export * from './ReceiveInfo';
 export * from './ReduceMaxTokenLifetimeInput';
+export * from './RefStorage';
+export * from './RefStorageInput';
 export * from './ReflogEntryInfo';
 export * from './ReindexIndexVersionInput';
 export * from './RelatedChangeAndCommitInfo';
