@@ -32,9 +32,13 @@ export interface ChangeConfigInfo {
      */
     updateDelay?: number;
     /**
-     * A configuration if the whole topic is submitted.
+     * Configuration that enforces the whole topic to be submitted. Deprecated; use enforce_whole_topic_submit.
      */
     submitWholeTopic?: boolean;
+    /**
+     * Configuration that enforces the whole topic to be submitted.
+     */
+    enforceWholeTopicSubmit?: boolean;
     /**
      * Value of the configuration parameter that controls whether the mergeability bit in ChangeInfo will never be set and if the bit is indexed.
      */
@@ -70,6 +74,7 @@ export function ChangeConfigInfoFromJSONTyped(json: any, ignoreDiscriminator: bo
         'disablePrivateChanges': json['disable_private_changes'] == null ? undefined : json['disable_private_changes'],
         'updateDelay': json['update_delay'] == null ? undefined : json['update_delay'],
         'submitWholeTopic': json['submit_whole_topic'] == null ? undefined : json['submit_whole_topic'],
+        'enforceWholeTopicSubmit': json['enforce_whole_topic_submit'] == null ? undefined : json['enforce_whole_topic_submit'],
         'mergeabilityComputationBehavior': json['mergeability_computation_behavior'] == null ? undefined : json['mergeability_computation_behavior'],
         'conflictsPredicateEnabled': json['conflicts_predicate_enabled'] == null ? undefined : json['conflicts_predicate_enabled'],
         'allowMarkdownBase64ImagesInComments': json['allow_markdown_base64_images_in_comments'] == null ? undefined : json['allow_markdown_base64_images_in_comments'],
@@ -91,6 +96,7 @@ export function ChangeConfigInfoToJSONTyped(value?: ChangeConfigInfo | null, ign
         'disable_private_changes': value['disablePrivateChanges'],
         'update_delay': value['updateDelay'],
         'submit_whole_topic': value['submitWholeTopic'],
+        'enforce_whole_topic_submit': value['enforceWholeTopicSubmit'],
         'mergeability_computation_behavior': value['mergeabilityComputationBehavior'],
         'conflicts_predicate_enabled': value['conflictsPredicateEnabled'],
         'allow_markdown_base64_images_in_comments': value['allowMarkdownBase64ImagesInComments'],

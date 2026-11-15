@@ -50,6 +50,10 @@ export interface SubmitInput {
      * Additional information about whom to notify about the update as a map of recipient type to NotifyInfo entity.
      */
     notifyDetails?: { [key: string]: NotifyInfo; };
+    /**
+     * If true, all open changes that share the topic of the submitted change are also submitted together in a single operation. Defaults to false.
+     */
+    submitWholeTopic?: boolean;
 }
 
 
@@ -75,6 +79,7 @@ export function SubmitInputFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'onBehalfOf': json['on_behalf_of'] == null ? undefined : json['on_behalf_of'],
         'notify': json['notify'] == null ? undefined : NotifyHandlingFromJSON(json['notify']),
         'notifyDetails': json['notify_details'] == null ? undefined : (mapValues(json['notify_details'], NotifyInfoFromJSON)),
+        'submitWholeTopic': json['submit_whole_topic'] == null ? undefined : json['submit_whole_topic'],
     };
 }
 
@@ -93,6 +98,7 @@ export function SubmitInputToJSONTyped(value?: SubmitInput | null, ignoreDiscrim
         'on_behalf_of': value['onBehalfOf'],
         'notify': NotifyHandlingToJSON(value['notify']),
         'notify_details': value['notifyDetails'] == null ? undefined : (mapValues(value['notifyDetails'], NotifyInfoToJSON)),
+        'submit_whole_topic': value['submitWholeTopic'],
     };
 }
 
