@@ -23,6 +23,10 @@ export interface ProjectsDescriptionInput {
      * Message that should be used to commit the change of the project description in the project.config file to the refs/meta/config branch.
      */
     commitMessage?: string;
+    /**
+     * The project description. + The project description will be deleted if not set.
+     */
+    description?: string;
 }
 
 /**
@@ -43,6 +47,7 @@ export function ProjectsDescriptionInputFromJSONTyped(json: any, ignoreDiscrimin
     return {
         
         'commitMessage': json['commit_message'] == null ? undefined : json['commit_message'],
+        'description': json['description'] == null ? undefined : json['description'],
     };
 }
 
@@ -58,6 +63,7 @@ export function ProjectsDescriptionInputToJSONTyped(value?: ProjectsDescriptionI
     return {
         
         'commit_message': value['commitMessage'],
+        'description': value['description'],
     };
 }
 

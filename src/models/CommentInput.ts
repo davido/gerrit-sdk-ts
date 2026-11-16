@@ -13,6 +13,28 @@
  */
 
 import { mapValues } from '../runtime';
+import type { Side } from './Side';
+import {
+    SideFromJSON,
+    SideFromJSONTyped,
+    SideToJSON,
+    SideToJSONTyped,
+} from './Side';
+import type { FixSuggestionInfo } from './FixSuggestionInfo';
+import {
+    FixSuggestionInfoFromJSON,
+    FixSuggestionInfoFromJSONTyped,
+    FixSuggestionInfoToJSON,
+    FixSuggestionInfoToJSONTyped,
+} from './FixSuggestionInfo';
+import type { Range } from './Range';
+import {
+    RangeFromJSON,
+    RangeFromJSONTyped,
+    RangeToJSON,
+    RangeToJSONTyped,
+} from './Range';
+
 /**
  * 
  * @export
@@ -20,10 +42,64 @@ import { mapValues } from '../runtime';
  */
 export interface CommentInput {
     /**
-     * Whether to include the source lines around the comment as context in the response.
+     * Whether or not the comment must be addressed by the user. This value will default to false if the comment is an orphan, or the value of the in_reply_to comment if it is supplied.
      */
-    enableContext?: boolean;
+    unresolved?: boolean;
+    /**
+     * The patch set number for the comment; only set in contexts where + comments may be returned for multiple patch sets.
+     */
+    patchSet?: number;
+    /**
+     * The URL encoded UUID of the comment if an existing draft comment should be updated.
+     */
+    id?: string;
+    /**
+     * The file path for which the inline comment should be added. + Doesn't need to be set if contained in a map where the key is the file path.
+     */
+    path?: string;
+    /**
+     * The side on which the comment should be added. + Allowed values are REVISION and PARENT. + If not set, the default is REVISION.
+     */
+    side?: Side;
+    /**
+     * The 1-based parent number. Used only for merge commits when side == PARENT. When not set the comment is for the auto-merge tree.
+     */
+    parent?: number;
+    /**
+     * The number of the line for which the comment should be added. + 0 if it is a file comment. + If neither line nor range is set, a file comment is added. + If range is set, this value is ignored in favor of the end_line of the range. + When updating a draft without path, the draft keeps its line.
+     */
+    line?: number;
+    /**
+     * The range of the comment as a CommentRange entity.
+     */
+    range?: Range;
+    /**
+     * The URL encoded UUID of the comment to which this comment is a reply.
+     */
+    inReplyTo?: string;
+    /**
+     * The timestamp of this comment. + Accepted but ignored.
+     */
+    updated?: string;
+    /**
+     * The comment message. + If not set and an existing draft comment is updated, the existing draft comment is deleted.
+     */
+    message?: string;
+    /**
+     * Hex commit SHA-1 (40 characters string) of the commit of the patchset to which this comment applies.
+     */
+    commitId?: string;
+    /**
+     * Suggested fixes for this comment as a list of FixSuggestionInfo entities.
+     */
+    fixSuggestions?: Array<FixSuggestionInfo>;
+    /**
+     * Whether the comment was created by an AI agent. Not set if false.
+     */
+    isAi?: boolean;
 }
+
+
 
 /**
  * Check if a given object implements the CommentInput interface.
@@ -42,7 +118,20 @@ export function CommentInputFromJSONTyped(json: any, ignoreDiscriminator: boolea
     }
     return {
         
-        'enableContext': json['enable_context'] == null ? undefined : json['enable_context'],
+        'unresolved': json['unresolved'] == null ? undefined : json['unresolved'],
+        'patchSet': json['patch_set'] == null ? undefined : json['patch_set'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'path': json['path'] == null ? undefined : json['path'],
+        'side': json['side'] == null ? undefined : SideFromJSON(json['side']),
+        'parent': json['parent'] == null ? undefined : json['parent'],
+        'line': json['line'] == null ? undefined : json['line'],
+        'range': json['range'] == null ? undefined : RangeFromJSON(json['range']),
+        'inReplyTo': json['in_reply_to'] == null ? undefined : json['in_reply_to'],
+        'updated': json['updated'] == null ? undefined : json['updated'],
+        'message': json['message'] == null ? undefined : json['message'],
+        'commitId': json['commit_id'] == null ? undefined : json['commit_id'],
+        'fixSuggestions': json['fix_suggestions'] == null ? undefined : ((json['fix_suggestions'] as Array<any>).map(FixSuggestionInfoFromJSON)),
+        'isAi': json['is_ai'] == null ? undefined : json['is_ai'],
     };
 }
 
@@ -57,7 +146,20 @@ export function CommentInputToJSONTyped(value?: CommentInput | null, ignoreDiscr
 
     return {
         
-        'enable_context': value['enableContext'],
+        'unresolved': value['unresolved'],
+        'patch_set': value['patchSet'],
+        'id': value['id'],
+        'path': value['path'],
+        'side': SideToJSON(value['side']),
+        'parent': value['parent'],
+        'line': value['line'],
+        'range': RangeToJSON(value['range']),
+        'in_reply_to': value['inReplyTo'],
+        'updated': value['updated'],
+        'message': value['message'],
+        'commit_id': value['commitId'],
+        'fix_suggestions': value['fixSuggestions'] == null ? undefined : ((value['fixSuggestions'] as Array<any>).map(FixSuggestionInfoToJSON)),
+        'is_ai': value['isAi'],
     };
 }
 
