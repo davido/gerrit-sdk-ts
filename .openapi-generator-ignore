@@ -13,4 +13,3 @@ examples/**
 tests/**
 # generator scaffolding we don't ship
 docs/**
-git_push.sh
